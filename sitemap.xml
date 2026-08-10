@@ -1,13 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
   <url>
     <loc>https://ruhama1946.site/</loc>
     <xhtml:link rel="alternate" hreflang="he" href="https://ruhama1946.site/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ruhama1946.site/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ruhama1946.site/"/>
     <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+
+    <image:image>
+      <image:loc>https://ruhama1946.site/images/p2_the_warning_sign.jpg</image:loc>
+      <image:title>British warning sign at Kibbutz Ruhama, 1946</image:title>
+      <image:caption>"Disperse at once - otherwise we will open fire", in Hebrew and Arabic. Posted at the besieged settlement during the British weapons search of August 1946.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ruhama1946.site/images/p1_woman_at_the_sign.jpg</image:loc>
+      <image:title>A young woman beside the British warning sign, Ruhama 1946</image:title>
+      <image:caption>The only photograph in the collection in which a person and the military authority appear in the same frame.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ruhama1946.site/images/ruhama_1946_45_web.jpg</image:loc>
+      <image:title>The yard at Kibbutz Ruhama after the search, 1946</image:title>
+      <image:caption>Machinery, beams, crates and tools heaped together after six days of searching. One of the members stands at the left.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ruhama1946.site/images/ruhama_1946_47_web.jpg</image:loc>
+      <image:title>Smashed dining-hall crockery, Kibbutz Ruhama 1946</image:title>
+      <image:caption>Thousands of plates and cups from the communal dining hall, broken and thrown into a single heap.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ruhama1946.site/images/p3_woman_in_the_kitchen.jpg</image:loc>
+      <image:title>A woman in the wrecked kitchen, Ruhama 1946</image:title>
+      <image:caption>Not a picture of destruction but of repair - someone has started putting the kitchen back together.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ruhama1946.site/images/p7_man_in_the_yard.jpg</image:loc>
+      <image:title>A member of Kibbutz Ruhama standing among the wreckage, 1946</image:title>
+      <image:caption>His name is not known. Someone alive today may recognise him.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ruhama1946.site/images/ruhama_1946_13_web.jpg</image:loc>
+      <image:title>Floor and wall broken open during the search, Ruhama 1946</image:title>
+      <image:caption>Paving smashed and the ground beneath dug out, looking for an arms cache that was not there.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ruhama1946.site/images/ruhama_1946_36_web.jpg</image:loc>
+      <image:title>A slit mattress, Ruhama 1946</image:title>
+      <image:caption>Every mattress in the kibbutz was cut open and emptied during the six-day search.</image:caption>
+    </image:image>
   </url>
-  <url><loc>https://ruhama1946.site/slides.html</loc><lastmod>2026-08-10</lastmod><priority>0.7</priority></url>
-  <url><loc>https://ruhama1946.site/timeline.html</loc><lastmod>2026-08-10</lastmod><priority>0.6</priority></url>
+
+  <url>
+    <loc>https://ruhama1946.site/slides.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ruhama1946.site/timeline.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>

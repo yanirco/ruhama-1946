@@ -3,7 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>רוחמה במצור 1946 — אב טיפוס / Ruhama Under Siege 1946 — Prototype</title>
+<title>שישה ימים ברוחמה — סדרת הסיפור | Six Days at Ruhama — the story in slides</title>
+<link rel="canonical" href="https://ruhama1946.site/slides.html">
+<meta name="description" content="The 1946 British siege of Kibbutz Ruhama told as a six-part slide sequence, one part per day of the siege. Hebrew and English, at 16:9 and 9:16.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:title" content="שישה ימים ברוחמה — סדרת הסיפור | Six Days at Ruhama — the story in slides">
+<meta property="og:description" content="The 1946 British siege of Kibbutz Ruhama told as a six-part slide sequence, one part per day of the siege. Hebrew and English, at 16:9 and 9:16.">
+<meta property="og:image" content="https://ruhama1946.site/og.jpg">
+<meta property="og:url" content="https://ruhama1946.site/slides.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ruhama1946.site/og.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#8c3b2e">
+
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -226,6 +239,20 @@ document.getElementById('ep').onclick=e=>{
   E=+b.dataset.e; C=0; eps(); render();
 };
 eps(); render();
+</script>
+
+<script>
+(function () {
+  var GA_ID = "";                       // <-- e.g. "G-XXXXXXXXXX"
+  if (!GA_ID) return;
+  var s = document.createElement("script");
+  s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", GA_ID, { anonymize_ip: true });
+})();
 </script>
 </body>
 </html>
