@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ruhama 1946 — Timeline &amp; Production Gantt</title>
+<style>
+:root{
+  --ink:#1c1a17; --muted:#6e675e; --line:#d9d2c6; --paper:#f6f2ea;
+  --hist:#8c3b2e; --hist2:#c0705c; --ctx:#7a7166;
+  --prod:#2f5d62; --prod2:#5f9ea6; --gold:#b9892f; --alert:#8c3b2e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.55 "Frank Ruhl Libre",Georgia,"Times New Roman",serif}
+header{padding:36px 28px 18px;border-bottom:1px solid var(--line);position:relative}
+h1{margin:0 0 6px;font-size:30px;letter-spacing:.01em}
+h2{margin:38px 0 6px;font-size:22px}
+.sub{color:var(--muted);margin:0;font-size:15px}
+main{max-width:1180px;margin:0 auto;padding:8px 28px 80px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 4px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:10px;border-radius:2px;margin-inline-end:6px;vertical-align:middle}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:#fffdf9;margin-top:14px}
+svg{display:block}
+.note{background:#fff8e8;border:1px solid #e6d3a3;border-radius:8px;padding:14px 16px;margin:18px 0;font-size:14.5px}
+.note b{color:var(--alert)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin-top:10px}
+th,td{text-align:start;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.lang{position:absolute;top:30px;inset-inline-end:28px;display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:#fffdf9;padding:7px 15px;font:inherit;font-size:14px;cursor:pointer;color:var(--muted)}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+html[dir=rtl] body{font-family:"Frank Ruhl Libre","David Libre",Georgia,serif}
+[data-he]{display:none}
+html[dir=rtl] [data-he]{display:revert}
+html[dir=rtl] [data-en]{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="lang">
+    <button id="bEn" aria-pressed="true">English</button>
+    <button id="bHe" aria-pressed="false">עברית</button>
+  </div>
+  <h1><span data-en>Ruhama Under Siege, 1946 — two clocks</span><span data-he>רוחמה במצור, 1946 — שני לוחות זמנים</span></h1>
+  <p class="sub"><span data-en>Chart 1: what happened, and when. Chart 2: what we have to build, and by when.</span><span data-he>תרשים 1: מה קרה ומתי. תרשים 2: מה צריך להפיק, ועד מתי.</span></p>
+</header>
+<main>
+
+<h2><span data-en>Chart 1 — The historical timeline</span><span data-he>תרשים 1 — ציר הזמן ההיסטורי</span></h2>
+<div class="legend">
+  <span><i style="background:var(--ctx)"></i><span data-en>Ruhama, the long story</span><span data-he>רוחמה, הסיפור הארוך</span></span>
+  <span><i style="background:var(--hist2)"></i><span data-en>The 1946 confrontation</span><span data-he>העימות של 1946</span></span>
+  <span><i style="background:var(--hist)"></i><span data-en>The siege itself</span><span data-he>המצור עצמו</span></span>
+</div>
+<div class="wrap"><svg id="g1" width="1120" height="470" viewBox="0 0 1120 470"></svg></div>
+
+<div class="note">
+  <b><span data-en>Unresolved:</span><span data-he>לא הוכרע:</span></b>
+  <span data-en> two dating traditions exist — <b>28 Aug – 2/3 Sep 1946, six days</b> (Haganah heritage material; matches the board's own "Radio Jerusalem, 28.8.1946" card) and <b>25 Aug 1946, seven days</b> (Yad Ya'ari account). The chart uses 28 August. Settle this from the <i>Mishmar</i> clipping's own date line before publishing a day-by-day series.</span>
+  <span data-he> קיימות שתי מסורות תיארוך — <b>28.8–2/3.9.1946, שישה ימים</b> (חומרי מורשת ההגנה; תואם את הכרטיס "רדיו ירושלים, 28.8.1946" שעל הלוח) ו<b>25.8.1946, שבעה ימים</b> (יד יערי). התרשים משתמש ב-28 באוגוסט. יש להכריע לפי שורת התאריך בגזיר "משמר" לפני פרסום סדרה יומית.</span>
+</div>
+
+<h2><span data-en>Chart 1b — Day by day, 28 Aug – 2 Sep 1946</span><span data-he>תרשים 1ב — יום אחר יום, 28.8–2.9.1946</span></h2>
+<div class="wrap"><svg id="g1b" width="1120" height="300" viewBox="0 0 1120 300"></svg></div>
+
+<h2><span data-en>Chart 2 — Production plan to the 80th anniversary</span><span data-he>תרשים 2 — תוכנית הפקה עד יום השנה ה-80</span></h2>
+<div class="legend">
+  <span><i style="background:var(--prod)"></i><span data-en>Archive &amp; research</span><span data-he>ארכיון ומחקר</span></span>
+  <span><i style="background:var(--prod2)"></i><span data-en>Editorial &amp; production</span><span data-he>עריכה והפקה</span></span>
+  <span><i style="background:var(--gold)"></i><span data-en>Publication</span><span data-he>פרסום</span></span>
+</div>
+<div class="wrap"><svg id="g2" width="1120" height="640" viewBox="0 0 1120 640"></svg></div>
+
+<h2><span data-en>The critical path</span><span data-he>הנתיב הקריטי</span></h2>
+<table>
+<thead><tr>
+<th><span data-en>Gate</span><span data-he>שער</span></th>
+<th><span data-en>Must be true by</span><span data-he>חייב להתקיים עד</span></th>
+<th><span data-en>Otherwise</span><span data-he>אחרת</span></th>
+</tr></thead>
+<tbody>
+<tr><td><span data-en>Siege dates confirmed from a primary source</span><span data-he>תאריכי המצור מאומתים ממקור ראשוני</span></td><td>14 Aug 2026</td><td><span data-en>Publish as a single feature, not a six-day series</span><span data-he>לפרסם כיצירה אחת, לא כסדרה בת שישה ימים</span></td></tr>
+<tr><td><span data-en>Originals rescanned at 1200 dpi</span><span data-he>סריקת מקור ב-1200 dpi</span></td><td>16 Aug 2026</td><td><span data-en>Ship from the phone photos; quality ceiling drops</span><span data-he>לצאת מצילומי הטלפון; תקרת האיכות יורדת</span></td></tr>
+<tr><td><span data-en>Hebrew and English scripts locked</span><span data-he>תסריטים בעברית ובאנגלית נעולים</span></td><td>19 Aug 2026</td><td><span data-en>Drop to a 4-episode series</span><span data-he>לצמצם לסדרה בת 4 פרקים</span></td></tr>
+<tr><td><span data-en>Archive sign-off on captions and credits</span><span data-he>אישור הארכיון לכיתובים ולקרדיטים</span></td><td>25 Aug 2026</td><td><span data-en>Do not publish. This is a community's own record.</span><span data-he>לא לפרסם. זהו התיעוד של הקהילה עצמה.</span></td></tr>
+</tbody>
+</table>
+
+</main>
+<script>
+const HIST = [
+ {l:{en:'She\'erit Yisrael farm — first Jewish settlement on Negev land',he:'חוות "שארית ישראל" — היישוב היהודי הראשון באדמות הנגב'},s:1911,e:1917,c:'var(--ctx)'},
+ {l:{en:'Destroyed in WWI; settlers expelled',he:'נחרבה במלחמת העולם הראשונה; המתיישבים גורשו'},s:1917,e:1918,c:'var(--ctx)'},
+ {l:{en:'Rebuilt, abandoned after the 1929 riots',he:'שוקמה, ננטשה אחרי מאורעות תרפ"ט'},s:1928,e:1930,c:'var(--ctx)'},
+ {l:{en:'Gan-Shlomo orchards; abandoned in the 1936 revolt',he:'פרדסי גן-שלמה; ננטשו במאורעות תרצ"ו'},s:1932,e:1936,c:'var(--ctx)'},
+ {l:{en:'Kibbutz HaAmal founded at Kiryat Haim',he:'קיבוץ "העמל" נוסד בקריית חיים'},s:1936,e:1943,c:'var(--ctx)'},
+ {l:{en:'First group goes down to Ruhama (Dec 1943)',he:'הקבוצה הראשונה יורדת לרוחמה (דצמבר 1943)'},s:1943.9,e:1944.25,c:'var(--hist2)'},
+ {l:{en:'Official aliyah la-karka, at night, 29 Mar 1944',he:'עלייה לקרקע רשמית, בלילה, 29.3.1944'},s:1944.24,e:1944.4,c:'var(--hist2)'},
+ {l:{en:'Clandestine Palmach / Haganah training in the wadis',he:'אימוני פלמ"ח והגנה חשאיים בוואדיות'},s:1944.3,e:1946.65,c:'var(--hist2)'},
+ {l:{en:'Black Saturday · King David · Operation Shark',he:'השבת השחורה · מלון המלך דוד · מבצע כריש'},s:1946.49,e:1946.6,c:'var(--hist2)'},
+ {l:{en:'SIEGE AND SEARCH, Ruhama & Dorot',he:'המצור והחיפוש, רוחמה ודורות'},s:1946.655,e:1946.675,c:'var(--hist)'},
+ {l:{en:'Rebuilding — months of it',he:'שיקום — חודשים ארוכים'},s:1946.675,e:1947.2,c:'var(--hist2)'},
+ {l:{en:'Launch point for the 11 Points in the Negev, Oct 1946',he:'נקודת זינוק למבצע 11 הנקודות בנגב, אוקטובר 1946'},s:1946.76,e:1946.85,c:'var(--hist)'},
+ {l:{en:'Forward base for the Negev: field hospital, airstrip, radio',he:'בסיס קדמי לנגב: בית חולים שדה, מנחת, תחנת קשר'},s:1947.5,e:1949,c:'var(--hist2)'}
+];
+
+const DAYS = [
+ {l:{en:'Cordon goes up · Radio Jerusalem announces it',he:'המצור נסגר · רדיו ירושלים מודיע'},s:0,e:1,c:'var(--hist)'},
+ {l:{en:'No one in, no one out · supplies blocked',he:'אין יוצא ואין נכנס · האספקה נחסמת'},s:0,e:6,c:'var(--hist2)'},
+ {l:{en:'Floors broken, trenches dug along the walls',he:'רצפות מנופצות, תעלות נחפרות לאורך הקירות'},s:0.5,e:3,c:'var(--hist)'},
+ {l:{en:'Stores emptied · food mixed with fertiliser · haystacks burned',he:'מחסנים מרוקנים · מזון מעורבב בזבל כימי · מתבנים באש'},s:2,e:4.5,c:'var(--hist)'},
+ {l:{en:'Commune hut, dining hall and kitchen wrecked',he:'צריף הקומונה, חדר האוכל והמטבח נהרסים'},s:2.5,e:5,c:'var(--hist)'},
+ {l:{en:'Mishmar, day five: "Destruction and abuse in the besieged settlements"',he:'"משמר", יום חמישי: "הרס והתעללות ביישובים הנצורים"'},s:4,e:5,c:'var(--hist2)'},
+ {l:{en:'Search ends — nothing found',he:'החיפוש מסתיים — לא נמצא דבר'},s:5,e:6,c:'var(--hist)'}
+];
+
+const PROD = [
+ {g:0,l:{en:'Confirm siege dates from a primary source',he:'אימות תאריכי המצור ממקור ראשוני'},s:0,e:4},
+ {g:0,l:{en:'Yad Ya\'ari + kibbutz archive: pull the original files',he:'יד יערי + ארכיון הקיבוץ: הוצאת התיקים המקוריים'},s:0,e:6},
+ {g:0,l:{en:'Rescan the prints and clippings at 1200 dpi',he:'סריקה מחדש של ההדפסים והגזירים ב-1200 dpi'},s:1,e:6},
+ {g:0,l:{en:'Full transcription of clippings + captions (HE)',he:'תמלול מלא של הגזירים והכיתובים (עברית)'},s:2,e:7},
+ {g:0,l:{en:'English translation, checked by a historian',he:'תרגום לאנגלית, בבדיקת היסטוריון'},s:4,e:9},
+ {g:1,l:{en:'Re-run restoration on the new scans',he:'הרצת השחזור מחדש על הסריקות החדשות'},s:6,e:9},
+ {g:1,l:{en:'Script: 6 × 9:16 episodes, HE and EN',he:'תסריט: 6 פרקי 9:16, עברית ואנגלית'},s:3,e:9},
+ {g:1,l:{en:'Script: 16:9 long-form page',he:'תסריט: עמוד ארוך 16:9'},s:5,e:11},
+ {g:1,l:{en:'Design system, RTL typography, motion templates',he:'שפה עיצובית, טיפוגרפיה RTL, תבניות אנימציה'},s:5,e:10},
+ {g:1,l:{en:'Record voice-over, HE and EN',he:'הקלטת קריינות, עברית ואנגלית'},s:9,e:12},
+ {g:1,l:{en:'Produce 9:16 episodes 1–6',he:'הפקת פרקי 9:16 מס\' 1–6'},s:9,e:14},
+ {g:1,l:{en:'Build the 16:9 web page',he:'בניית עמוד הווב 16:9'},s:10,e:14},
+ {g:1,l:{en:'Captions, alt text, accessibility pass',he:'כתוביות, טקסט חלופי, מעבר נגישות'},s:12,e:15},
+ {g:1,l:{en:'Rights, credits and archive sign-off',he:'זכויות, קרדיטים ואישור הארכיון'},s:11,e:15},
+ {g:1,l:{en:'Review with the kibbutz and members\' families',he:'סבב עם הקיבוץ ומשפחות החברים'},s:14,e:16},
+ {g:2,l:{en:'DAY 1 — launch on the anniversary of the cordon',he:'יום 1 — עלייה לאוויר ביום השנה לסגירת המצור'},s:18,e:19},
+ {g:2,l:{en:'Daily episode drop, one per day of the siege',he:'פרק ליום, כאחד מכל יום מצור'},s:18,e:24},
+ {g:2,l:{en:'16:9 page live + press outreach',he:'עמוד 16:9 עולה + פנייה לתקשורת'},s:18,e:20},
+ {g:2,l:{en:'Wrap-up post, metrics, files back to the archive',he:'פוסט מסכם, מדדים, החזרת הקבצים לארכיון'},s:24,e:31}
+];
+const PCOL=['var(--prod)','var(--prod2)','var(--gold)'];
+
+function lang(){return document.documentElement.dir==='rtl'?'he':'en'}
+
+function draw(id,rows,opt){
+  const svg=document.getElementById(id); svg.innerHTML='';
+  const NS='http://www.w3.org/2000/svg';
+  const L=opt.labelW, R=40, T=42, rowH=opt.rowH, W=1120;
+  const H=T+rows.length*rowH+34; svg.setAttribute('height',H);
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  const x=v=>L+(v-opt.min)/(opt.max-opt.min)*(W-L-R);
+  const el=(n,a,t)=>{const e=document.createElementNS(NS,n);
+    for(const k in a)e.setAttribute(k,a[k]); if(t!=null)e.textContent=t; svg.appendChild(e); return e};
+  opt.ticks.forEach(t=>{
+    el('line',{x1:x(t.v),x2:x(t.v),y1:T-14,y2:H-26,stroke:'#e3ddd1','stroke-width':1});
+    el('text',{x:x(t.v),y:T-20,'text-anchor':'middle','font-size':11,fill:'#6e675e','font-family':'system-ui'},t.t);
+  });
+  rows.forEach((r,i)=>{
+    const y=T+i*rowH+4, h=rowH-11;
+    const x0=x(r.s), x1=Math.max(x(r.e),x0+7);
+    el('rect',{x:x0,y:y,width:x1-x0,height:h,rx:3,fill:r.c||PCOL[r.g],opacity:.92});
+    el('text',{x:L-10,y:y+h/2+4,'text-anchor':'end','font-size':12.5,fill:'#1c1a17',
+      'font-family':'system-ui'},r.l[lang()]);
+  });
+}
+
+function render(){
+  draw('g1',HIST,{min:1910,max:1949.5,labelW:400,rowH:31,
+    ticks:[1910,1920,1930,1940,1944,1946,1948].map(v=>({v,t:v}))});
+  draw('g1b',DAYS,{min:0,max:6,labelW:430,rowH:33,
+    ticks:[0,1,2,3,4,5,6].map(v=>({v,t:['28 Aug','29','30','31','1 Sep','2','3'][v]}))});
+  draw('g2',PROD,{min:0,max:32,labelW:420,rowH:29,
+    ticks:[0,4,7,11,14,18,21,25,28,31].map(v=>{
+      const d=new Date(2026,7,10+v);
+      return {v,t:d.getDate()+'/'+(d.getMonth()+1)};})});
+}
+function setLang(l){
+  document.documentElement.lang=l;
+  document.documentElement.dir=l==='he'?'rtl':'ltr';
+  bEn.setAttribute('aria-pressed',l==='en'); bHe.setAttribute('aria-pressed',l==='he');
+  render();
+}
+bEn.onclick=()=>setLang('en'); bHe.onclick=()=>setLang('he');
+render();
+</script>
+</body>
+</html>

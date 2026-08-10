@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>רוחמה במצור 1946 — אב טיפוס / Ruhama Under Siege 1946 — Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f2ea; --ink:#141210; --accent:#8c3b2e; --muted:#8a8177;
+  --stageW:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#231f1c;color:var(--paper);
+  font-family:"Heebo",system-ui,sans-serif;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;padding:18px 14px 60px}
+
+/* ---------- controls ---------- */
+.bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;
+  margin-bottom:16px;font-size:14px}
+.seg{display:flex;border:1px solid #4a423b;border-radius:999px;overflow:hidden;background:#2e2925}
+.seg button{border:0;background:transparent;color:#b8ada1;font:inherit;padding:8px 16px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--paper);color:var(--ink);font-weight:700}
+.hint{color:#7d746a;font-size:12.5px}
+
+/* ---------- stage ---------- */
+.stage{position:relative;background:#000;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);border-radius:6px;
+  width:min(var(--stageW),94vw)}
+body[data-ar="16x9"] .stage{aspect-ratio:16/9}
+body[data-ar="9x16"] .stage{aspect-ratio:9/16;width:min(430px,88vw);border-radius:26px}
+
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;
+  display:grid;background:#0d0b0a}
+.slide.on{opacity:1}
+body[data-ar="16x9"] .slide{grid-template-columns:1fr 1fr}
+body[data-ar="9x16"] .slide{grid-template-rows:1fr auto}
+
+.pic{position:relative;overflow:hidden;background:#0d0b0a}
+.pic img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04);
+  animation:push 14s ease-out forwards}
+@keyframes push{from{transform:scale(1.005)}to{transform:scale(1.11)}}
+.pic::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.62),rgba(0,0,0,0) 46%)}
+
+.txt{padding:clamp(20px,3.4vw,54px);display:flex;flex-direction:column;
+  justify-content:center;gap:14px;background:var(--paper);color:var(--ink)}
+body[data-ar="9x16"] .txt{position:absolute;inset-inline:0;bottom:0;
+  background:linear-gradient(to top,rgba(10,8,7,.93) 62%,rgba(10,8,7,0));
+  color:var(--paper);padding:26px 24px 84px;justify-content:flex-end;min-height:52%}
+
+.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);font-weight:700}
+body[data-ar="9x16"] .kicker{color:#e0a292}
+.head{font-family:"Frank Ruhl Libre",Georgia,serif;font-weight:700;line-height:1.14;
+  font-size:clamp(24px,2.5vw,44px)}
+body[data-ar="9x16"] .head{font-size:clamp(24px,6.4vw,34px)}
+.body{font-size:clamp(14px,1.06vw,18px);line-height:1.6;max-width:44ch;opacity:.92}
+body[data-ar="9x16"] .body{font-size:16px}
+.quote{font-family:"Frank Ruhl Libre",Georgia,serif;font-style:italic;
+  font-size:clamp(17px,1.5vw,25px);line-height:1.45;border-inline-start:3px solid var(--accent);
+  padding-inline-start:16px}
+.cred{font-size:11.5px;color:var(--muted);letter-spacing:.03em}
+body[data-ar="9x16"] .cred{color:#9a9188}
+
+/* quote-only slide */
+.slide.plain{grid-template-columns:1fr!important;grid-template-rows:1fr!important}
+.slide.plain .txt{background:#1a1613;color:var(--paper);align-items:center;text-align:center;
+  position:static;min-height:0;padding:8%}
+.slide.plain .quote{border:0;padding:0;max-width:22ch}
+
+/* progress + nav */
+.prog{position:absolute;top:0;inset-inline:0;display:flex;gap:3px;padding:9px 12px;z-index:5}
+.prog i{flex:1;height:3px;background:rgba(255,255,255,.28);border-radius:2px}
+.prog i.done{background:rgba(255,255,255,.92)}
+.nav{position:absolute;inset:0;display:flex;z-index:6}
+.nav button{flex:1;border:0;background:transparent;cursor:pointer}
+.badge{position:absolute;bottom:14px;inset-inline-start:16px;z-index:5;
+  font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.7);text-transform:uppercase}
+body[data-ar="16x9"] .badge{color:rgba(0,0,0,.45);inset-inline-start:auto;inset-inline-end:16px}
+
+.meta{margin-top:16px;color:#8f857a;font-size:13px;text-align:center;max-width:62ch;line-height:1.6}
+.meta b{color:#cbbfb2}
+a{color:#d9a08e}
+</style>
+</head>
+<body data-ar="16x9">
+
+<div class="bar">
+  <div class="seg" id="lang">
+    <button data-l="he" aria-pressed="true">עברית</button>
+    <button data-l="en" aria-pressed="false">English</button>
+  </div>
+  <div class="seg" id="ar">
+    <button data-a="16x9" aria-pressed="true">16:9</button>
+    <button data-a="9x16" aria-pressed="false">9:16</button>
+  </div>
+  <div class="seg" id="ep"></div>
+  <span class="hint" id="hint"></span>
+</div>
+
+<div class="stage" id="stage">
+  <div class="prog" id="prog"></div>
+  <div class="nav"><button id="prev" aria-label="prev"></button><button id="next" aria-label="next"></button></div>
+  <div class="badge" id="badge"></div>
+</div>
+
+<p class="meta" id="meta"></p>
+
+<script>
+const IMG = n => `images/ruhama_1946_${String(n).padStart(2,'0')}_web.jpg`;
+
+const EPISODES = [
+{t:{he:'המצור',en:'The cordon'}, d:{he:'28 באוגוסט 1946',en:'28 August 1946'}, cards:[
+ {img:43,k:{he:'יום 1',en:'Day 1'},h:{he:'אלפיים חיילים.\nקיבוץ בן שנתיים.',en:'Two thousand soldiers.\nA kibbutz two years old.'}},
+ {img:23,h:{he:'אין יוצא ואין נכנס',en:'No one in, no one out'},b:{he:'ב-28 באוגוסט 1946 סוגר הצבא הבריטי על קיבוץ רוחמה ועל שכנו דורות, בנגב המערבי. רדיו ירושלים מודיע על המבצע באותו היום.',en:'On 28 August 1946 the British Army seals Kibbutz Ruhama and its neighbour Dorot, in the western Negev. Radio Jerusalem announces the operation the same day.'}},
+ {img:27,h:{he:'"הכלניות"',en:'“The Anemones”'},b:{he:'הכוח הוא הדיוויזיה המוטסת השישית. בארץ קראו להם על שם הכומתות האדומות שלהם.',en:'The force is the 6th Airborne Division. In Palestine they were named for their red berets.'}},
+ {plain:1,q:{he:'"כדי לגלות את נשק המגן תצטרכו לחרוש את כל אדמות ארץ ישראל."',en:'“To find the defence weapons you would have to plough every acre of the Land of Israel.”'},b:{he:'מיוחס לחיים ויצמן — הציטוט שפותח את לוח התערוכה ברוחמה',en:'Attributed to Chaim Weizmann — the quotation that opens the Ruhama exhibition board'}},
+ {img:12,h:{he:'הם חיפשו נשק',en:'They were looking for weapons'},b:{he:'הנשק כבר לא היה שם.',en:'The weapons were already gone.'}}
+]},
+
+{t:{he:'השיטה',en:'The method'}, d:{he:'29 באוגוסט',en:'29 August'}, cards:[
+ {img:13,k:{he:'יום 2',en:'Day 2'},h:{he:'קודם כל, הרצפות.',en:'First, the floors.'}},
+ {img:13,h:{he:'ניפצו ואז חפרו',en:'Break, then dig'},b:{he:'ניפצו את הרצפות. חפרו תעלות לאורך קירות המבנים. חיפשו סליק שלא היה קיים.',en:'They broke the floors. They dug trenches along the walls of the buildings. Searching for a cache that was not there.'}},
+ {img:12,h:{he:'מבנים שלמים',en:'Whole structures'},b:{he:'מבנים הורמו מיסודותיהם והאדמה תחתם נחפרה.',en:'Buildings were levered off their foundations and the ground beneath them dug out.'}},
+ {plain:1,q:{he:'"למה הרסתם את תנור האפייה? האין יודעים הקצינים כי אי אפשר להסתיר נשק בתנור מוסק?"',en:'“Why did you destroy the baking oven? Do the officers not know that you cannot hide weapons in a lit oven?”'},b:{he:'מתוך כרטיסי הכיתוב שכתבו חברי הקיבוץ',en:'From the caption cards written by the kibbutz members'}},
+ {img:31,h:{he:'זה לא היה חיפוש',en:'This was not a search'},b:{he:'זה היה מסר.',en:'It was a message.'}}
+]},
+
+{t:{he:'כל מזרן',en:'Every mattress'}, d:{he:'30 באוגוסט',en:'30 August'}, cards:[
+ {img:36,k:{he:'יום 3',en:'Day 3'},h:{he:'קרעו כל מזרן בקיבוץ.',en:'They slit every mattress in the kibbutz.'}},
+ {img:36,h:{he:'מזרן אחרי מזרן',en:'Mattress after mattress'},b:{he:'נפתח, נוער, נזרק.',en:'Opened, emptied, thrown down.'}},
+ {img:21,h:{he:'חדרי המגורים, אחרי',en:'The living quarters, afterwards'}},
+ {plain:1,q:{he:'"צריף הקומונה ותכולתו הושחתו. ערימת בגדים מזוהמים, מכונות התפירה, כלים, נוצות, חיתולי ילדים — הרכוש המועט שהיה לנו אינו יותר לשימוש."',en:'“The commune hut and its contents were ruined. A heap of soiled clothes, the sewing machines, utensils, feathers, babies’ nappies — the little property we had is no longer usable.”'}},
+ {img:26,h:{he:'לא היה הרבה מה לאבד',en:'Not much to lose'},b:{he:'הקיבוץ עלה לקרקע שנתיים קודם לכן, בלילה, בניגוד לחוק.',en:'The kibbutz had settled the land two years earlier, at night, against the law.'}}
+]},
+
+{t:{he:'המשק',en:'The farm'}, d:{he:'31 באוגוסט',en:'31 August'}, cards:[
+ {img:47,k:{he:'יום 4',en:'Day 4'},h:{he:'ואז הגיעו למזון.',en:'Then they got to the food.'}},
+ {img:35,h:{he:'המחסנים',en:'The stores'},b:{he:'מחסני האספקה רוקנו. זבל כימי עורבב במזון.',en:'The supply stores were emptied. Chemical fertiliser was mixed into the food.'}},
+ {img:39,h:{he:'המתבן והזרעים',en:'The hay and the seed'},b:{he:'המתבן הועלה באש. הגרעינים לזריעה נפסלו. האספקה ליישובים הנצורים נחסמה.',en:'The haystack was set alight. The seed grain was spoiled. Supplies to the besieged settlements were blocked.'}},
+ {plain:1,q:{he:'"עמל שנים נהרס תוך שעות."',en:'“Years of labour destroyed within hours.”'},b:{he:'מתוך פנייה של המשק לארגונים חקלאיים בעולם',en:'From the settlement’s appeal to international agricultural bodies'}},
+ {img:47,h:{he:'מהקירות עד הזרעים',en:'From the walls to the seeds'},b:{he:'חיפוש נשק שהתחיל ברצפות והסתיים במחסן הגרעינים.',en:'A weapons search that began at the floors and ended in the seed store.'}}
+]},
+
+{t:{he:'יום חמישי',en:'Day five'}, d:{he:'1 בספטמבר',en:'1 September'}, cards:[
+ {img:41,k:{he:'יום 5',en:'Day 5'},h:{he:'ביום החמישי, זה הגיע לעמוד הראשון.',en:'On the fifth day, it made the front page.'}},
+ {img:41,h:{he:'"הרס והתעללות ביישובים הנצורים"',en:'“Destruction and abuse in the besieged settlements”'},b:{he:'"משמר", יום חמישי למצור ולחיפושים ברוחמה ודורות.',en:'Mishmar, day five of the siege and searches at Ruhama and Dorot.'}},
+ {img:44,h:{he:'"מרכז הנשק הגדול אחרי יגור"',en:'“The largest arms centre after Yagur”'},b:{he:'כך תיאר הקצין הבריטי וילסון את רוחמה. תיקי המשרד נשפכו על הרצפה.',en:'So the British officer Wilson described Ruhama. The office files were tipped onto the floor.'}},
+ {img:29,h:{he:'על לוח בכיתה, בגיר',en:'On a classroom blackboard, in chalk'},b:{he:'YEHUDI SWINE. הצילום נשמר בארכיון הקיבוץ כראיה להתנהלות החיפוש.',en:'YEHUDI SWINE. The photograph was kept in the kibbutz archive as evidence of how the search was conducted.'}},
+ {plain:1,q:{he:'"החיפושים — הזמנה להרוס את רוחמה בפעם השלישית."',en:'“The searches — an invitation to destroy Ruhama for the third time.”'},b:{he:'גולדה מאירסון, במסיבת עיתונאים עם עיתונאי חוץ',en:'Golda Meyerson, at a press conference with foreign journalists'}}
+]},
+
+{t:{he:'כלום',en:'Nothing'}, d:{he:'2 בספטמבר',en:'2 September'}, cards:[
+ {img:45,k:{he:'יום 6',en:'Day 6'},h:{he:'שישה ימים.\nואז הם הלכו.',en:'Six days.\nAnd then they left.'}},
+ {img:45,h:{he:'הם לא מצאו דבר',en:'They found nothing'},b:{he:'הסליקים הוצאו אל מחוץ לגדר עוד לפני שהכוח הגיע.',en:'The caches had been moved outside the perimeter before the force arrived.'}},
+ {img:34,h:{he:'השיקום ארך חודשים',en:'The rebuilding took months'},b:{he:'מבנים רבים נהרסו, רכוש רב נשדד, ותשתיות נבנו מחדש.',en:'Many buildings were destroyed, much property looted, and the infrastructure rebuilt from scratch.'}},
+ {img:8,h:{he:'ושישה שבועות אחר כך',en:'And six weeks later'},b:{he:'מרוחמה יצאו כוחות למבצע 11 הנקודות בנגב. החיפוש נכשל פעמיים.',en:'Ruhama was a launch point for the 11 Points operation in the Negev. The search failed twice over.'}},
+ {plain:1,q:{he:'ארכיון קיבוץ רוחמה · 1946–2026',en:'Kibbutz Ruhama Archive · 1946–2026'},b:{he:'שוחזר דיגיטלית ב-2026 מצילומי לוח התערוכה',en:'Digitally restored in 2026 from photographs of the exhibition board'}}
+]}
+];
+
+const CRED={he:'ארכיון קיבוץ רוחמה · 1946 · שוחזר 2026',en:'Kibbutz Ruhama Archive · 1946 · restored 2026'};
+const META={
+ he:'אב טיפוס. אותו תוכן, שני יחסי מסך, שתי שפות. <b>חצים ← →</b> או לחיצה על צד המסך למעבר. התמונות שוחזרו אוטומטית מצילומי טלפון של לוח התערוכה — לא מסריקות מקור.',
+ en:'Prototype. Same content, two aspect ratios, two languages. <b>Arrow keys</b> or click either side of the frame to move. Images were restored automatically from phone photographs of the exhibition board — not from master scans.'};
+
+let L='he', E=0, C=0;
+const stage=document.getElementById('stage'), prog=document.getElementById('prog');
+
+function render(){
+  document.querySelectorAll('.slide').forEach(s=>s.remove());
+  const cards=EPISODES[E].cards;
+  cards.forEach((c,i)=>{
+    const d=document.createElement('div');
+    d.className='slide'+(c.plain?' plain':'')+(i===C?' on':'');
+    const txt=`<div class="txt">
+      ${c.k?`<div class="kicker">${c.k[L]}</div>`:''}
+      ${c.h?`<h2 class="head">${c.h[L].replace(/\n/g,'<br>')}</h2>`:''}
+      ${c.q?`<p class="quote">${c.q[L]}</p>`:''}
+      ${c.b?`<p class="body">${c.b[L]}</p>`:''}
+      ${c.img?`<p class="cred">${CRED[L]}</p>`:''}
+    </div>`;
+    d.innerHTML=(c.img?`<div class="pic"><img src="${IMG(c.img)}" alt=""></div>`:'')+txt;
+    stage.appendChild(d);
+  });
+  prog.innerHTML=cards.map((_,i)=>`<i class="${i<=C?'done':''}"></i>`).join('');
+  document.getElementById('badge').textContent=
+    (L==='he'?`יום ${E+1} מתוך 6 · `:`Day ${E+1} of 6 · `)+EPISODES[E].d[L];
+  document.getElementById('meta').innerHTML=META[L];
+  document.getElementById('hint').textContent=
+    L==='he'?'← → למעבר בין שקופיות':'← → to move between slides';
+}
+function eps(){
+  document.getElementById('ep').innerHTML=EPISODES.map((e,i)=>
+    `<button data-e="${i}" aria-pressed="${i===E}">${i+1}</button>`).join('');
+}
+function go(d){
+  const n=EPISODES[E].cards.length;
+  C+=d;
+  if(C>=n){ if(E<EPISODES.length-1){E++;C=0;eps();} else C=n-1; }
+  if(C<0){ if(E>0){E--;C=EPISODES[E].cards.length-1;eps();} else C=0; }
+  render();
+}
+document.getElementById('next').onclick=()=>go(1);
+document.getElementById('prev').onclick=()=>go(-1);
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight') go(document.documentElement.dir==='rtl'?-1:1);
+  if(e.key==='ArrowLeft')  go(document.documentElement.dir==='rtl'?1:-1);
+});
+document.getElementById('lang').onclick=e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  L=b.dataset.l;
+  document.documentElement.lang=L;
+  document.documentElement.dir=L==='he'?'rtl':'ltr';
+  [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
+  render();
+};
+document.getElementById('ar').onclick=e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  document.body.dataset.ar=b.dataset.a;
+  [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
+};
+document.getElementById('ep').onclick=e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  E=+b.dataset.e; C=0; eps(); render();
+};
+eps(); render();
+</script>
+</body>
+</html>

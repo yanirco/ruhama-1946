@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ruhama1946.org/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://ruhama1946.org/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ruhama1946.org/?lang=en"/>
+    <lastmod>2026-08-10</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url><loc>https://ruhama1946.org/slides.html</loc><lastmod>2026-08-10</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ruhama1946.org/timeline.html</loc><lastmod>2026-08-10</lastmod><priority>0.6</priority></url>
+</urlset>

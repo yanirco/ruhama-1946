@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: ruhama-1946
+    runtime: static
+    # the whole repo is the site; nothing to build
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: true
+
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      # photographs never change once published - cache them hard
+      - path: /images/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /og.jpg
+        name: Cache-Control
+        value: public, max-age=604800
+      # HTML must revalidate so corrections reach readers immediately
+      - path: /*.html
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+
+    routes:
+      # pretty URLs
+      - type: rewrite
+        source: /story
+        destination: /slides.html
+      - type: rewrite
+        source: /timeline
+        destination: /timeline.html
+      # send the English reader to the English rendering
+      - type: redirect
+        source: /en
+        destination: /?lang=en
