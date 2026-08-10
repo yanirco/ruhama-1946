@@ -4,7 +4,7 @@ In late August 1946 the British Army cordoned Kibbutz Ruhama and neighbouring Ki
 
 This is the story, in Hebrew and English, with the kibbutz archive's own photographs digitally restored.
 
-**Live site:** https://ruhama1946.org *(update after the domain is connected)*
+**Live site:** https://ruhama1946.site
 
 ---
 
