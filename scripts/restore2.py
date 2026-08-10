@@ -9,7 +9,7 @@ import cv2, numpy as np, os, glob, sys
 
 IN = '/sessions/happy-zealous-feynman/mnt/outputs/01b_tight/'
 OUT = '/sessions/happy-zealous-feynman/mnt/outputs/04_clear/'
-ROT = {14: 90, 18: 270, 20: 90, 23: 90, 29: 270, 33: 90, 34: 270,
+ROT = {14: 90, 18: 270, 20: 90, 23: 270, 29: 270, 33: 90, 34: 270,
        39: 90, 42: 90, 43: 90, 44: 90, 47: 90}
 PHOTOS = [8, 11, 12, 13, 14, 16, 18, 19, 20, 21, 23, 26, 27, 28, 29, 31,
           33, 34, 35, 36, 37, 39, 42, 43, 44, 45, 47]

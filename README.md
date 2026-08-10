@@ -13,6 +13,7 @@ This is the story, in Hebrew and English, with the kibbutz archive's own photogr
 | Path | What it is |
 |---|---|
 | `index.html` | The article. Six parts, Hebrew and English, `?lang=en` for English. This is the site. |
+| `gallery.html` | **The full archive** — all 47 board images, filterable (photographs / people / captions / orientation-uncertain), with a lightbox and bilingual captions. |
 | `slides.html` | The same story as a slide sequence, at 16:9 and 9:16. Served at `/story`. |
 | `timeline.html` | Historical timeline plus the production Gantt. Served at `/timeline`. |
 | `images/` | 56 restored photographs and panels, web-sized. |
@@ -32,10 +33,14 @@ They started as 47 phone photographs of an exhibition board in the kibbutz archi
 3. **`restore.py`** — lighting flatten, auto-levels, denoise, dust inpainting, 2× upscale. Optional colourisation (Zhang et al. 2016 via OpenCV DNN) with chroma damped to 40%.
 4. **`restore2.py`** — the clarity pass that produced the images on the site. Separates the image into a large-scale lighting layer and a small-scale detail layer, flattens only the first, boosts only the second, and sharpens edges without amplifying flat grain.
 5. **`people.py`** — cuts each human figure out and re-restores it at 3–4× from the source crop, so detail is never lost twice.
+6. **`ai_restore.py`** — the final pass, and the one that produced the images on the site. Tone-corrects each crop at *native* resolution (stacking Lanczos and then a neural upscaler just smears detail), then sends it to **Real-ESRGAN with face enhancement** on Replicate. Two hard-won details: input is capped at 1.2 MP because the shared GPU OOMs above that once face enhancement is on, and the image is written as 3-channel because GFPGAN rejects single-channel grey.
 
 ```bash
 pip install opencv-python numpy pillow
 python3 scripts/crop_detect.py && python3 scripts/refine.py && python3 scripts/restore2.py
+
+export REPLICATE_API_TOKEN=...        # yours — never commit it
+python3 scripts/ai_restore.py         # all 27, or specific ids: ... 27 34
 ```
 
 Nothing was invented. No detail was painted in. Where orientation was inferred rather than known, the catalogue says so.
