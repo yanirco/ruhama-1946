@@ -23,6 +23,8 @@ SAMPLE = os.environ.get('VOICE_SAMPLE', '')
 VOICE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.voice_id')
 NARRATOR_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                              '.voice_id_narrator')
+NARRATOR_FILE_EN = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                '.voice_id_narrator_en')
 
 # eleven_v3 is the ONLY model that supports Hebrew (74 languages).
 # multilingual_v2 covers 29 and Hebrew is not among them - it approximates
@@ -78,10 +80,20 @@ def clone():
     return vid
 
 
-def voice_id():
-    """--narrator uses the designed voice (design_voice.py), which belongs to no
-    real person. Default stays the owner's own cloned voice."""
-    f = NARRATOR_FILE if '--narrator' in sys.argv else VOICE_FILE
+def voice_id(lang=None):
+    """--narrator uses the designed voices (design_voice.py), which belong to no
+    real person. Default stays the owner's own cloned voice.
+
+    Hebrew and English get *separate* designed voices. A voice described for
+    Hebrew has no basis on which to choose an English accent, and the first one
+    picked South Asian - so the English narrator names the accent explicitly.
+    """
+    if '--narrator' not in sys.argv:
+        f = VOICE_FILE
+    elif lang == 'en' and os.path.exists(NARRATOR_FILE_EN):
+        f = NARRATOR_FILE_EN
+    else:
+        f = NARRATOR_FILE
     if os.path.exists(f):
         return open(f).read().strip()
     sys.exit('no voice yet - run design_voice.py, or narrate.py --clone')
@@ -168,9 +180,9 @@ def main():
     os.makedirs(AUDIO, exist_ok=True)
     if '--clone' in sys.argv:
         clone(); return
-    vid = voice_id()
     index = []
     for s in segments():
+        vid = voice_id(s['lang'])
         name = f"{s['lang']}_part{s['n']}.mp3"
         path = os.path.join(AUDIO, name)
         if not os.path.exists(path):
