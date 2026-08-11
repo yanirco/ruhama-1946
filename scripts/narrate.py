@@ -22,8 +22,10 @@ AUDIO = os.path.join(SITE, 'audio')
 SAMPLE = os.environ.get('VOICE_SAMPLE', '')
 VOICE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.voice_id')
 
-# multilingual v2 handles Hebrew; v3/turbo are faster but weaker on Hebrew prosody
-MODEL = 'eleven_multilingual_v2'
+# eleven_v3 is the ONLY model that supports Hebrew (74 languages).
+# multilingual_v2 covers 29 and Hebrew is not among them - it approximates
+# Hebrew letters with a foreign phoneme set, which comes out as gibberish.
+MODEL = 'eleven_v3'
 SETTINGS = {
     'stability': 0.45,        # a little variation - this is storytelling, not IVR
     'similarity_boost': 0.85,
@@ -89,23 +91,43 @@ def tts(text, vid, out_path, lang):
 
 
 def segments():
-    """Pull the narratable text straight out of index.html so it never drifts."""
+    """Pull the narratable text out of index.html, in document order.
+
+    The first version only took <p> tags, so bulleted lists vanished - the
+    narration jumped from "two restrictions" straight past the restrictions
+    themselves, which is why it sounded like nonsense. This walks paragraphs,
+    list items and pull-quotes in the order they appear, and always puts a
+    space where a tag was so words never fuse together.
+    """
     html = open(os.path.join(SITE, 'index.html'), encoding='utf-8').read()
-    arts = re.findall(r'<article id="(he|en)".*?</article>', html, re.S)
+
+    def plain(fragment):
+        t = re.sub(r'<[^>]+>', ' ', fragment)      # space, not empty
+        t = (t.replace('&nbsp;', ' ').replace('&amp;', 'and')
+               .replace('&quot;', '"').replace('&#39;', "'")
+               .replace('·', '.'))                  # the middle dot is read aloud otherwise
+        return re.sub(r'\s+', ' ', t).strip()
+
     out = []
     for lang in ('he', 'en'):
         m = re.search(r'<article id="%s".*?</article>' % lang, html, re.S)
         body = m.group(0)
-        # each <h2> begins a part; take its heading plus the paragraphs that follow
         for i, part in enumerate(re.split(r'<h2>', body)[1:], 1):
-            head = re.sub(r'<[^>]+>', ' ', part.split('</h2>')[0])
-            head = re.sub(r'\s+', ' ', head).strip()
-            paras = re.findall(r'<p(?: class="lead")?>(.*?)</p>', part, re.S)[:4]
-            text = ' '.join(re.sub(r'<[^>]+>', '', p) for p in paras)
-            text = re.sub(r'\s+', ' ', text).strip()
-            if len(text) > 80:
-                out.append({'lang': lang, 'n': i, 'title': head,
-                            'text': (head + '. ' + text)[:2400]})
+            head = plain(part.split('</h2>')[0])
+            rest = part.split('</h2>', 1)[1] if '</h2>' in part else ''
+            # stop before the licence box: it is site housekeeping, not narration
+            rest = re.split(r'<div class="box warn"', rest)[0]
+            chunks = []
+            for m2 in re.finditer(r'<(p|li|h3)(?: class="[^"]*")?>(.*?)</\1>', rest, re.S):
+                if 'class="audionote"' in m2.group(0):
+                    continue
+                t = plain(m2.group(2))
+                if len(t) > 25:
+                    chunks.append(t if t.endswith(('.', '?', '!', ':')) else t + '.')
+            text = (head + '. ' + ' '.join(chunks)).strip()
+            text = re.sub(r'\s+', ' ', text)
+            if len(text) > 120:
+                out.append({'lang': lang, 'n': i, 'title': head, 'text': text[:2600]})
     return out
 
 
