@@ -101,6 +101,20 @@ blockquote cite{display:block;font-family:"Heebo",sans-serif;font-style:normal;
 .box.warn{background:#fff7e6;border-color:#e6d3a3}
 .box p{font-size:16.5px}
 
+
+/* ---------- narration ---------- */
+.listen{display:inline-flex;align-items:center;gap:9px;margin:14px 0 2px;padding:8px 15px 8px 12px;
+  border:1px solid var(--line);background:#fff;border-radius:999px;cursor:pointer;
+  font:inherit;font-size:14px;color:var(--soft);transition:border-color .15s,color .15s}
+.listen:hover{border-color:var(--accent);color:var(--accent)}
+.listen[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:#fdf4f1}
+.listen svg{width:15px;height:15px;flex:none;fill:currentColor}
+.listen .dur{font-variant-numeric:tabular-nums;opacity:.7;font-size:13px}
+.listen .bar{width:74px;height:3px;border-radius:2px;background:var(--line);overflow:hidden;display:none}
+.listen[aria-pressed=true] .bar{display:block}
+.listen .bar i{display:block;height:100%;width:0;background:var(--accent)}
+.audionote{font-size:13px;color:var(--soft);margin:6px 0 0}
+
 /* ---------- figures ---------- */
 figure{margin:38px 0}
 figure.wide{max-width:1180px;margin-inline:auto}
@@ -228,6 +242,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">חלק א · הרקע</span>מי שלט בארץ, ולמה זה חשוב</h2>
+<button class="listen" data-src="audio/he_part1.mp3" data-lang="he" data-part="1" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">מוקרא בקולו של יניר כהן, בעזרת שכפול קול.</p>
 
 <p>מ-1920 ועד 1948 ארץ ישראל הייתה תחת <strong>המנדט הבריטי</strong> — שלטון שהוענק לבריטניה בידי חבר הלאומים, ובכתב המנדט נכללה ההתחייבות של הצהרת בלפור לסייע בהקמת "בית לאומי לעם היהודי". בפועל, ככל שהתקדמו שנות השלושים והתנגדות ערביי הארץ גברה, בריטניה נסוגה מההתחייבות הזו שוב ושוב.</p>
 
@@ -264,6 +280,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">חלק ב · המקום</span>המשק שננטש ארבע פעמים</h2>
+<button class="listen" data-src="audio/he_part2.mp3" data-lang="he" data-part="2" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">מוקרא בקולו של יניר כהן, בעזרת שכפול קול.</p>
 
 <p>רוחמה היא לא סיפור של קיבוץ אחד. זה סיפור של מקום שניסו ליישב שוב ושוב ושוב.</p>
 
@@ -289,6 +307,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">חלק ג · שישה ימים</span>מה קרה, יום אחר יום</h2>
+<button class="listen" data-src="audio/he_part3.mp3" data-lang="he" data-part="3" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">מוקרא בקולו של יניר כהן, בעזרת שכפול קול.</p>
 
 <h3>יום ראשון — המצור נסגר</h3>
 <p>ב-<strong>28 באוגוסט 1946</strong> הצבא הבריטי מטיל טבעת סגר על שני קיבוצים בנגב המערבי: <strong>רוחמה ודורות</strong>. אין יוצא ואין נכנס. הכוח מוערך בכ-<strong>אלפיים חיילים</strong>, מ<strong>הדיוויזיה המוטסת השישית</strong> — בארץ קראו להם "הכלניות", על שם הכומתות האדומות. הלוח בארכיון הקיבוץ מציין שלוש יחידות שהשתתפו, ומספריהן: 68, 941, 67. רדיו ירושלים מודיע על המבצע באותו היום עצמו.</p>
@@ -394,6 +414,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">חלק ד · האנשים</span>ארבעת האנשים שבתצלומים</h2>
+<button class="listen" data-src="audio/he_part4.mp3" data-lang="he" data-part="4" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">מוקרא בקולו של יניר כהן, בעזרת שכפול קול.</p>
 
 <p>שימו לב למשהו מוזר באוסף הזה: <strong>כמעט אין בו בני אדם.</strong> מתוך 27 תצלומים היסטוריים שהצלחנו לחלץ מלוח התערוכה, בארבעה בלבד נראית דמות אנושית.</p>
 
@@ -428,6 +450,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">חלק ה · אחר כך</span>מה קרה בהמשך</h2>
+<button class="listen" data-src="audio/he_part5.mp3" data-lang="he" data-part="5" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">מוקרא בקולו של יניר כהן, בעזרת שכפול קול.</p>
 
 <p><strong>השיקום ארך חודשים.</strong> מבנים רבים נהרסו, רכוש נשדד, תשתיות נבנו מחדש. אבל החברים החליטו להיאחז בנקודה.</p>
 
@@ -451,6 +475,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">חלק ו · איך לקרוא</span>מה התצלומים אומרים ומה לא</h2>
+<button class="listen" data-src="audio/he_part6.mp3" data-lang="he" data-part="6" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">מוקרא בקולו של יניר כהן, בעזרת שכפול קול.</p>
 
 <p>כל התמונות שראיתם כאן עברו מסלול ארוך: מישהו צילם אותן ב-1946; מישהו הדפיס אותן; מישהו הדביק אותן על לוח תערוכה בארכיון הקיבוץ וכתב לידן כיתובים בכתב יד; ובאוגוסט 2026 מישהו צילם את הלוח בטלפון. מה שאתם רואים הוא <strong>תצלום של תצלום</strong>, ששוחזר דיגיטלית.</p>
 
@@ -500,6 +526,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">Part 1 · Background</span>Who ruled the country, and why it matters</h2>
+<button class="listen" data-src="audio/en_part1.mp3" data-lang="en" data-part="1" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">Read by Yanir Cohen, using a cloned voice.</p>
 
 <p>From 1920 to 1948 Palestine was governed under the <strong>British Mandate</strong> — an authority granted to Britain by the League of Nations, whose text incorporated the Balfour Declaration's undertaking to facilitate a "national home for the Jewish people." In practice, as the 1930s wore on and Arab opposition hardened, Britain retreated from that undertaking again and again.</p>
 
@@ -536,6 +564,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">Part 2 · The place</span>The farm that was abandoned four times</h2>
+<button class="listen" data-src="audio/en_part2.mp3" data-lang="en" data-part="2" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">Read by Yanir Cohen, using a cloned voice.</p>
 
 <p>Ruhama is not the story of one kibbutz. It is the story of a place people tried to settle, over and over.</p>
 
@@ -561,6 +591,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">Part 3 · Six days</span>What happened, day by day</h2>
+<button class="listen" data-src="audio/en_part3.mp3" data-lang="en" data-part="3" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">Read by Yanir Cohen, using a cloned voice.</p>
 
 <h3>Day one — the cordon closes</h3>
 <p>On <strong>28 August 1946</strong> the British Army throws a cordon around two kibbutzim in the western Negev: <strong>Ruhama and Dorot</strong>. No one in, no one out. The force is put at some <strong>two thousand troops</strong>, from the <strong>6th Airborne Division</strong> — known locally as <em>ha-Kalaniot</em>, "the Anemones," for their red berets. The board in the kibbutz archive names three participating units by their formation numbers: 68, 941, 67. Radio Jerusalem announces the operation the same day.</p>
@@ -666,6 +698,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">Part 4 · The people</span>The four people in these photographs</h2>
+<button class="listen" data-src="audio/en_part4.mp3" data-lang="en" data-part="4" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">Read by Yanir Cohen, using a cloned voice.</p>
 
 <p>Notice something odd about this collection: <strong>there are almost no human beings in it.</strong> Of the 27 historical photographs we could extract from the exhibition board, only four contain a person.</p>
 
@@ -700,6 +734,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">Part 5 · Afterwards</span>What happened next</h2>
+<button class="listen" data-src="audio/en_part5.mp3" data-lang="en" data-part="5" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">Read by Yanir Cohen, using a cloned voice.</p>
 
 <p><strong>The rebuilding took months.</strong> Many buildings were destroyed, property was looted, infrastructure had to be rebuilt. But the members decided to hold on to the place.</p>
 
@@ -723,6 +759,8 @@ footer p{font-size:15px}
 
 <div class="part">
 <h2><span class="num">Part 6 · How to read them</span>What the photographs say, and what they don't</h2>
+<button class="listen" data-src="audio/en_part6.mp3" data-lang="en" data-part="6" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">Read by Yanir Cohen, using a cloned voice.</p>
 
 <p>Every image here has travelled a long way: somebody photographed it in 1946; somebody printed it; somebody pasted it onto an exhibition board in the kibbutz archive and hand-lettered captions beside it; and in August 2026 somebody photographed that board on a phone. What you are looking at is a <strong>photograph of a photograph</strong>, digitally restored.</p>
 
@@ -813,6 +851,53 @@ document.getElementById('lang').onclick=e=>{
       if (pct >= m && !seen[m]) { seen[m] = 1; gtag("event", "scroll_depth", { percent: m }); }
     });
   }, { passive: true });
+})();
+</script>
+
+<script>
+/* Narration. One <audio> element reused; only ever one section playing. */
+(function () {
+  var A = new Audio(), current = null;
+  var PLAY  = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+  var PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+  var LABEL = {he:{play:'האזינו לחלק הזה', stop:'עצירה'},
+               en:{play:'Listen to this part', stop:'Pause'}};
+
+  function mmss(t){ if(!isFinite(t)) return ''; var m=Math.floor(t/60), s=Math.round(t%60);
+    return m+':'+(s<10?'0':'')+s; }
+
+  function reset(btn){
+    btn.setAttribute('aria-pressed','false');
+    btn.querySelector('.ico').innerHTML = PLAY;
+    btn.querySelector('.txt').textContent = LABEL[btn.dataset.lang].play;
+    btn.querySelector('.bar i').style.width = '0';
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.listen'); if (!btn) return;
+    if (current === btn && !A.paused) { A.pause(); reset(btn); current = null; return; }
+    if (current) reset(current);
+    current = btn;
+    A.src = btn.dataset.src; A.play();
+    btn.setAttribute('aria-pressed','true');
+    btn.querySelector('.ico').innerHTML = PAUSE;
+    btn.querySelector('.txt').textContent = LABEL[btn.dataset.lang].stop;
+    if (window.gtag) gtag('event','listen_section',
+      {section:btn.dataset.part, language:btn.dataset.lang});
+  });
+
+  A.addEventListener('timeupdate', function(){
+    if(!current || !A.duration) return;
+    current.querySelector('.bar i').style.width = (A.currentTime/A.duration*100)+'%';
+    current.querySelector('.dur').textContent = mmss(A.duration - A.currentTime);
+  });
+  A.addEventListener('ended', function(){ if(current){ reset(current); current=null; } });
+
+  // stop audio if the reader switches language mid-listen
+  var seg = document.getElementById('lang');
+  if (seg) seg.addEventListener('click', function(){
+    if(current){ A.pause(); reset(current); current=null; }
+  });
 })();
 </script>
 </body>
