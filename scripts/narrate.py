@@ -21,6 +21,8 @@ SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUDIO = os.path.join(SITE, 'audio')
 SAMPLE = os.environ.get('VOICE_SAMPLE', '')
 VOICE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.voice_id')
+NARRATOR_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             '.voice_id_narrator')
 
 # eleven_v3 is the ONLY model that supports Hebrew (74 languages).
 # multilingual_v2 covers 29 and Hebrew is not among them - it approximates
@@ -77,9 +79,12 @@ def clone():
 
 
 def voice_id():
-    if os.path.exists(VOICE_FILE):
-        return open(VOICE_FILE).read().strip()
-    sys.exit('no voice yet - run with --clone first')
+    """--narrator uses the designed voice (design_voice.py), which belongs to no
+    real person. Default stays the owner's own cloned voice."""
+    f = NARRATOR_FILE if '--narrator' in sys.argv else VOICE_FILE
+    if os.path.exists(f):
+        return open(f).read().strip()
+    sys.exit('no voice yet - run design_voice.py, or narrate.py --clone')
 
 
 def chunks_of(text, limit=700):
