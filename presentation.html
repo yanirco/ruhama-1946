@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>רוחמה 1946 — מצגת למסך גדול</title>
+<meta name="description" content="שישה ימים ברוחמה, אוגוסט 1946 — מצגת רצופה למסך גדול: תצלומי הארכיון המשוחזרים, עם הקראה.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ruhama1946.site/presentation.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --bg:#08090b; --ink:#f2efe9; --soft:#a8a49c; --accent:#c9a227; --accent2:#d9b64a;
+  --serif:"Frank Ruhl Libre","Times New Roman",Georgia,serif;
+  --sans:"Assistant","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);overflow:hidden}
+body.idle{cursor:none}
+body.idle .chrome{opacity:0;pointer-events:none}
+
+/* ---------- stage ---------- */
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#000}
+.frame{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.frame.on{opacity:1}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  /* the prints are photographs of prints - a touch of lift reads better on a wall */
+  filter:contrast(1.04) brightness(1.02)}
+.frame.on img{animation:drift 26s ease-out forwards}
+@keyframes drift{from{transform:scale(1.0)}to{transform:scale(1.075)}}
+@media (prefers-reduced-motion:reduce){.frame.on img{animation:none}}
+
+/* vignette keeps the caption legible over a bright print */
+#stage::after{content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.55) 100%),
+             linear-gradient(to top,rgba(0,0,0,.85) 0,transparent 34%)}
+
+/* ---------- caption ---------- */
+#cap{position:fixed;inset-inline:0;bottom:0;z-index:5;padding:0 7vw 5.5vh;
+  text-align:center;pointer-events:none}
+#capline{font-family:var(--serif);font-size:clamp(19px,2.35vw,40px);line-height:1.42;
+  max-width:24em;margin:0 auto;text-shadow:0 2px 22px rgba(0,0,0,.95);
+  opacity:0;transition:opacity .9s ease .35s}
+#capline.on{opacity:1}
+#chapline{margin:0 0 1.1vh;font-size:clamp(11px,1.05vw,16px);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent2);opacity:.9}
+
+/* ---------- title / text cards ---------- */
+.card{position:fixed;inset:0;z-index:6;display:none;place-content:center;
+  text-align:center;padding:0 10vw;background:var(--bg)}
+.card.on{display:grid;animation:fade 1.4s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.card h1{font-family:var(--serif);font-weight:600;margin:0 0 2.4vh;
+  font-size:clamp(30px,5.2vw,86px);line-height:1.12}
+.card .kicker{color:var(--accent2);letter-spacing:.2em;text-transform:uppercase;
+  font-size:clamp(11px,1.15vw,17px);margin:0 0 2.6vh}
+.card p{font-family:var(--serif);font-size:clamp(16px,1.75vw,30px);line-height:1.62;
+  max-width:26em;margin:0 auto 1.4em;color:#e6e2da}
+.card .fine{font-family:var(--sans);font-size:clamp(12px,1.05vw,17px);
+  color:var(--soft);max-width:34em;line-height:1.6}
+.rule{width:74px;height:2px;background:var(--accent);margin:3.2vh auto}
+
+/* ---------- chrome ---------- */
+.chrome{transition:opacity .45s ease}
+#bar{position:fixed;inset-inline:0;top:0;z-index:9;height:3px;background:rgba(255,255,255,.1)}
+#barfill{height:100%;width:0;background:var(--accent);transition:width .25s linear}
+#ctl{position:fixed;z-index:9;bottom:2.2vh;inset-inline-end:2.2vw;display:flex;gap:8px}
+#ctl button{background:rgba(20,20,22,.72);color:var(--ink);border:1px solid rgba(255,255,255,.18);
+  border-radius:9px;padding:9px 13px;font:inherit;font-size:14px;cursor:pointer;
+  backdrop-filter:blur(6px)}
+#ctl button:hover{border-color:var(--accent);color:var(--accent2)}
+#hint{position:fixed;z-index:9;bottom:2.6vh;inset-inline-start:2.2vw;
+  color:var(--soft);font-size:13px;letter-spacing:.02em}
+#count{position:fixed;z-index:9;top:2.4vh;inset-inline-end:2.2vw;
+  color:var(--soft);font-size:13px;font-variant-numeric:tabular-nums}
+
+/* ---------- start gate (browsers block autoplay with sound) ---------- */
+#gate{position:fixed;inset:0;z-index:20;display:grid;place-content:center;
+  text-align:center;background:var(--bg);padding:0 10vw}
+#gate h1{font-family:var(--serif);font-size:clamp(28px,4.6vw,72px);margin:0 0 1.6vh;font-weight:600}
+#gate p{color:var(--soft);font-size:clamp(14px,1.4vw,20px);margin:0 0 4vh;line-height:1.6}
+#go{background:var(--accent);color:#141310;border:0;border-radius:12px;
+  padding:16px 40px;font:inherit;font-size:clamp(15px,1.5vw,21px);font-weight:600;cursor:pointer}
+#go:hover{background:var(--accent2)}
+.langpick{margin-top:3.4vh;color:var(--soft);font-size:14px}
+.langpick a{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<div id="stage" aria-hidden="true"></div>
+
+<div id="cap"><p id="chapline"></p><p id="capline"></p></div>
+
+<!-- chapter title cards and the Alterman card are injected here -->
+<div id="cards"></div>
+
+<div id="bar" class="chrome"><div id="barfill"></div></div>
+<div id="count" class="chrome"></div>
+<div id="hint" class="chrome"></div>
+<div id="ctl" class="chrome">
+  <button id="bPrev" title="הקודם">‹</button>
+  <button id="bPlay" title="השהיה">❚❚</button>
+  <button id="bNext" title="הבא">›</button>
+  <button id="bLang">EN</button>
+  <button id="bFull">⛶</button>
+</div>
+
+<div id="gate">
+  <h1 id="gTitle">שישה ימים ברוחמה</h1>
+  <p id="gSub">אוגוסט 1946 · מצגת רצופה עם הקראה</p>
+  <button id="go">התחלה</button>
+  <p class="langpick" id="gLang"><a href="?lang=en">English</a></p>
+</div>
+
+<audio id="au" preload="none"></audio>
+
+<script>
+(function(){
+'use strict';
+
+/* Language. ?lang=en for English; Hebrew is the default, as on the rest of the site. */
+var lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'he';
+var RTL  = lang === 'he';
+
+var T = {
+  he:{title:'שישה ימים ברוחמה', sub:'אוגוסט 1946 · מצגת רצופה עם הקראה',
+      go:'התחלה', other:'English', otherHref:'?lang=en',
+      hint:'רווח — השהיה · ← → מעבר פרק · F מסך מלא',
+      end:'סוף', endSub:'ruhama1946.site', of:'מתוך'},
+  en:{title:'Six Days at Ruhama', sub:'August 1946 · a continuous presentation, narrated',
+      go:'Begin', other:'עברית', otherHref:'?',
+      hint:'Space — pause · ← → chapter · F fullscreen',
+      end:'End', endSub:'ruhama1946.site', of:'of'}
+}[lang];
+
+/* ------------------------------------------------------------------ *
+ * Chapters. Photo ids are the archive board numbers; captions come
+ * from gallery-data.json so there is one source of truth for them.
+ * The audio is the article narration, so the images are paced to the
+ * words rather than to a fixed clock.
+ * ------------------------------------------------------------------ */
+var CH = [
+  {audio:'part1', kicker:{he:'פרק א',he_:'',en:'Part One'},
+   title:{he:'ארץ תחת מנדט',en:'A country under mandate'},
+   ids:['43','23','12','42']},
+
+  {audio:'part2', kicker:{he:'פרק ב',en:'Part Two'},
+   title:{he:'המשק שננטש ארבע פעמים',en:'The farm abandoned four times'},
+   ids:['43','42','23']},
+
+  {audio:'part3', kicker:{he:'פרק ג',en:'Part Three'},
+   title:{he:'שישה ימים',en:'Six days'},
+   ids:['08','11','13','14','16','18','19','21','26','31','33','35','36','37','39','44']},
+
+  {card:'alterman'},
+
+  {audio:'part4', kicker:{he:'פרק ד',en:'Part Four'},
+   title:{he:'האנשים בתצלומים',en:'The people in the photographs'},
+   ids:['27','28','34','45']},
+
+  {audio:'part5', kicker:{he:'פרק ה',en:'Part Five'},
+   title:{he:'מה שלא נמצא',en:'What was not found'},
+   ids:['29','47','45','35']},
+
+  {audio:'part6', kicker:{he:'פרק ו',en:'Part Six'},
+   title:{he:'אחת עשרה נקודות',en:'Eleven points'},
+   ids:['45','47','43','23']}
+];
+
+var ALTERMAN = {
+  he:{kicker:'30 באוגוסט 1946 — היום השלישי למצור',
+      h:'אלתרמן עונה',
+      p:['בעוד החיילים עדיין בתוך הקיבוץ, פרסם נתן אלתרמן ב"דבר" את טורו ' +
+         '"מרשימותיו של כלב" — אחד מטורי <em>הטור השביעי</em>.',
+         'ימים ספורים קודם לכן פרסמה העיתונות תצלומים של כלבי גישוש שהביאו ' +
+         'הבריטים לארץ כדי לאתר את סליקי ההגנה. אלתרמן השיב להם מפיו של אחד הכלבים.'],
+      fine:'הטקסט המלא מוגן בזכויות יוצרים עד 2040 ואינו מוצג כאן. ' +
+           'חיים גורי מקריא אותו בסרט התיעוד של מפעל הפיס — הקישור באתר.'},
+  en:{kicker:'30 August 1946 — the third day of the siege',
+      h:'Alterman answers',
+      p:['While the soldiers were still inside the kibbutz, Nathan Alterman ' +
+         'published his column "From the Notes of a Dog" in <em>Davar</em> — ' +
+         'one of his <em>Seventh Column</em> pieces.',
+         'Days earlier the press had run photographs of the tracker dogs the ' +
+         'British brought in to find the Haganah’s arms caches. Alterman ' +
+         'answered them in the voice of one of the dogs.'],
+      fine:'The text itself is in copyright until 2040 and is not shown here. ' +
+           'Haim Gouri reads it in the Mifal HaPais documentary — linked on the site.'}
+};
+
+var stage = document.getElementById('stage'),
+    cards = document.getElementById('cards'),
+    capline = document.getElementById('capline'),
+    chapline = document.getElementById('chapline'),
+    barfill = document.getElementById('barfill'),
+    count = document.getElementById('count'),
+    au = document.getElementById('au');
+
+var caps = {};          // id -> {he,en}
+var ci = 0, si = -1, playing = false, cardTimer = null;
+
+/* ---------- boot ---------- */
+document.documentElement.lang = lang;
+document.documentElement.dir = RTL ? 'rtl' : 'ltr';
+document.getElementById('gTitle').textContent = T.title;
+document.getElementById('gSub').textContent = T.sub;
+document.getElementById('go').textContent = T.go;
+document.getElementById('gLang').innerHTML =
+  '<a href="' + T.otherHref + '">' + T.other + '</a>';
+document.getElementById('hint').textContent = T.hint;
+document.getElementById('bLang').textContent = lang === 'he' ? 'EN' : 'עב';
+document.title = T.title + ' — ruhama1946.site';
+
+fetch('gallery-data.json').then(function(r){ return r.json(); }).then(function(d){
+  d.forEach(function(x){ caps[x.id] = {he:x.he || '', en:x.en || ''}; });
+}).catch(function(){ /* captions are a nicety; the show runs without them */ });
+
+/* ---------- helpers ---------- */
+function src(id){ return 'images/ai/ruhama_1946_' + id + '_ai.jpg'; }
+
+function preload(id){ if(id){ var i = new Image(); i.src = src(id); } }
+
+function show(id){
+  var old = stage.querySelector('.frame.on');
+  var f = document.createElement('div');
+  f.className = 'frame';
+  var img = document.createElement('img');
+  img.src = src(id);
+  img.alt = '';
+  f.appendChild(img);
+  stage.appendChild(f);
+  // force a reflow so the opacity transition actually runs
+  void f.offsetWidth;
+  f.classList.add('on');
+  if(old){
+    old.classList.remove('on');
+    setTimeout(function(){ if(old.parentNode) old.parentNode.removeChild(old); }, 1800);
+  }
+  var c = caps[id] || {};
+  capline.classList.remove('on');
+  setTimeout(function(){
+    capline.textContent = c[lang] || '';
+    capline.classList.add('on');
+  }, 400);
+}
+
+function chapterTitleCard(ch, done){
+  var el = document.createElement('div');
+  el.className = 'card on';
+  el.innerHTML = '<p class="kicker">' + (ch.kicker[lang] || '') + '</p>' +
+                 '<h1>' + (ch.title[lang] || '') + '</h1>' +
+                 '<div class="rule"></div>';
+  cards.appendChild(el);
+  cardTimer = setTimeout(function(){
+    el.style.transition = 'opacity 1s'; el.style.opacity = 0;
+    setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); done(); }, 1000);
+  }, 3600);
+}
+
+function altermanCard(done){
+  var a = ALTERMAN[lang];
+  var el = document.createElement('div');
+  el.className = 'card on';
+  el.innerHTML = '<p class="kicker">' + a.kicker + '</p><h1>' + a.h + '</h1>' +
+                 '<div class="rule"></div>' +
+                 a.p.map(function(x){ return '<p>' + x + '</p>'; }).join('') +
+                 '<p class="fine">' + a.fine + '</p>';
+  cards.appendChild(el);
+  cardTimer = setTimeout(function(){
+    el.style.transition = 'opacity 1.2s'; el.style.opacity = 0;
+    setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); done(); }, 1200);
+  }, 22000);
+}
+
+/* ---------- chapter machine ---------- */
+function startChapter(n){
+  clearTimeout(cardTimer);
+  ci = ((n % CH.length) + CH.length) % CH.length;
+  si = -1;
+  var ch = CH[ci];
+
+  if(ch.card === 'alterman'){
+    au.pause(); au.removeAttribute('src');
+    chapline.textContent = ''; capline.classList.remove('on');
+    altermanCard(function(){ startChapter(ci + 1); });
+    return;
+  }
+
+  chapline.textContent = (ch.kicker[lang] || '');
+  chapterTitleCard(ch, function(){
+    au.src = 'audio/' + lang + '_' + ch.audio + '.mp3';
+    au.play().catch(function(){ /* gate handles the first gesture */ });
+    playing = true; sync();
+    advance(0);
+    preload(ch.ids[1]);
+  });
+}
+
+function advance(i){
+  var ch = CH[ci];
+  if(i >= ch.ids.length) return;
+  si = i;
+  show(ch.ids[i]);
+  preload(ch.ids[i + 1]);
+  count.textContent = (ci + 1) + ' / ' + CH.length + '  ·  ' +
+                      (i + 1) + ' ' + T.of + ' ' + ch.ids.length;
+}
+
+/* Pace the images to the narration rather than to a fixed clock: whatever the
+   chapter's length turns out to be, the photographs divide it evenly. */
+au.addEventListener('timeupdate', function(){
+  var ch = CH[ci];
+  if(!ch || !ch.ids || !au.duration || !isFinite(au.duration)) return;
+  barfill.style.width = (au.currentTime / au.duration * 100) + '%';
+  var want = Math.min(ch.ids.length - 1,
+                      Math.floor(au.currentTime / (au.duration / ch.ids.length)));
+  if(want !== si) advance(want);
+});
+
+au.addEventListener('ended', function(){ startChapter(ci + 1); });
+
+/* An audio file that 404s must not stall the wall display. */
+au.addEventListener('error', function(){
+  if(au.getAttribute('src')) setTimeout(function(){ startChapter(ci + 1); }, 1200);
+});
+
+/* ---------- controls ---------- */
+function sync(){ document.getElementById('bPlay').textContent = playing ? '❚❚' : '▶'; }
+
+function toggle(){
+  if(!au.src) return;
+  if(au.paused){ au.play(); playing = true; } else { au.pause(); playing = false; }
+  sync();
+}
+
+document.getElementById('bPlay').onclick = toggle;
+document.getElementById('bNext').onclick = function(){ startChapter(ci + 1); };
+document.getElementById('bPrev').onclick = function(){ startChapter(ci - 1); };
+document.getElementById('bLang').onclick = function(){
+  location.search = lang === 'he' ? '?lang=en' : '';
+};
+document.getElementById('bFull').onclick = function(){
+  if(document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen().catch(function(){});
+};
+
+document.addEventListener('keydown', function(e){
+  if(e.key === ' '){ e.preventDefault(); toggle(); }
+  else if(e.key === 'ArrowRight') startChapter(RTL ? ci - 1 : ci + 1);
+  else if(e.key === 'ArrowLeft')  startChapter(RTL ? ci + 1 : ci - 1);
+  else if(e.key === 'f' || e.key === 'F') document.getElementById('bFull').click();
+  else if(e.key === 'Escape' && document.fullscreenElement) document.exitFullscreen();
+});
+
+/* Hide the cursor and the controls when nobody has touched it - this thing is
+   meant to be left running on a screen in a hall. */
+var idle;
+function wake(){
+  document.body.classList.remove('idle');
+  clearTimeout(idle);
+  idle = setTimeout(function(){ document.body.classList.add('idle'); }, 3500);
+}
+['mousemove','mousedown','keydown','touchstart'].forEach(function(ev){
+  document.addEventListener(ev, wake, {passive:true});
+});
+wake();
+
+/* ---------- start ---------- */
+document.getElementById('go').onclick = function(){
+  document.getElementById('gate').style.display = 'none';
+  document.documentElement.requestFullscreen().catch(function(){});
+  startChapter(0);
+};
+})();
+</script>
+</body>
+</html>
