@@ -873,6 +873,17 @@ document.getElementById('lang').onclick=e=>{
     btn.querySelector('.bar i').style.width = '0';
   }
 
+  // hide any button whose audio isn't there — better no control than a broken one
+  document.querySelectorAll('.listen').forEach(function (b) {
+    fetch(b.dataset.src, { method: 'HEAD' }).then(function (r) {
+      if (!r.ok) {
+        b.style.display = 'none';
+        var note = b.nextElementSibling;
+        if (note && note.classList.contains('audionote')) note.style.display = 'none';
+      }
+    }).catch(function () { b.style.display = 'none'; });
+  });
+
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('.listen'); if (!btn) return;
     if (current === btn && !A.paused) { A.pause(); reset(btn); current = null; return; }

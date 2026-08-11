@@ -82,10 +82,36 @@ def voice_id():
     sys.exit('no voice yet - run with --clone first')
 
 
+def chunks_of(text, limit=700):
+    """Split on sentence ends. eleven_v3 is slow, and one long request is far
+    more likely to time out than three short ones."""
+    parts, cur = [], ''
+    for sent in re.split(r'(?<=[.!?:])\s+', text):
+        if len(cur) + len(sent) + 1 > limit and cur:
+            parts.append(cur.strip()); cur = sent
+        else:
+            cur += ' ' + sent
+    if cur.strip():
+        parts.append(cur.strip())
+    return parts
+
+
 def tts(text, vid, out_path, lang):
-    data = {'text': text, 'model_id': MODEL, 'voice_settings': SETTINGS}
-    audio = req('/text-to-speech/' + vid, data=data, method='POST',
-                headers={'Accept': 'audio/mpeg'})
+    """Render in chunks and concatenate - mp3 frames join cleanly end to end."""
+    blobs = []
+    for c in chunks_of(text):
+        for attempt in range(4):
+            try:
+                blobs.append(req('/text-to-speech/' + vid,
+                                 data={'text': c, 'model_id': MODEL,
+                                       'voice_settings': SETTINGS},
+                                 method='POST', headers={'Accept': 'audio/mpeg'}))
+                break
+            except Exception:
+                if attempt == 3:
+                    raise
+                time.sleep(6)
+    audio = b''.join(blobs)
     open(out_path, 'wb').write(audio)
     return len(audio)
 
