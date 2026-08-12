@@ -96,4 +96,11 @@
   nav.appendChild(alt);
 
   document.body.insertBefore(nav, document.body.firstChild);
+
+  /* The ambient-music toggle appends itself to this bar, once it has confirmed
+     the track exists. Loaded after the nav so it always has somewhere to go. */
+  var amb = document.createElement('script');
+  amb.src = 'ambient.js';
+  amb.defer = true;
+  document.body.appendChild(amb);
 })();

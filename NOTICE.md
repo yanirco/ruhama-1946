@@ -98,3 +98,18 @@ They are **not** historical sources, and the site never presents them as such:
 
 `scripts/sketches.py` holds the prompts, so anyone can see exactly what was
 asked for and regenerate or replace them.
+
+## Ambient music
+
+`audio/ambient.mp3` is an instrumental track generated on Suno by the site
+owner. No lyrics, no sampled recording of any performer.
+
+It is processed before use: the tail is crossfaded back into the opening so the
+loop has no audible seam, and the whole thing is normalised to **-20 LUFS** —
+four decibels under the narration's -16 LUFS, so it can never compete with a
+voice.
+
+In the player it is **off by default and never autoplays**. This site is about
+a search of a children's house; music that starts on its own scores somebody
+else's grief without being asked. The reader turns it on, the choice is
+remembered, and it ducks to a quarter of its volume whenever narration plays.
