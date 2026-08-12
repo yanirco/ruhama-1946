@@ -98,6 +98,14 @@ body[data-ar="16x9"] .badge{color:rgba(0,0,0,.45);inset-inline-start:auto;inset-
 .meta b{color:#cbbfb2}
 a{color:#d9a08e}
 </style>
+<link rel="stylesheet" href="theme.css">
+<script>
+(function(){try{
+  var s=localStorage.getItem('ruhama.theme');
+  var d=(s==='dark')||(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme', d?'dark':'light');
+}catch(e){}})();
+</script>
 </head>
 <body data-ar="16x9">
 

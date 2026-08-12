@@ -104,6 +104,13 @@
   amb.defer = true;
   document.body.appendChild(amb);
 
+  /* Dark mode. The attribute is set inline in <head> to avoid a flash; this
+     only adds the toggle and keeps it in step with the system setting. */
+  var th = document.createElement('script');
+  th.src = 'theme.js';
+  th.defer = true;
+  document.body.appendChild(th);
+
   /* Click-to-enlarge for every picture. Skips gallery.html, which has its own. */
   var lbx = document.createElement('script');
   lbx.src = 'lightbox.js';

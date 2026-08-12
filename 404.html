@@ -3,7 +3,15 @@
 <style>body{background:#f7f3ec;color:#17150f;font-family:system-ui,sans-serif;
 display:grid;place-items:center;min-height:100vh;margin:0;text-align:center;padding:24px}
 h1{font-size:56px;margin:0 0 8px}p{color:#5d564b;margin:6px 0}
-a{color:#8c3b2e}</style></head><body><div>
+a{color:#8c3b2e}</style><link rel="stylesheet" href="theme.css">
+<script>
+(function(){try{
+  var s=localStorage.getItem('ruhama.theme');
+  var d=(s==='dark')||(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme', d?'dark':'light');
+}catch(e){}})();
+</script>
+</head><body><div>
 <h1>404</h1>
 <p>הדף הזה לא נמצא. גם הבריטים לא מצאו מה שחיפשו.</p>
 <p>This page was not found. The British did not find what they were looking for either.</p>

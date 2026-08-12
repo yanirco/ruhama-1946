@@ -71,6 +71,14 @@ footer{margin-top:40px;padding:34px 22px 60px;background:var(--dark);color:#b6ad
 footer .in{max-width:1300px;margin:0 auto}
 footer a{color:#e0a292}
 </style>
+<link rel="stylesheet" href="theme.css">
+<script>
+(function(){try{
+  var s=localStorage.getItem('ruhama.theme');
+  var d=(s==='dark')||(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme', d?'dark':'light');
+}catch(e){}})();
+</script>
 </head>
 <body>
 

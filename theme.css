@@ -1,0 +1,106 @@
+/* Dark mode for ruhama1946.site.
+ *
+ * The light site is warm paper and ink, so the dark one is warm too - a deep
+ * brown-black, not the blue-black of a code editor. Pure #000 with pure #fff
+ * text would be wrong for a document about a paper archive, and it is harder
+ * to read for long stretches.
+ *
+ * THE PART THAT MATTERS MOST IS THE PICTURES. The archive photographs are dark
+ * prints, but the thirty-three drawings are ink on cream paper: on a dark page
+ * they become glaring white rectangles that hurt to look at and pull the eye
+ * off the text. Every image is therefore dimmed slightly in dark mode, and the
+ * drawings a little more, so the page stays comfortable and the photographs
+ * still read as the brightest thing on it - which is what they should be.
+ *
+ * presentation.html is excluded: it is already a dark show by design.
+ */
+
+[data-theme="dark"]{
+  --paper:#14120f;
+  --ink:#ece7dc;
+  --soft:#a49c8e;
+  --line:#332e27;
+  --accent:#d0705c;      /* the brick red, lifted so it reads on dark */
+  --accent2:#d9b64a;
+  --dark:#0d0b09;
+  --muted:#a49c8e;
+
+  /* timeline chart colours */
+  --hist:#d0705c; --hist2:#e0a292; --ctx:#a89e90;
+  --prod:#6aa8ae; --prod2:#8fc6cc; --gold:#d9b64a; --alert:#e0a292;
+
+  color-scheme: dark;
+}
+
+/* ---------- the hardcoded light patches the variables do not reach ---------- */
+
+[data-theme="dark"] .topbar{background:rgba(20,18,15,.94)}
+
+/* pale card and panel backgrounds */
+[data-theme="dark"] .box,
+[data-theme="dark"] .card,
+[data-theme="dark"] .wrap,
+[data-theme="dark"] .shot,
+[data-theme="dark"] .tl > div{background:#1c1915;border-color:var(--line)}
+
+/* the amber "read this" boxes */
+[data-theme="dark"] .box.warn,
+[data-theme="dark"] .note{background:#241d10;border-color:#4a3c1c}
+[data-theme="dark"] .note b{color:var(--accent2)}
+
+/* figure captions and quiet text */
+[data-theme="dark"] figcaption,
+[data-theme="dark"] .vidcap,
+[data-theme="dark"] .audionote,
+[data-theme="dark"] cite{color:var(--soft)}
+
+/* the drawings' paper frame becomes a dark mount, not a white slab */
+[data-theme="dark"] figure.sketch img{
+  background:#241f19;border-color:rgba(217,182,74,.28)}
+
+/* buttons and controls */
+[data-theme="dark"] .listen{background:#1c1915;border-color:var(--line);color:var(--ink)}
+[data-theme="dark"] .listen:hover{border-color:var(--accent2)}
+[data-theme="dark"] .lang button{background:#1c1915;color:var(--soft)}
+[data-theme="dark"] .lang button[aria-pressed=true]{background:var(--ink);color:#14120f}
+
+/* filter chips in the gallery */
+[data-theme="dark"] .filters button{background:#1c1915;color:var(--soft);
+  border-color:var(--line)}
+[data-theme="dark"] .filters button[aria-pressed=true]{background:var(--accent);
+  color:#14120f;border-color:var(--accent)}
+
+/* svg charts draw on a light plate */
+[data-theme="dark"] svg text{fill:var(--ink)}
+[data-theme="dark"] svg line[stroke="#d9d2c6"],
+[data-theme="dark"] svg line[stroke="#ddd5c6"]{stroke:var(--line)}
+
+/* ---------- pictures ----------
+   Dimmed so a cream-paper drawing does not become a lightbulb. The
+   photographs are dimmed less: they are the evidence and should stay the
+   brightest thing on the page. */
+[data-theme="dark"] figure img{filter:brightness(.86) contrast(1.02)}
+[data-theme="dark"] figure.sketch img{filter:brightness(.78) contrast(1.04)}
+[data-theme="dark"] .shot img{filter:brightness(.86)}
+
+/* full-screen viewers keep the picture honest - no dimming there, because the
+   reader has deliberately asked to look at it properly */
+[data-theme="dark"] #lbimg,
+[data-theme="dark"] #lb img{filter:none;background:#f6f2ea}
+
+/* ---------- the toggle itself ---------- */
+#themebtn{display:inline-flex;align-items:center;gap:7px;background:none;
+  border:1px solid rgba(255,255,255,.2);color:#a8a49c;border-radius:8px;
+  padding:6px 11px;font:inherit;font-size:13.5px;cursor:pointer;
+  white-space:nowrap;margin-inline-start:4px;
+  transition:color .15s,border-color .15s}
+#themebtn:hover{color:#d9b64a;border-color:#c9a227}
+#themebtn .ico{font-size:13px;line-height:1;display:inline-block;
+  min-width:14px;text-align:center}
+
+/* colours transition, but only after first paint - see theme.js */
+html.theme-ready body,
+html.theme-ready .topbar,
+html.theme-ready .box,
+html.theme-ready figure img{transition:background-color .3s ease,color .3s ease,
+  filter .3s ease,border-color .3s ease}
