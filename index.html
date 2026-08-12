@@ -127,25 +127,37 @@ figcaption b{color:var(--ink)}
 
 
 /* ---------- book furniture ----------
-   Most illustrations belong inside the column, wrapped by the prose. A page
-   of full-width blocks reads as a list; a page with the text running past a
-   small drawing reads as a book. */
-figure.vignette{width:38%;max-width:400px;margin:8px 0 20px;clear:none}
-figure.vignette.vstart{float:inline-start;margin-inline-end:30px}
-figure.vignette.vend{float:inline-end;margin-inline-start:30px}
-figure.vignette figcaption{font-size:13px;line-height:1.55;font-style:italic;
-  margin-top:8px}
+   Illustrations that sit inside the column, wrapped by the prose, so the page
+   reads as a book rather than as a list of pictures. */
+
+figure.vignette{width:42%;max-width:460px;margin:10px 0 22px}
+figure.vignette.vstart{float:inline-start;margin-inline-end:32px}
+figure.vignette.vend{float:inline-end;margin-inline-start:32px}
+figure.vignette figcaption{font-size:13.5px;line-height:1.6;font-style:italic;
+  margin-top:9px}
 figure.vignette figcaption .tag{font-style:normal}
-@media(max-width:760px){
+
+/* A float may only ever run beside plain prose. Anything with its own box -
+   a quote, a video, a full-width plate, a pair of drawings, a heading - clears
+   first, otherwise it gets overlapped. This is the rule that was missing. */
+.part h2,.part h3,.part h4,
+.part .box,.part .video,.part blockquote,
+.part figure.wide,.part .sketchpair,.part .tl,
+.part .listen,.part table{clear:both}
+
+/* Below this width there is no room for text beside a picture, so stop
+   pretending there is. */
+@media(max-width:980px){
   figure.vignette{float:none;width:100%;max-width:none;
-    margin-inline:0;margin-block:26px}
+    margin-inline:0;margin-block:30px}
 }
 
-/* A printer's ornament closing a part, not another picture to study. */
-figure.tailpiece{width:190px;margin:40px auto 6px;clear:both;opacity:.85}
-figure.tailpiece img{border:0;padding:0;background:none;
-  -webkit-mask-image:radial-gradient(ellipse at center,#000 52%,transparent 76%);
-          mask-image:radial-gradient(ellipse at center,#000 52%,transparent 76%)}
+/* A printer's ornament closing a part. Small, centred, faded into the paper -
+   punctuation, not another picture to study. */
+figure.tailpiece{width:210px;margin:48px auto 4px;clear:both;opacity:.8}
+figure.tailpiece img{border:0;padding:0;background:none;border-radius:0;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 46%,transparent 72%);
+          mask-image:radial-gradient(ellipse at center,#000 46%,transparent 72%)}
 figure.tailpiece figcaption{display:none}
 
 /* parts must contain their floats */
@@ -354,13 +366,14 @@ footer p{font-size:15px}
 <div><b>30 ביולי – 2 באוגוסט 1946</b>מבצע כריש: כיתור וחיפוש בתל אביב.</div>
 <div><b>סוף אוגוסט 1946</b>תורו של הנגב.</div>
 </div>
-</div>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+<figure class="sketch tailpiece" aria-hidden="true">
   <img src="images/sketches/sketch_1912_founding.jpg" alt="" loading="lazy" decoding="async">
   <figcaption>רישום, לא תצלום.</figcaption>
 </figure>
 </div>
+
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">חלק ב · המקום</span>המשק שננטש ארבע פעמים</h2>
@@ -451,13 +464,14 @@ footer p{font-size:15px}
   <img src="images/ai/ruhama_1946_43_ai.jpg" alt="מבנה ברוחמה שגגו הוסר עד לקורות, וערימת חומר מתחתיו" loading="lazy" decoding="async">
   <figcaption><b>מבנה שגגו הוסר.</b> הקורות נראות בבירור מול האור — כיסוי הגג הוסר כולו, וערימת חומר נשפכה מתחתיו. ארכיון קיבוץ רוחמה, 1946, שוחזר 2026. <em>כיוון התצלום תוקן באוגוסט 2026: עד אז הוצג הפוך, ותואר בטעות כנוף.</em></figcaption>
 </figure>
-</div>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+<figure class="sketch tailpiece" aria-hidden="true">
   <img src="images/sketches/sketch_checkpoint.jpg" alt="" loading="lazy" decoding="async">
   <figcaption>רישום, לא תצלום.</figcaption>
 </figure>
 </div>
+
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">חלק ג · שישה ימים</span>מה קרה, יום אחר יום</h2>
@@ -652,13 +666,14 @@ footer p{font-size:15px}
   <img src="images/p8_the_yard_around_him.jpg" alt="החצר אחרי החיפוש, איש עומד בין ההריסות" loading="lazy" decoding="async">
   <figcaption><b>החצר, אחרי.</b> מכונות, קורות, ארגזים וכלים בערימה אחת. משמאל עומד אחד מחברי המשק ומסתכל. ארכיון קיבוץ רוחמה, 1946.</figcaption>
 </figure>
-</div>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+<figure class="sketch tailpiece" aria-hidden="true">
   <img src="images/sketches/sketch_1913_the_well.jpg" alt="" loading="lazy" decoding="async">
   <figcaption>רישום, לא תצלום.</figcaption>
 </figure>
 </div>
+
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">חלק ד · האנשים</span>ארבעת האנשים שבתצלומים</h2>
@@ -692,13 +707,14 @@ footer p{font-size:15px}
 <h4>קריאה פתוחה</h4>
 <p>אין לנו את שמותיהם של ארבעת האנשים האלה. יש היום אנשים חיים שיודעים מי הם. אם אתם מכירים מישהו מקיבוץ רוחמה או ממשפחות החברים — זו השאלה הכי חשובה לשאול לפני יום השנה ה-80.</p>
 </div>
-</div>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+<figure class="sketch tailpiece" aria-hidden="true">
   <img src="images/sketches/sketch_raising_a_hut.jpg" alt="" loading="lazy" decoding="async">
   <figcaption>רישום, לא תצלום.</figcaption>
 </figure>
 </div>
+
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">חלק ה · אחר כך</span>מה קרה בהמשך</h2>
@@ -736,6 +752,11 @@ footer p{font-size:15px}
   <img src="images/p6_hands_and_the_basket.jpg" alt="ידיים אוחזות בסל קלוע" loading="lazy" decoding="async">
   <figcaption><b>מתחילים לנקות.</b> פרט מוגדל: זוג ידיים, סל קלוע, חדר הרוס. השיקום ארך חודשים והתחיל ככה.</figcaption>
 </figure>
+
+<figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_negev_map.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>רישום, לא תצלום.</figcaption>
+</figure>
 </div>
 
 <figure class="wide sketch">
@@ -743,11 +764,7 @@ footer p{font-size:15px}
   <figcaption><span class="tag">רישום</span><b>אוקטובר 1946 — אחת עשרה נקודות בלילה אחד.</b> שישה שבועות אחרי החיפוש, רוחמה היא נקודת זינוק להקמת אחת עשרה נקודות בנגב בלילה אחד. רישום, לא תצלום.</figcaption>
 </figure>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
-  <img src="images/sketches/sketch_negev_map.jpg" alt="" loading="lazy" decoding="async">
-  <figcaption>רישום, לא תצלום.</figcaption>
-</figure>
-</div>
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">חלק ו · איך לקרוא</span>מה התצלומים אומרים ומה לא</h2>
@@ -774,6 +791,11 @@ footer p{font-size:15px}
 "כדי לגלות את נשק המגן תצטרכו לחרוש את כל אדמות ארץ ישראל."
 <cite>מיוחס לחיים ויצמן — הציטוט שפותח את לוח התערוכה בארכיון קיבוץ רוחמה</cite>
 </blockquote>
+
+<figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_first_building.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>רישום, לא תצלום.</figcaption>
+</figure>
 </div>
 
 <footer><div class="wrap">
@@ -781,10 +803,6 @@ footer p{font-size:15px}
 <p>התצלומים: ארכיון קיבוץ רוחמה, לוח התערוכה "רוחמה במצור — חיפוש נשק תש"ו-1946". שוחזרו דיגיטלית ב-2026.</p>
 <p>רקע היסטורי: <a href="https://www.kibbutz-story.com/post/ruhama">מיזם הנגב המערבי והגליל (יד יערי / יד טבנקין)</a> · <a href="https://www.sng.org.il/רוחמה/">מועצה אזורית שער הנגב</a> · <a href="http://www.hahagana.org.il/sites/sitepage/?itemId=48424">מוזיאון ההגנה</a> · <a href="https://en.wikipedia.org/wiki/6th_Airborne_Division_in_Palestine">6th Airborne Division in Palestine</a></p>
 <p>עדיין לבדוק: ארכיון יד יערי בגבעת חביבה (תיקי רוחמה, "חבר קיבוץ כותב על ימי המצור"), עיתונות תקופתית ב-JPRESS לתאריכים 26.8–6.9.1946, וארכיון המדינה הבריטי ב-Kew.</p>
-<figure class="sketch tailpiece" aria-hidden="true">
-  <img src="images/sketches/sketch_first_building.jpg" alt="" loading="lazy" decoding="async">
-  <figcaption>רישום, לא תצלום.</figcaption>
-</figure>
 </div></footer>
 </article>
 
@@ -859,13 +877,14 @@ footer p{font-size:15px}
 <div><b>30 July – 2 August 1946</b>Operation Shark: cordon and search of Tel Aviv.</div>
 <div><b>Late August 1946</b>The Negev's turn.</div>
 </div>
-</div>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+<figure class="sketch tailpiece" aria-hidden="true">
   <img src="images/sketches/sketch_1912_founding.jpg" alt="" loading="lazy" decoding="async">
   <figcaption>A drawing, not a photograph.</figcaption>
 </figure>
 </div>
+
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">Part 2 · The place</span>The farm that was abandoned four times</h2>
@@ -956,13 +975,14 @@ footer p{font-size:15px}
   <img src="images/ai/ruhama_1946_43_ai.jpg" alt="A building at Ruhama stripped to its bare roof trusses, a heap of material below it" loading="lazy" decoding="async">
   <figcaption><b>A building with its roof taken off.</b> The trusses stand out clearly against the light — the whole roof covering has been removed, and a heap of material has come down beneath it. Kibbutz Ruhama Archive, 1946, restored 2026. <em>Orientation corrected in August 2026: until then this print was shown upside down, and described as a landscape.</em></figcaption>
 </figure>
-</div>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+<figure class="sketch tailpiece" aria-hidden="true">
   <img src="images/sketches/sketch_checkpoint.jpg" alt="" loading="lazy" decoding="async">
   <figcaption>A drawing, not a photograph.</figcaption>
 </figure>
 </div>
+
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">Part 3 · Six days</span>What happened, day by day</h2>
@@ -1157,13 +1177,14 @@ footer p{font-size:15px}
   <img src="images/p8_the_yard_around_him.jpg" alt="The yard after the search, a man standing among the wreckage" loading="lazy" decoding="async">
   <figcaption><b>The yard, afterwards.</b> Machinery, beams, crates and tools in a single heap. On the left one of the members stands and looks. Kibbutz Ruhama Archive, 1946.</figcaption>
 </figure>
-</div>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+<figure class="sketch tailpiece" aria-hidden="true">
   <img src="images/sketches/sketch_1913_the_well.jpg" alt="" loading="lazy" decoding="async">
   <figcaption>A drawing, not a photograph.</figcaption>
 </figure>
 </div>
+
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">Part 4 · The people</span>The four people in these photographs</h2>
@@ -1197,13 +1218,14 @@ footer p{font-size:15px}
 <h4>An open question</h4>
 <p>We do not have the names of these four people. There are people alive today who know who they are. If you know anyone from Kibbutz Ruhama or from the members' families, this is the most important question to ask before the 80th anniversary.</p>
 </div>
-</div>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+<figure class="sketch tailpiece" aria-hidden="true">
   <img src="images/sketches/sketch_raising_a_hut.jpg" alt="" loading="lazy" decoding="async">
   <figcaption>A drawing, not a photograph.</figcaption>
 </figure>
 </div>
+
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">Part 5 · Afterwards</span>What happened next</h2>
@@ -1241,6 +1263,11 @@ footer p{font-size:15px}
   <img src="images/p6_hands_and_the_basket.jpg" alt="Hands gripping a woven basket" loading="lazy" decoding="async">
   <figcaption><b>Starting to clear up.</b> Enlarged detail: a pair of hands, a woven basket, a wrecked room. The rebuilding took months and it started like this.</figcaption>
 </figure>
+
+<figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_negev_map.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>A drawing, not a photograph.</figcaption>
+</figure>
 </div>
 
 <figure class="wide sketch">
@@ -1248,11 +1275,7 @@ footer p{font-size:15px}
   <figcaption><span class="tag">Drawing</span><b>October 1946 — eleven points in one night.</b> Six weeks after the search, Ruhama is a launch point for eleven new settlements founded across the Negev in a single night. A drawing, not a photograph.</figcaption>
 </figure>
 
-<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
-  <img src="images/sketches/sketch_negev_map.jpg" alt="" loading="lazy" decoding="async">
-  <figcaption>A drawing, not a photograph.</figcaption>
-</figure>
-</div>
+<div class="hr"></div>
 
 <div class="part">
 <h2><span class="num">Part 6 · How to read them</span>What the photographs say, and what they don't</h2>
@@ -1279,6 +1302,11 @@ footer p{font-size:15px}
 "To find the defence weapons you would have to plough every acre of the Land of Israel."
 <cite>Attributed to Chaim Weizmann — the quotation that opens the exhibition board in the Kibbutz Ruhama archive</cite>
 </blockquote>
+
+<figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_first_building.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>A drawing, not a photograph.</figcaption>
+</figure>
 </div>
 
 <footer><div class="wrap">
@@ -1286,10 +1314,6 @@ footer p{font-size:15px}
 <p>Photographs: Kibbutz Ruhama Archive, exhibition board <em>"Ruhama Under Siege — Weapons Search 5706-1946."</em> Digitally restored in 2026.</p>
 <p>Historical background: <a href="https://www.kibbutz-story.com/post/ruhama">Western Negev &amp; Galilee project (Yad Ya'ari / Yad Tabenkin)</a> · <a href="https://www.sng.org.il/רוחמה/">Sha'ar HaNegev Regional Council</a> · <a href="http://www.hahagana.org.il/sites/sitepage/?itemId=48424">Haganah Museum</a> · <a href="https://en.wikipedia.org/wiki/6th_Airborne_Division_in_Palestine">6th Airborne Division in Palestine</a></p>
 <p>Still to consult: the Yad Ya'ari archive at Givat Haviva (Ruhama files, "a member writes about the days of the siege"), the historical Hebrew press on JPRESS for 26 Aug – 6 Sep 1946, and the National Archives at Kew.</p>
-<figure class="sketch tailpiece" aria-hidden="true">
-  <img src="images/sketches/sketch_first_building.jpg" alt="" loading="lazy" decoding="async">
-  <figcaption>A drawing, not a photograph.</figcaption>
-</figure>
 </div></footer>
 </article>
 
