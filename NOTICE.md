@@ -84,6 +84,15 @@ beyond the perimeter before the troops arrived, Palmach training in the
 wadis, the cordon closing on 28 August, and soldiers breaking up a floor.
 Thirteen drawings in total.
 
+**One drawing was withdrawn.** An early sketch showed a hand-drawn survey
+map of the Negev. It was removed: the model invented both the terrain and
+the place names, printing labels like "A ARID REGON" and "Lobra Prison"
+across country that looks nothing like the Negev. Every other drawing here
+depicts a *scene*, which a reader takes as an artist's impression. A map is
+different - it asserts real geography, and people read maps as documents.
+A drawn map cannot be honest about a real place, so this set contains none.
+It was replaced with a plain landscape, which claims nothing.
+
 They are **not** historical sources, and the site never presents them as such:
 
 - every prompt is locked to pen-and-ink with visible hatching, so they can never

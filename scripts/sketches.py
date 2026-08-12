@@ -199,10 +199,19 @@ SKETCHES = {
         'prompt': 'A crowded small steamer low in the water off a dark coastline at '
                   'night, people packed on deck as tiny shapes, a searchlight beam '
                   'sweeping the water from a patrol vessel.'},
-    'map': {'file': 'sketch_negev_map.jpg', 'he': 'מפת הנגב', 'en': 'A map of the Negev',
-        'prompt': 'A hand-drawn survey map of an arid southern region, contour lines, '
-                  'wadis, a few marked points, dividers and a pencil lying across it. '
-                  'No lettering, no place names, no writing of any kind.'},
+    # NO MAPS. Withdrawn after the first attempt produced invented terrain and
+    # hallucinated place names ("A ARID REGON", "Lobra Prison") despite the
+    # prompt forbidding lettering. Every other drawing here depicts a scene, and
+    # a reader takes a scene as an artist's impression. A map is different: it
+    # asserts real geography, and people read maps as documents. A drawn map of
+    # the Negev cannot be honest, so the set does not contain one. Replaced by
+    # a landscape, which claims nothing.
+    'negevland': {'file': 'sketch_negev_country.jpg', 'he': 'ארץ הנגב',
+        'en': 'The Negev country',
+        'prompt': 'Wide open semi-desert country seen from a low rise: shallow '
+                  'eroded hills to the horizon, dry watercourses, scattered scrub, '
+                  'a single unmade track running away into the distance. Enormous '
+                  'sky. No buildings, no people, no lettering.'},
     'society': {'file': 'sketch_moscow_society.jpg', 'he': 'אגודת "שארית ישראל", מוסקבה', 'en': 'The She\'erit Yisrael society, Moscow',
         'prompt': 'A meeting in a plain room around a long table, a dozen people in '
                   'early twentieth century European dress, papers spread out, a lamp. '

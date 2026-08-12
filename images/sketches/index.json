@@ -74,10 +74,10 @@
   "he": "ספינת מעפילים",
   "en": "An immigrant ship"
  },
- "map": {
-  "file": "sketch_negev_map.jpg",
-  "he": "מפת הנגב",
-  "en": "A map of the Negev"
+ "negevland": {
+  "file": "sketch_negev_country.jpg",
+  "he": "ארץ הנגב",
+  "en": "The Negev country"
  },
  "society": {
   "file": "sketch_moscow_society.jpg",
