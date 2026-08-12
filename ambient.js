@@ -139,6 +139,7 @@
     btn.innerHTML = '<span class="ico"></span><span class="txt"></span>';
     btn.addEventListener('click', function () {
       if (want) { pause(); store('off'); } else { play(); store('on'); }
+      if (window.gtag) gtag('event', 'music_toggle', { state: want ? 'on' : 'off' });
     });
     nav.appendChild(btn);
     paint();

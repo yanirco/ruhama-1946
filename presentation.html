@@ -7,6 +7,15 @@
 <meta name="description" content="שישה ימים ברוחמה, אוגוסט 1946 — מצגת רצופה למסך גדול: תצלומי הארכיון המשוחזרים, עם הקראה.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://ruhama1946.site/presentation.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="שישה ימים ברוחמה — מצגת למסך גדול | Six Days at Ruhama — presentation">
+<meta property="og:description" content="A continuous narrated presentation for a hall screen: the restored archive photographs of the 1946 British weapons search at Kibbutz Ruhama, in Hebrew and English.">
+<meta property="og:image" content="https://ruhama1946.site/og.jpg">
+<meta property="og:url" content="https://ruhama1946.site/presentation.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ruhama1946.site/og.jpg">
+<link rel="alternate" hreflang="he" href="https://ruhama1946.site/presentation.html">
+<link rel="alternate" hreflang="en" href="https://ruhama1946.site/presentation.html?lang=en">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 :root{
@@ -416,6 +425,10 @@ function startChapter(n){
   }
 
   chapline.textContent = (ch.kicker[lang] || '');
+  // How far into the show people actually get is the one number that says
+  // whether the pacing works on a wall.
+  if (window.gtag) gtag('event', 'presentation_chapter',
+                        { chapter: ci + 1, language: lang });
   chapterTitleCard(ch, function(){
     frames = buildFrames(ch, 0);          // provisional until metadata lands
     au.src = 'audio/' + lang + '_' + ch.audio + '.mp3';
@@ -502,6 +515,7 @@ wake();
 
 /* ---------- start ---------- */
 document.getElementById('go').onclick = function(){
+  if (window.gtag) gtag('event', 'presentation_start', { language: lang });
   document.getElementById('gate').style.display = 'none';
   document.documentElement.requestFullscreen().catch(function(){});
   startChapter(0);
@@ -509,5 +523,18 @@ document.getElementById('go').onclick = function(){
 })();
 </script>
 <script src="nav.js" defer></script>
+<script>
+(function () {
+  var GA_ID = "G-N56DVENP9H";
+  if (!GA_ID) return;
+  var s = document.createElement("script");
+  s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", GA_ID, { anonymize_ip: true });
+})();
+</script>
 </body>
 </html>
