@@ -39,13 +39,17 @@
 
   var SRC = 'audio/ambient.mp3';
   var KEY = 'ruhama.ambient';
-  var FULL = 0.20;
-  var DUCKED = FULL * 0.25;
+  var VKEY = 'ruhama.ambient.vol';
+  var DEFAULT_VOL = 0.20;     // unchanged: what it plays at if nobody touches it
+  var DUCK_RATIO = 0.25;      // how far it drops under a narration voice
+  var vol = DEFAULT_VOL;
   var lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'he';
 
   var L = {
-    he: { label: 'מוזיקה', titlePlaying: 'השהיית המוזיקה', titlePaused: 'המשך המוזיקה' },
-    en: { label: 'Music', titlePlaying: 'Pause the music', titlePaused: 'Resume the music' }
+    he: { label: 'מוזיקה', titlePlaying: 'השהיית המוזיקה', titlePaused: 'המשך המוזיקה',
+          vol: 'עוצמת המוזיקה' },
+    en: { label: 'Music', titlePlaying: 'Pause the music', titlePaused: 'Resume the music',
+          vol: 'Music volume' }
   }[lang];
 
   var audio = null;
@@ -84,6 +88,9 @@
     }, 40);
   }
 
+  /* The one place that decides how loud it should be right now. */
+  function target() { return ducked ? vol * DUCK_RATIO : vol; }
+
   function play() {
     if (!audio) make();
     want = true;
@@ -96,7 +103,7 @@
         paint();
       });
     }
-    fadeTo(ducked ? DUCKED : FULL, 1800);
+    fadeTo(target(), 1800);
   }
 
   function pause() {
@@ -130,7 +137,18 @@
       '#ambientbtn:hover{color:#d9b64a;border-color:#c9a227}' +
       '#ambientbtn[aria-pressed="true"]{color:#c9a227;border-color:#c9a227}' +
       '#ambientbtn .ico{font-size:10px;line-height:1;letter-spacing:1px;' +
-      '  display:inline-block;min-width:12px;text-align:center}';
+      '  display:inline-block;min-width:12px;text-align:center}' +
+      '#ambientvol{-webkit-appearance:none;appearance:none;width:72px;height:18px;' +
+      '  background:none;cursor:pointer;margin-inline-start:6px;vertical-align:middle}' +
+      '#ambientvol::-webkit-slider-runnable-track{height:3px;border-radius:2px;' +
+      '  background:rgba(255,255,255,.25)}' +
+      '#ambientvol::-moz-range-track{height:3px;border-radius:2px;' +
+      '  background:rgba(255,255,255,.25)}' +
+      '#ambientvol::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;' +
+      '  border-radius:50%;background:#c9a227;margin-top:-4px}' +
+      '#ambientvol::-moz-range-thumb{width:11px;height:11px;border:0;' +
+      '  border-radius:50%;background:#c9a227}' +
+      '#ambientvol:hover::-webkit-slider-thumb{background:#d9b64a}';
     document.head.appendChild(css);
 
     btn = document.createElement('button');
@@ -142,6 +160,23 @@
       if (window.gtag) gtag('event', 'music_toggle', { state: want ? 'on' : 'off' });
     });
     nav.appendChild(btn);
+
+    /* Volume. Default is untouched at 20%; this only lets someone move it. */
+    var slider = document.createElement('input');
+    slider.id = 'ambientvol';
+    slider.type = 'range';
+    slider.min = '0'; slider.max = '100'; slider.step = '1';
+    slider.value = String(Math.round(vol * 100));
+    slider.title = L.vol;
+    slider.setAttribute('aria-label', L.vol);
+    slider.addEventListener('input', function () {
+      vol = Math.max(0, Math.min(1, Number(slider.value) / 100));
+      storeVol(vol);
+      // move immediately rather than fading - a slider that lags feels broken
+      if (audio && want) { clearInterval(fadeTimer); audio.volume = target(); }
+    });
+    nav.appendChild(slider);
+
     paint();
 
     if (read() !== 'off') {
@@ -175,14 +210,14 @@
     document.addEventListener('play', function (e) {
       if (audio && e.target !== audio && e.target.tagName === 'AUDIO') {
         ducked = true;
-        if (want) fadeTo(DUCKED, 600);
+        if (want) fadeTo(target(), 600);
       }
     }, true);
     ['pause', 'ended'].forEach(function (ev) {
       document.addEventListener(ev, function (e) {
         if (audio && e.target !== audio && e.target.tagName === 'AUDIO') {
           ducked = false;
-          if (want) fadeTo(FULL, 1200);
+          if (want) fadeTo(target(), 1200);
         }
       }, true);
     });
@@ -190,8 +225,16 @@
 
   function store(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
   function read() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function storeVol(v) { try { localStorage.setItem(VKEY, String(v)); } catch (e) {} }
+  function readVol() {
+    try {
+      var v = parseFloat(localStorage.getItem(VKEY));
+      return isFinite(v) && v >= 0 && v <= 1 ? v : DEFAULT_VOL;
+    } catch (e) { return DEFAULT_VOL; }
+  }
 
   /* Only offer the control if the track actually exists. */
+  vol = readVol();
   fetch(SRC, { method: 'HEAD' })
     .then(function (r) { if (r.ok) build(); })
     .catch(function () { /* no track, no button */ });

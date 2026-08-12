@@ -55,20 +55,34 @@ body.idle .chrome{opacity:0;pointer-events:none}
 @keyframes km3{from{transform:scale(1.10) translate(1.5%,-1.5%)} to{transform:scale(1.02) translate(-1%,1%)}}
 @media (prefers-reduced-motion:reduce){.frame.on img{animation:none}}
 
-/* vignette keeps the caption legible over a bright print */
+/* Scrim under the caption. Which way it runs depends on the picture: a dark
+   photograph gets a dark scrim and pale text, a bright one gets the reverse.
+   Measured per frame - see readLuminance() below. */
 #stage::after{content:"";position:fixed;inset:0;pointer-events:none;
+  transition:background .9s ease;
   background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.55) 100%),
              linear-gradient(to top,rgba(0,0,0,.85) 0,transparent 34%)}
+body.lightcap #stage::after{
+  background:radial-gradient(ellipse at center,transparent 46%,rgba(0,0,0,.28) 100%),
+             linear-gradient(to top,rgba(246,242,234,.92) 0,transparent 34%)}
 
 /* ---------- caption ---------- */
 #cap{position:fixed;inset-inline:0;bottom:0;z-index:5;padding:0 7vw 5.5vh;
   text-align:center;pointer-events:none}
 #capline{font-family:var(--serif);font-size:clamp(19px,2.35vw,40px);line-height:1.42;
   max-width:24em;margin:0 auto;text-shadow:0 2px 22px rgba(0,0,0,.95);
-  opacity:0;transition:opacity .9s ease .35s}
+  opacity:0;transition:opacity .9s ease .35s,color .7s ease,text-shadow .7s ease}
 #capline.on{opacity:1}
 #chapline{margin:0 0 1.1vh;font-size:clamp(11px,1.05vw,16px);letter-spacing:.18em;
-  text-transform:uppercase;color:var(--accent2);opacity:.9}
+  text-transform:uppercase;color:var(--accent2);opacity:.9;transition:color .7s ease}
+
+/* Bright picture: ink text with a pale halo instead of pale text with a dark one. */
+body.lightcap #capline{color:#14120e;
+  text-shadow:0 1px 16px rgba(246,242,234,.98), 0 0 4px rgba(246,242,234,.95)}
+body.lightcap #chapline{color:#7a5c12}
+body.lightcap #count,body.lightcap #hint{color:#4a443c}
+body.lightcap #sketchmark{color:#7a5c12;border-color:#7a5c12;
+  background:rgba(246,242,234,.72)}
 
 /* A drawing must announce itself on a wall, where nobody reads credits. */
 #sketchmark{position:fixed;z-index:7;top:3.4vh;inset-inline-start:2.4vw;
@@ -354,6 +368,63 @@ function buildFrames(ch, seconds){
    only ever shown whole - cropping a drawing just looks like a mistake. */
 var FOCUS = ['50% 50%', '22% 26%', '78% 30%', '50% 78%'];
 
+/* ------------------------------------------------------------------ *
+ * Caption contrast.
+ *
+ * These prints run from near-black interiors to blown-out white paper,
+ * and one fixed treatment cannot serve both: pale text vanishes on the
+ * ink drawings, dark text vanishes in the wrecked rooms. So measure the
+ * strip of picture that actually sits behind the caption and switch.
+ *
+ * The measurement has to account for how the image is fitted. With
+ * `contain` there are letterbox bars, and a band that falls on the bars
+ * is black however bright the photograph is; with `cover` the crop is
+ * offset by object-position. Both are worked out here rather than
+ * guessed, and the uncovered fraction is weighted as black.
+ * ------------------------------------------------------------------ */
+var lumCanvas = document.createElement('canvas');
+var lumCtx = lumCanvas.getContext('2d', { willReadFrequently: true });
+var lightNow = false;
+
+function bandLuminance(img, cover, posX, posY){
+  var W = window.innerWidth, H = window.innerHeight;
+  var nw = img.naturalWidth, nh = img.naturalHeight;
+  if(!nw || !nh) return 0;
+
+  var scale = cover ? Math.max(W / nw, H / nh) : Math.min(W / nw, H / nh);
+  var rw = nw * scale, rh = nh * scale;
+  var ox = cover ? (W - rw) * posX : (W - rw) / 2;
+  var oy = cover ? (H - rh) * posY : (H - rh) / 2;
+
+  var bandTop = H * 0.66;                       // where the caption sits
+  var x0 = Math.max(0, ox), x1 = Math.min(W, ox + rw);
+  var y0 = Math.max(bandTop, oy), y1 = Math.min(H, oy + rh);
+  if(x1 <= x0 || y1 <= y0) return 0;            // band is entirely on black bars
+
+  try{
+    lumCanvas.width = 24; lumCanvas.height = 12;
+    lumCtx.drawImage(img,
+      (x0 - ox) / scale, (y0 - oy) / scale,
+      (x1 - x0) / scale, (y1 - y0) / scale,
+      0, 0, 24, 12);
+    var d = lumCtx.getImageData(0, 0, 24, 12).data, sum = 0;
+    for(var i = 0; i < d.length; i += 4){
+      sum += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+    }
+    var avg = sum / (d.length / 4);
+    var covered = ((x1 - x0) * (y1 - y0)) / (W * (H - bandTop));
+    return avg * covered;                       // letterbox counts as black
+  }catch(e){ return 0; }                        // never let this break the show
+}
+
+/* Hysteresis, so a frame hovering near the threshold cannot flicker. */
+function setContrast(img, cover, posX, posY){
+  var lum = bandLuminance(img, cover, posX, posY);
+  if(!lightNow && lum > 150) lightNow = true;
+  else if(lightNow && lum < 118) lightNow = false;
+  document.body.classList.toggle('lightcap', lightNow);
+}
+
 function show(slide){
   var id = slide.id, v = slide.v || 0;
   var old = stage.querySelector('.frame.on');
@@ -362,7 +433,11 @@ function show(slide){
   var img = document.createElement('img');
   img.src = src(id);
   img.alt = '';
+  var pos = FOCUS[v % FOCUS.length].split(' ');
+  var posX = parseFloat(pos[0]) / 100, posY = parseFloat(pos[1]) / 100;
   if (v) img.style.objectPosition = FOCUS[v % FOCUS.length];
+  var measure = function(){ setContrast(img, !!v, posX, posY); };
+  if (img.complete && img.naturalWidth) measure(); else img.onload = measure;
   f.appendChild(img);
   stage.appendChild(f);
   // force a reflow so the opacity transition actually runs
