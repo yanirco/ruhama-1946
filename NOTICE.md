@@ -49,3 +49,24 @@ labels the colourised photographs.
 
 Where a real recording of a real person is used — Haim Gouri reading Alterman —
 it is embedded from its original published source and credited, not reproduced.
+
+## Photographs sourced from PikiWiki
+
+Alongside the exhibition-board photographs, the site now carries images the
+Kibbutz Ruhama archive published itself on **PikiWiki**, Israel's free-use photo
+bank (organisation 8112). These are separately licensed and separately credited;
+they are *not* covered by the "all rights reserved" line above.
+
+| File | Subject | Date | Source | Licence |
+|---|---|---|---|---|
+| `images/childrens_house_june_1946.jpg` | The children's house after the search | 29 June 1946 | Kibbutz Ruhama Archive, via Harvard University | Public domain |
+
+The original scans live in `images/sourced/`, untouched.
+
+**One deliberate choice.** PikiWiki also carries a colourised, upscaled version
+of the children's-house photograph (image 100872). We are not using it. The
+colourisation smears the children's faces into blotches that are machine
+invention, not photographic detail — and these are real children, photographed
+after soldiers went through their nursery. The site uses the original black and
+white scan (image 20721) instead. Same rule as everywhere else here: nothing is
+invented, and where a machine touched an image we say so.
