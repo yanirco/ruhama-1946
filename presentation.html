@@ -27,8 +27,23 @@ body.idle .chrome{opacity:0;pointer-events:none}
 .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
   /* the prints are photographs of prints - a touch of lift reads better on a wall */
   filter:contrast(1.04) brightness(1.02)}
-.frame.on img{animation:drift 26s ease-out forwards}
-@keyframes drift{from{transform:scale(1.0)}to{transform:scale(1.075)}}
+
+/* A photograph shown twice is boring; the same photograph shown whole and then
+   close is two different pictures. `detail` crops in on a corner so the second
+   and third showings read as new images rather than as repeats. */
+.frame.detail img{object-fit:cover}
+
+/* Four motions, cycled. Nothing ever moves the same way twice in a row. */
+.frame.on img{animation-duration:14s;animation-timing-function:ease-out;
+  animation-fill-mode:forwards}
+.frame.on.m0 img{animation-name:km0}
+.frame.on.m1 img{animation-name:km1}
+.frame.on.m2 img{animation-name:km2}
+.frame.on.m3 img{animation-name:km3}
+@keyframes km0{from{transform:scale(1.00)}         to{transform:scale(1.09)}}
+@keyframes km1{from{transform:scale(1.09)}         to{transform:scale(1.00)}}
+@keyframes km2{from{transform:scale(1.06) translate(-2%,1%)} to{transform:scale(1.11) translate(2%,-1%)}}
+@keyframes km3{from{transform:scale(1.10) translate(1.5%,-1.5%)} to{transform:scale(1.02) translate(-1%,1%)}}
 @media (prefers-reduced-motion:reduce){.frame.on img{animation:none}}
 
 /* vignette keeps the caption legible over a bright print */
@@ -153,13 +168,22 @@ var T = {
 var CH = [
   {audio:'part1', kicker:{he:'פרק א',he_:'',en:'Part One'},
    title:{he:'ארץ תחת מנדט',en:'A country under mandate'},
-   ids:[{sk:'sketch_1912_founding.jpg',he:'1912 — חוות רוחמה נוסדת',en:'1912 — the Ruhama farm is founded'},
+   ids:[{sk:'sketch_mandate_office.jpg',he:'שלטון המנדט הבריטי',en:'The British Mandate administration'},
+        {sk:'sketch_checkpoint.jpg',he:'מחסום על הדרך',en:'A checkpoint on the road'},
+        {sk:'sketch_immigrant_ship.jpg',he:'ספינת מעפילים מול החוף',en:'An immigrant ship off the coast'},
+        {sk:'sketch_negev_map.jpg',he:'הנגב על המפה',en:'The Negev on the map'},
+        {sk:'sketch_1912_founding.jpg',he:'1912 — חוות רוחמה נוסדת',en:'1912 — the Ruhama farm is founded'},
         {sk:'sketch_1913_the_well.jpg',he:'1913 — חופרים את הבאר, 38 מטרים',en:'1913 — the well, dug by hand to 38 metres'},
         '43','23','12','42']},
 
   {audio:'part2', kicker:{he:'פרק ב',en:'Part Two'},
    title:{he:'המשק שננטש ארבע פעמים',en:'The farm abandoned four times'},
-   ids:[{sk:'sketch_1917_expulsion.jpg',he:'1917 — נטישה ראשונה',en:'1917 — the first abandonment'},
+   ids:[{sk:'sketch_moscow_society.jpg',he:'אגודת "שארית ישראל", מוסקבה',en:'The She\'erit Yisrael society, Moscow'},
+        {sk:'sketch_neighbouring_village.jpg',he:'ג\'מאמה, הכפר השכן',en:'Jamama, the neighbouring village'},
+        {sk:'sketch_first_building.jpg',he:'הבית הראשון',en:'The first building'},
+        {sk:'sketch_water_cart.jpg',he:'עגלת המים',en:'The water cart'},
+        {sk:'sketch_raising_a_hut.jpg',he:'מקימים צריף',en:'Raising a hut'},
+        {sk:'sketch_1917_expulsion.jpg',he:'1917 — נטישה ראשונה',en:'1917 — the first abandonment'},
         {sk:'sketch_1936_orchards.jpg',he:'1936 — הפרדסים נעקרים',en:'1936 — the orchards uprooted'},
         {sk:'sketch_1943_return.jpg',he:'דצמבר 1943 — חוזרים לבאר',en:'December 1943 — back to the well'},
         {sk:'sketch_1944_night_landing.jpg',he:'29 במרץ 1944 — עלייה לקרקע, בלילה',en:'29 March 1944 — going up to the land, at night'},
@@ -168,12 +192,25 @@ var CH = [
 
   {audio:'part3', kicker:{he:'פרק ג',en:'Part Three'},
    title:{he:'שישה ימים',en:'Six days'},
-   ids:[{sk:'sketch_slik.jpg',he:'סליק — מחבוא נשק מתחת לרצפה',en:'A slik — an arms cache beneath a floor'},
+   ids:[{sk:'sketch_loudspeaker.jpg',he:'ההכרזה ברמקול',en:'The announcement over the loudspeaker'},
+        {sk:'sketch_the_radio.jpg',he:'רדיו ירושלים מודיע על המבצע',en:'Radio Jerusalem announces the operation'},
+        {sk:'sketch_slik.jpg',he:'סליק — מחבוא נשק מתחת לרצפה',en:'A slik — an arms cache beneath a floor'},
         {sk:'sketch_moving_the_weapons.jpg',he:'הנשק הוצא אל מחוץ לגדר לפני בוא החיילים',en:'The weapons went outside the perimeter before the troops came'},
         {sk:'sketch_the_cordon.jpg',he:'28 באוגוסט — הטבעת נסגרת',en:'28 August — the ring closes'},
         '08','11','13',
         {sk:'sketch_the_search.jpg',he:'שוברים את הרצפה',en:'Breaking the floor'},
-        '14','16','18','19','21','26','31','33','35','36','37','39','44']},
+        {sk:'sketch_assembled_in_the_yard.jpg',he:'מכונסים בחצר, תחת שמירה',en:'Assembled in the yard, under guard'},
+        '14','16',
+        {sk:'sketch_trenches_along_the_walls.jpg',he:'תעלות נחפרות לאורך הקירות',en:'Trenches dug along the walls'},
+        '18','19',
+        {sk:'sketch_dogs_in_the_room.jpg',he:'הכלבים בחדרים',en:'The dogs in the rooms'},
+        '21','26',
+        {sk:'sketch_the_food_stores.jpg',he:'מחסני המזון',en:'The food stores'},
+        '31','33',
+        {sk:'sketch_the_hay_burning.jpg',he:'החציר בוער',en:'The hay burning'},
+        '35','36',
+        {sk:'sketch_the_dining_hall.jpg',he:'חדר האוכל',en:'The dining hall'},
+        '37','39','44']},
 
   {card:'alterman'},
 
@@ -187,7 +224,12 @@ var CH = [
 
   {audio:'part6', kicker:{he:'פרק ו',en:'Part Six'},
    title:{he:'אחת עשרה נקודות',en:'Eleven points'},
-   ids:['45','47','43','23']}
+   ids:['45','47',
+        {sk:'sketch_rebuilding.jpg',he:'בונים מחדש',en:'Rebuilding'},
+        {sk:'sketch_field_hospital.jpg',he:'בית חולים שדה',en:'A field hospital'},
+        {sk:'sketch_airstrip.jpg',he:'מנחת בשדה פתוח',en:'A landing strip in open country'},
+        {sk:'sketch_1946_eleven_points.jpg',he:'אוקטובר 1946 — אחת עשרה נקודות בלילה אחד',en:'October 1946 — eleven points in one night'},
+        '43','23']}
 ];
 
 var ALTERMAN = {
@@ -222,6 +264,7 @@ var stage = document.getElementById('stage'),
 
 var caps = {};          // id -> {he,en}
 var ci = 0, si = -1, playing = false, cardTimer = null;
+var motion = 0, frames = [];
 
 /* ---------- boot ---------- */
 document.documentElement.lang = lang;
@@ -252,20 +295,46 @@ function src(id){
                       : 'images/ai/ruhama_1946_' + id + '_ai.jpg';
 }
 
-function preload(id){ if(id){ var i = new Image(); i.src = src(id); } }
+function preload(slide){ if(slide){ var i = new Image(); i.src = src(slide.id); } }
 
-function show(id){
+/* Fill a chapter with enough frames that nothing sits on screen for long.
+   Pass one shows every image whole, pass two crops into them, and so on, so
+   the chapter reads as overview-then-detail rather than as a loop. Sketches
+   are shown once per pass but never cropped. */
+var TARGET = 6;                      // seconds per frame, roughly
+function buildFrames(ch, seconds){
+  var want = Math.max(ch.ids.length, Math.round((seconds || 90) / TARGET));
+  var out = [], v = 0;
+  while (out.length < want && v < 6) {
+    for (var i = 0; i < ch.ids.length && out.length < want; i++) {
+      var id = ch.ids[i];
+      if (v > 0 && isSketch(id)) continue;   // never crop a drawing
+      out.push({ id: id, v: v });
+    }
+    v++;
+  }
+  return out;
+}
+
+/* Each slide is {id, v}. v=0 shows the whole image; v>0 crops into a corner,
+   so one photograph yields several genuinely different frames. Sketches are
+   only ever shown whole - cropping a drawing just looks like a mistake. */
+var FOCUS = ['50% 50%', '22% 26%', '78% 30%', '50% 78%'];
+
+function show(slide){
+  var id = slide.id, v = slide.v || 0;
   var old = stage.querySelector('.frame.on');
   var f = document.createElement('div');
-  f.className = 'frame';
+  f.className = 'frame' + (v ? ' detail' : '');
   var img = document.createElement('img');
   img.src = src(id);
   img.alt = '';
+  if (v) img.style.objectPosition = FOCUS[v % FOCUS.length];
   f.appendChild(img);
   stage.appendChild(f);
   // force a reflow so the opacity transition actually runs
   void f.offsetWidth;
-  f.classList.add('on');
+  f.classList.add('on', 'm' + (motion++ % 4));
   if(old){
     old.classList.remove('on');
     setTimeout(function(){ if(old.parentNode) old.parentNode.removeChild(old); }, 1800);
@@ -324,32 +393,38 @@ function startChapter(n){
 
   chapline.textContent = (ch.kicker[lang] || '');
   chapterTitleCard(ch, function(){
+    frames = buildFrames(ch, 0);          // provisional until metadata lands
     au.src = 'audio/' + lang + '_' + ch.audio + '.mp3';
     au.play().catch(function(){ /* gate handles the first gesture */ });
     playing = true; sync();
     advance(0);
-    preload(ch.ids[1]);
   });
 }
 
 function advance(i){
-  var ch = CH[ci];
-  if(i >= ch.ids.length) return;
+  if(!frames.length || i >= frames.length) return;
   si = i;
-  show(ch.ids[i]);
-  preload(ch.ids[i + 1]);
+  show(frames[i]);
+  preload(frames[i + 1]);
   count.textContent = (ci + 1) + ' / ' + CH.length + '  ·  ' +
-                      (i + 1) + ' ' + T.of + ' ' + ch.ids.length;
+                      (i + 1) + ' ' + T.of + ' ' + frames.length;
 }
 
 /* Pace the images to the narration rather than to a fixed clock: whatever the
    chapter's length turns out to be, the photographs divide it evenly. */
-au.addEventListener('timeupdate', function(){
+au.addEventListener('loadedmetadata', function(){
   var ch = CH[ci];
-  if(!ch || !ch.ids || !au.duration || !isFinite(au.duration)) return;
+  if(ch && ch.ids && isFinite(au.duration)){
+    frames = buildFrames(ch, au.duration);
+    advance(0);
+  }
+});
+
+au.addEventListener('timeupdate', function(){
+  if(!frames.length || !au.duration || !isFinite(au.duration)) return;
   barfill.style.width = (au.currentTime / au.duration * 100) + '%';
-  var want = Math.min(ch.ids.length - 1,
-                      Math.floor(au.currentTime / (au.duration / ch.ids.length)));
+  var want = Math.min(frames.length - 1,
+                      Math.floor(au.currentTime / (au.duration / frames.length)));
   if(want !== si) advance(want);
 });
 

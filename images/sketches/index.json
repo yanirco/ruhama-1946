@@ -59,6 +59,106 @@
   "he": "שוברים את הרצפה",
   "en": "Breaking the floor"
  },
+ "mandate": {
+  "file": "sketch_mandate_office.jpg",
+  "he": "שלטון המנדט",
+  "en": "The Mandate administration"
+ },
+ "checkpoint": {
+  "file": "sketch_checkpoint.jpg",
+  "he": "מחסום על הדרך",
+  "en": "A checkpoint on the road"
+ },
+ "ship": {
+  "file": "sketch_immigrant_ship.jpg",
+  "he": "ספינת מעפילים",
+  "en": "An immigrant ship"
+ },
+ "map": {
+  "file": "sketch_negev_map.jpg",
+  "he": "מפת הנגב",
+  "en": "A map of the Negev"
+ },
+ "society": {
+  "file": "sketch_moscow_society.jpg",
+  "he": "אגודת \"שארית ישראל\", מוסקבה",
+  "en": "The She'erit Yisrael society, Moscow"
+ },
+ "jamama": {
+  "file": "sketch_neighbouring_village.jpg",
+  "he": "הכפר השכן, ג'מאמה",
+  "en": "The neighbouring village of Jamama"
+ },
+ "firsthouse": {
+  "file": "sketch_first_building.jpg",
+  "he": "הבית הראשון",
+  "en": "The first building"
+ },
+ "watercart": {
+  "file": "sketch_water_cart.jpg",
+  "he": "עגלת המים",
+  "en": "The water cart"
+ },
+ "hut": {
+  "file": "sketch_raising_a_hut.jpg",
+  "he": "מקימים צריף",
+  "en": "Raising a hut"
+ },
+ "loudspeaker": {
+  "file": "sketch_loudspeaker.jpg",
+  "he": "הכרזה ברמקול",
+  "en": "The announcement"
+ },
+ "assembly": {
+  "file": "sketch_assembled_in_the_yard.jpg",
+  "he": "מכונסים בחצר",
+  "en": "Assembled in the yard"
+ },
+ "trenches": {
+  "file": "sketch_trenches_along_the_walls.jpg",
+  "he": "תעלות לאורך הקירות",
+  "en": "Trenches along the walls"
+ },
+ "stores": {
+  "file": "sketch_the_food_stores.jpg",
+  "he": "מחסני המזון",
+  "en": "The food stores"
+ },
+ "hay": {
+  "file": "sketch_the_hay_burning.jpg",
+  "he": "החציר בוער",
+  "en": "The hay burning"
+ },
+ "dogsearch": {
+  "file": "sketch_dogs_in_the_room.jpg",
+  "he": "הכלבים בחדרים",
+  "en": "The dogs in the rooms"
+ },
+ "radio": {
+  "file": "sketch_the_radio.jpg",
+  "he": "ליד המקלט",
+  "en": "At the radio set"
+ },
+ "crockery": {
+  "file": "sketch_the_dining_hall.jpg",
+  "he": "חדר האוכל",
+  "en": "The dining hall"
+ },
+ "rebuild": {
+  "file": "sketch_rebuilding.jpg",
+  "he": "בונים מחדש",
+  "en": "Rebuilding"
+ },
+ "hospital": {
+  "file": "sketch_field_hospital.jpg",
+  "he": "בית חולים שדה",
+  "en": "A field hospital"
+ },
+ "airstrip": {
+  "file": "sketch_airstrip.jpg",
+  "he": "מנחת בשדה",
+  "en": "A landing strip"
+ },
  "1946eleven": {
   "file": "sketch_1946_eleven_points.jpg",
   "he": "אחת עשרה נקודות, אוקטובר 1946",
