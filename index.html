@@ -125,6 +125,40 @@ figcaption b{color:var(--ink)}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .pair figure{margin:0}
 
+
+/* ---------- book furniture ----------
+   Most illustrations belong inside the column, wrapped by the prose. A page
+   of full-width blocks reads as a list; a page with the text running past a
+   small drawing reads as a book. */
+figure.vignette{width:38%;max-width:400px;margin:8px 0 20px;clear:none}
+figure.vignette.vstart{float:inline-start;margin-inline-end:30px}
+figure.vignette.vend{float:inline-end;margin-inline-start:30px}
+figure.vignette figcaption{font-size:13px;line-height:1.55;font-style:italic;
+  margin-top:8px}
+figure.vignette figcaption .tag{font-style:normal}
+@media(max-width:760px){
+  figure.vignette{float:none;width:100%;max-width:none;
+    margin-inline:0;margin-block:26px}
+}
+
+/* A printer's ornament closing a part, not another picture to study. */
+figure.tailpiece{width:190px;margin:40px auto 6px;clear:both;opacity:.85}
+figure.tailpiece img{border:0;padding:0;background:none;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 52%,transparent 76%);
+          mask-image:radial-gradient(ellipse at center,#000 52%,transparent 76%)}
+figure.tailpiece figcaption{display:none}
+
+/* parts must contain their floats */
+.part::after{content:"";display:block;clear:both}
+
+/* The opening paragraph of a part, set a little larger. */
+.part p.lead{font-size:1.08em;line-height:1.72}
+/* Drop cap in English only. Hebrew typography has no equivalent tradition and
+   a forced one looks like a mistake, so Hebrew gets the larger setting alone. */
+html[lang=en] .part p.lead::first-letter{
+  float:left;font-family:var(--serif);font-size:3.1em;line-height:.86;
+  padding:6px 10px 0 0;color:var(--accent)}
+
 /* ---------- drawn illustrations, NOT archive photographs ----------
    These must never be mistaken for evidence. They get paper stock, a visible
    frame and a standing label, so the distinction survives someone screenshotting
@@ -270,7 +304,12 @@ footer p{font-size:15px}
 <button class="listen" data-src="audio/he_part1.mp3" data-lang="he" data-part="1" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
 <p class="audionote">מוקרא בקול מסונתז, שנוצר מתיאור כתוב בלבד. אינו קולו של אדם ממשי.</p>
 
-<p>מ-1920 ועד 1948 ארץ ישראל הייתה תחת <strong>המנדט הבריטי</strong> — שלטון שהוענק לבריטניה בידי חבר הלאומים, ובכתב המנדט נכללה ההתחייבות של הצהרת בלפור לסייע בהקמת "בית לאומי לעם היהודי". בפועל, ככל שהתקדמו שנות השלושים והתנגדות ערביי הארץ גברה, בריטניה נסוגה מההתחייבות הזו שוב ושוב.</p>
+<p class="lead">מ-1920 ועד 1948 ארץ ישראל הייתה תחת <strong>המנדט הבריטי</strong> — שלטון שהוענק לבריטניה בידי חבר הלאומים, ובכתב המנדט נכללה ההתחייבות של הצהרת בלפור לסייע בהקמת "בית לאומי לעם היהודי". בפועל, ככל שהתקדמו שנות השלושים והתנגדות ערביי הארץ גברה, בריטניה נסוגה מההתחייבות הזו שוב ושוב.</p>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_mandate_office.jpg" alt="שלטון המנדט הבריטי" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>שלטון המנדט הבריטי רישום, לא תצלום.</figcaption>
+</figure>
 
 <p>נקודת המפנה היא <strong>"הספר הלבן" של 1939</strong>. הוא קבע שתי הגבלות שמכתיבות את כל מה שקורה בהמשך:</p>
 <ul>
@@ -278,10 +317,25 @@ footer p{font-size:15px}
 <li><strong>הגבלת רכישת קרקע</strong> — תקנות 1940 חילקו את הארץ לאזורים. ברוב שטח הארץ, ובכלל זה <strong>הנגב כולו</strong>, נאסרה או הוגבלה מאוד העברת קרקע ליהודים.</li>
 </ul>
 
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_checkpoint.jpg" alt="מחסום על הדרך" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>מחסום על הדרך רישום, לא תצלום.</figcaption>
+</figure>
+
 <p>המשמעות המעשית: הנגב, כמעט שליש משטח הארץ, היה אמור להישאר ריק מהתיישבות יהודית. כל יישוב שקם שם קם <em>בניגוד לחוק</em>, בלילה, בהסתר. זה הרקע להקמת רוחמה — ולזעם הבריטי כלפיה.</p>
 
 <h3>הצבא המחתרתי והסליקים</h3>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_immigrant_ship.jpg" alt="ספינת מעפילים מול החוף" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>ספינת מעפילים מול החוף רישום, לא תצלום.</figcaption>
+</figure>
+
 <p>ליישוב היהודי היה ארגון הגנה מחתרתי, <strong>"ההגנה"</strong>, ובתוכו מ-1941 כוח מגויס וקבוע — <strong>הפלמ"ח</strong>. נשק היה בלתי חוקי, ולכן הוסתר. מקום המחבוא נקרא <strong>"סליק"</strong> — בור, קיר כפול, רצפה כפולה, מחסן תבואה, לעיתים מערכת שלמה מחוץ לגדר היישוב.</p>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_negev_map.jpg" alt="הנגב על המפה" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>הנגב על המפה רישום, לא תצלום.</figcaption>
+</figure>
 
 <p>וכאן נמצא ההיגיון של כל הסיפור: <strong>הקיבוץ היה גם משק חקלאי וגם מחסן נשק וגם בסיס אימונים.</strong> מבחינת השלטון הבריטי, קיבוץ לא היה כפר — הוא היה מתקן צבאי בהסוואה. מבחינת חברי הקיבוץ, החיפוש לא היה פעולה משטרתית — הוא היה פלישה לבית.</p>
 
@@ -293,6 +347,29 @@ footer p{font-size:15px}
 <h3>קיץ 1946: הבריטים מאבדים סבלנות</h3>
 <p>אחרי המלחמה, כשמאות אלפי ניצולים תקועים במחנות עקורים באירופה ובריטניה מסרבת לפתוח את השערים, הארגונים היהודיים המחתרתיים מתאחדים ל<strong>"תנועת המרי העברי"</strong> ומבצעים סדרת פעולות נגד תשתיות בריטיות. התגובה הבריטית מהירה וכבדה:</p>
 
+<div class="tl">
+<div><b>29 ביוני 1946 — "השבת השחורה"</b>מבצע אגתה: כ-17,000 חיילים ושוטרים, מעצר המנהיגות היהודית, חיפושים ביישובים. בקיבוץ יגור נמצא סליק גדול. יגור הופך לשם קוד — התקדים שכל קיבוץ יזכיר מעכשיו.</div>
+
+<div><b>22 ביולי 1946</b>פיצוץ האגף הדרומי של מלון המלך דוד בירושלים, מפקדת השלטון הבריטי. 91 הרוגים.</div>
+<div><b>30 ביולי – 2 באוגוסט 1946</b>מבצע כריש: כיתור וחיפוש בתל אביב.</div>
+<div><b>סוף אוגוסט 1946</b>תורו של הנגב.</div>
+</div>
+</div>
+
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_1912_founding.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>רישום, לא תצלום.</figcaption>
+</figure>
+</div>
+
+<div class="part">
+<h2><span class="num">חלק ב · המקום</span>המשק שננטש ארבע פעמים</h2>
+<button class="listen" data-src="audio/he_part2.mp3" data-lang="he" data-part="2" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">מוקרא בקול מסונתז, שנוצר מתיאור כתוב בלבד. אינו קולו של אדם ממשי.</p>
+
+<p class="lead">רוחמה היא לא סיפור של קיבוץ אחד. זה סיפור של מקום שניסו ליישב שוב ושוב ושוב.</p>
+
+
 <div class="sketchpair">
   <figure class="sketch">
     <img src="images/sketches/sketch_1912_founding.jpg" alt="חוות רוחמה נוסדת, 1912" loading="lazy" decoding="async">
@@ -303,9 +380,6 @@ footer p{font-size:15px}
     <figcaption><span class="tag">רישום</span><b>1913 — הבאר.</b> נחפרת ביד עד עומק 38 מטרים. היא הסיבה שאפשר בכלל להישאר כאן. רישום, לא תצלום.</figcaption>
   </figure>
 </div>
-
-<div class="tl">
-<div><b>29 ביוני 1946 — "השבת השחורה"</b>מבצע אגתה: כ-17,000 חיילים ושוטרים, מעצר המנהיגות היהודית, חיפושים ביישובים. בקיבוץ יגור נמצא סליק גדול. יגור הופך לשם קוד — התקדים שכל קיבוץ יזכיר מעכשיו.</div>
 
 <div class="sketchpair">
   <figure class="sketch">
@@ -330,21 +404,6 @@ footer p{font-size:15px}
 </div>
 
 
-<div><b>22 ביולי 1946</b>פיצוץ האגף הדרומי של מלון המלך דוד בירושלים, מפקדת השלטון הבריטי. 91 הרוגים.</div>
-<div><b>30 ביולי – 2 באוגוסט 1946</b>מבצע כריש: כיתור וחיפוש בתל אביב.</div>
-<div><b>סוף אוגוסט 1946</b>תורו של הנגב.</div>
-</div>
-</div>
-
-<div class="hr"></div>
-
-<div class="part">
-<h2><span class="num">חלק ב · המקום</span>המשק שננטש ארבע פעמים</h2>
-<button class="listen" data-src="audio/he_part2.mp3" data-lang="he" data-part="2" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
-<p class="audionote">מוקרא בקול מסונתז, שנוצר מתיאור כתוב בלבד. אינו קולו של אדם ממשי.</p>
-
-<p>רוחמה היא לא סיפור של קיבוץ אחד. זה סיפור של מקום שניסו ליישב שוב ושוב ושוב.</p>
-
 <div class="tl">
 <div><b>1911–1913</b>אגודת "שארית ישראל" של יהודי מוסקבה רוכשת כ-5,000 דונם ליד הכפר הערבי ג'מאמה ומקימה את חוות רוחמה — ההתיישבות היהודית המודרנית הראשונה באדמות הנגב. השם נבחר על שם נבואת הושע: "וְרִחַמְתִּי אֶת־לֹא רֻחָמָה". ב-1913 נחפרת הבאר.</div>
 <div><b>1917</b>קרבות מלחמת העולם הראשונה מחריבים את החווה. המתיישבים מגורשים בידי השלטון העות'מאני.</div>
@@ -355,6 +414,31 @@ footer p{font-size:15px}
 <div><b>29 במרץ 1944</b>יום העלייה לקרקע. מכיוון שהחוק הבריטי אסר התיישבות יהודית בנגב, כל המבצע נעשה בסתר: משאיות בדרכי עפר סמויות, באישון לילה, וטקס בערב.</div>
 </div>
 
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_moscow_society.jpg" alt="אגודת "שארית ישראל", מוסקבה" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>אגודת "שארית ישראל", מוסקבה רישום, לא תצלום.</figcaption>
+</figure>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_neighbouring_village.jpg" alt="ג'מאמה, הכפר השכן" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>ג'מאמה, הכפר השכן רישום, לא תצלום.</figcaption>
+</figure>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_first_building.jpg" alt="הבית הראשון" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>הבית הראשון רישום, לא תצלום.</figcaption>
+</figure>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_water_cart.jpg" alt="עגלת המים" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>עגלת המים רישום, לא תצלום.</figcaption>
+</figure>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_raising_a_hut.jpg" alt="מקימים צריף" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>מקימים צריף רישום, לא תצלום.</figcaption>
+</figure>
 
 <p>כשהצבא הבריטי מגיע באוגוסט 1946, הקיבוץ הזה קיים <strong>שנתיים וחמישה חודשים</strong>. אין כביש גישה. אין קו מים — הבאר לא מספיקה, ומקציבים מקלחות וממחזרים מים להשקיה. יש נגרייה, מסגרייה, מוסך, ובית מלאכה לתיקון עגלות סוסים על הכביש הראשי. זה כל הרכוש שקיים.</p>
 
@@ -369,7 +453,11 @@ footer p{font-size:15px}
 </figure>
 </div>
 
-<div class="hr"></div>
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_checkpoint.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>רישום, לא תצלום.</figcaption>
+</figure>
+</div>
 
 <div class="part">
 <h2><span class="num">חלק ג · שישה ימים</span>מה קרה, יום אחר יום</h2>
@@ -379,7 +467,12 @@ footer p{font-size:15px}
 <h3>לפני כן — 29 ביוני 1946</h3>
 <p>אוגוסט לא היה הפעם הראשונה. חודשיים קודם לכן, ב-<strong>29 ביוני 1946</strong>, ערכו הבריטים את מבצע "אגתה" — <strong>השבת השחורה</strong>: פשיטה בו-זמנית על עשרות יישובים ברחבי הארץ, חיפושי נשק, ומעצר של אלפי אנשים. <strong>גם רוחמה נפשטה באותו יום.</strong></p>
 
-<p>העדות לכך היא תצלום אחד מארכיון הקיבוץ, שכיתובו אומר: ילדי רוחמה, לאחר החיפוש שנערך <em>בבית הילדים שלהם</em>. התאריך רשום — 29 ביוני 1946.</p>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_loudspeaker.jpg" alt="ההכרזה ברמקול" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>ההכרזה ברמקול רישום, לא תצלום.</figcaption>
+</figure>
+
+<p class="lead">העדות לכך היא תצלום אחד מארכיון הקיבוץ, שכיתובו אומר: ילדי רוחמה, לאחר החיפוש שנערך <em>בבית הילדים שלהם</em>. התאריך רשום — 29 ביוני 1946.</p>
 
 <figure class="wide">
   <img src="images/childrens_house_june_1946.jpg" alt="בית הילדים ברוחמה לאחר החיפוש, יוני 1946 — הגג פרוץ, ילדים עומדים במרפסת" loading="lazy" decoding="async">
@@ -400,6 +493,11 @@ footer p{font-size:15px}
 </div>
 
 <h3>יום ראשון — המצור נסגר</h3>
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_the_radio.jpg" alt="רדיו ירושלים מודיע על המבצע" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>רדיו ירושלים מודיע על המבצע רישום, לא תצלום.</figcaption>
+</figure>
+
 <p>ב-<strong>28 באוגוסט 1946</strong> הצבא הבריטי מטיל טבעת סגר על שני קיבוצים בנגב המערבי: <strong>רוחמה ודורות</strong>. אין יוצא ואין נכנס. הכוח מוערך בכ-<strong>אלפיים חיילים</strong>, מ<strong>הדיוויזיה המוטסת השישית</strong> — בארץ קראו להם "הכלניות", על שם הכומתות האדומות. הלוח בארכיון הקיבוץ מציין שלוש יחידות שהשתתפו, ומספריהן: 68, 941, 67. רדיו ירושלים מודיע על המבצע באותו היום עצמו.</p>
 
 <p>הכותרת בעיתון באותם ימים אמרה את זה יבש: <em>"חיל כבד שם מצור על המשקים רוחמה ודורות. רשמית: הפעולות מכוונות לחיפוש נשק."</em></p>
@@ -423,6 +521,11 @@ footer p{font-size:15px}
 
 
 <h3>ימים שני עד רביעי — השיטה</h3>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_assembled_in_the_yard.jpg" alt="מכונסים בחצר, תחת שמירה" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>מכונסים בחצר, תחת שמירה רישום, לא תצלום.</figcaption>
+</figure>
+
 <p>חיפוש נשק בריטי ביישוב לא היה חיטוט. הייתה לו שיטה, והיא מתועדת היטב בתצלומים:</p>
 <ul>
 <li><strong>הרצפות.</strong> מנפצים את הריצוף בכל מבנה, כי מתחתיו יכול להיות בור.</li>
@@ -455,6 +558,11 @@ footer p{font-size:15px}
 
 <h3>30 באוגוסט — אלתרמן עונה</h3>
 <p>ביום השלישי למצור, בעוד החיילים עדיין בתוך הקיבוץ, פרסם <strong>נתן אלתרמן</strong> ב"דבר" את טורו <strong>"מרשימותיו של כלב"</strong> — אחד מטורי <em>הטור השביעי</em> שלו. ימים ספורים קודם לכן פרסמה העיתונות תצלומים של כלבי גישוש שהביאו הבריטים לארץ כדי לאתר את סליקי ההגנה. אלתרמן השיב להם מפיו של אחד הכלבים.</p>
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_trenches_along_the_walls.jpg" alt="תעלות לאורך הקירות" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>תעלות לאורך הקירות רישום, לא תצלום.</figcaption>
+</figure>
+
 <p>הטור הפך לאחד המפורסמים שכתב. המשורר <strong>חיים גורי</strong>, שהיה אז בן 23, ציטט אותו כמעט בכל הזדמנות עד סוף ימיו.</p>
 
 <div class="box">
@@ -472,6 +580,11 @@ footer p{font-size:15px}
   title="האירוע שמאחורי &quot;מרשימותיו של כלב&quot;" loading="lazy"
   allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture; web-share"
   referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_dogs_in_the_room.jpg" alt="הכלבים בחדרים" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>הכלבים בחדרים רישום, לא תצלום.</figcaption>
+</figure>
+
 <p class="vidcap">"האירוע שמאחורי <em>מרשימותיו של כלב</em>" — מתוך <a href="https://www.youtube.com/@NathanAlterman" target="_blank" rel="noopener">אתר נתן אלתרמן</a>, ערוץ המורשת הרשמי של המשורר.</p>
 </div>
 
@@ -481,6 +594,11 @@ footer p{font-size:15px}
 </div>
 
 <h3>הנזק שאינו נראה בתצלום</h3>
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_the_food_stores.jpg" alt="מחסני המזון" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>מחסני המזון רישום, לא תצלום.</figcaption>
+</figure>
+
 <p>הרס רהיטים אפשר לצלם. את מה שקרה למשק — פחות. כרטיסי הכיתוב של החברים מפרטים:</p>
 
 <blockquote>
@@ -496,6 +614,11 @@ footer p{font-size:15px}
 </figure>
 
 <h3>יום חמישי — זה מגיע לעמוד הראשון</h3>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_the_hay_burning.jpg" alt="החציר בוער" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>החציר בוער רישום, לא תצלום.</figcaption>
+</figure>
+
 <p>ביום החמישי למצור, עיתון <strong>"משמר"</strong> — היומון של השומר הצעיר, לימים "על המשמר" — פותח את העמוד הראשון בכותרת: <em>"הרס והתעללות ביישובים הנצורים — יום חמישי למצור ולחיפושים ברוחמה ודורות."</em> באותו עמוד מצוטט קצין בריטי בשם <strong>וילסון</strong> שמכריז כי רוחמה היא <em>"מרכז הנשק הגדול אחרי יגור"</em>.</p>
 
 <p>ההשוואה ליגור לא הייתה מקרית. ביגור, חודשיים קודם לכן, החיפוש הבריטי הצליח. הציטוט הזה הוא הצדקה מראש למה שנעשה ברוחמה — ובדיעבד, הוא גם התיעוד הטוב ביותר לכך שהחיפוש נכשל.</p>
@@ -504,6 +627,11 @@ footer p{font-size:15px}
 <figure><img src="images/ai/ruhama_1946_41_ai.jpg" alt="עמוד ראשון של עיתון משמר" loading="lazy" decoding="async"><figcaption><b>"משמר", יום חמישי למצור.</b> העיתונות העברית סיקרה את המצור יום־יום.</figcaption></figure>
 <figure><img src="images/ai/ruhama_1946_44_ai.jpg" alt="תיקי משרד על הרצפה" loading="lazy" decoding="async"><figcaption><b>תיקי המשרד.</b> ארכיון הקיבוץ מתעד את הרגע שבו הוא עצמו נשפך על הרצפה.</figcaption></figure>
 </div>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_the_dining_hall.jpg" alt="חדר האוכל" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>חדר האוכל רישום, לא תצלום.</figcaption>
+</figure>
 
 <p>במקביל, <strong>גולדה מאירסון</strong> (לימים גולדה מאיר), שכיהנה כראש המחלקה המדינית של הסוכנות היהודית אחרי מעצר המנהיגות בשבת השחורה, אומרת לעיתונאים זרים במסיבת עיתונאים שהחיפושים הם <em>"הזמנה להרוס את רוחמה בפעם השלישית"</em> — רמז ישיר לשתי הנטישות הקודמות של המקום.</p>
 
@@ -526,14 +654,18 @@ footer p{font-size:15px}
 </figure>
 </div>
 
-<div class="hr"></div>
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_1913_the_well.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>רישום, לא תצלום.</figcaption>
+</figure>
+</div>
 
 <div class="part">
 <h2><span class="num">חלק ד · האנשים</span>ארבעת האנשים שבתצלומים</h2>
 <button class="listen" data-src="audio/he_part4.mp3" data-lang="he" data-part="4" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
 <p class="audionote">מוקרא בקול מסונתז, שנוצר מתיאור כתוב בלבד. אינו קולו של אדם ממשי.</p>
 
-<p>שימו לב למשהו מוזר באוסף הזה: <strong>כמעט אין בו בני אדם.</strong> מתוך 27 תצלומים היסטוריים שהצלחנו לחלץ מלוח התערוכה, בארבעה בלבד נראית דמות אנושית.</p>
+<p class="lead">שימו לב למשהו מוזר באוסף הזה: <strong>כמעט אין בו בני אדם.</strong> מתוך 27 תצלומים היסטוריים שהצלחנו לחלץ מלוח התערוכה, בארבעה בלבד נראית דמות אנושית.</p>
 
 <p>זה לא מקרה. התצלומים צולמו כ<strong>תיעוד נזק</strong> — כמו תיק תביעה. מי שצילם רצה להראות מה נשבר, לא מי בכה. וזה בדיוק מה שהופך את ארבעת האנשים האלה ליקרים כל כך.</p>
 
@@ -562,16 +694,35 @@ footer p{font-size:15px}
 </div>
 </div>
 
-<div class="hr"></div>
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_raising_a_hut.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>רישום, לא תצלום.</figcaption>
+</figure>
+</div>
 
 <div class="part">
 <h2><span class="num">חלק ה · אחר כך</span>מה קרה בהמשך</h2>
 <button class="listen" data-src="audio/he_part5.mp3" data-lang="he" data-part="5" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
 <p class="audionote">מוקרא בקול מסונתז, שנוצר מתיאור כתוב בלבד. אינו קולו של אדם ממשי.</p>
 
-<p><strong>השיקום ארך חודשים.</strong> מבנים רבים נהרסו, רכוש נשדד, תשתיות נבנו מחדש. אבל החברים החליטו להיאחז בנקודה.</p>
+<p class="lead"><strong>השיקום ארך חודשים.</strong> מבנים רבים נהרסו, רכוש נשדד, תשתיות נבנו מחדש. אבל החברים החליטו להיאחז בנקודה.</p>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_rebuilding.jpg" alt="בונים מחדש" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>בונים מחדש רישום, לא תצלום.</figcaption>
+</figure>
 
 <p>ואז מגיע החלק שהופך את כל הסיפור: <strong>בליל 5–6 באוקטובר 1946</strong>, שישה שבועות בלבד אחרי שהצבא הבריטי סיים לפרק את רוחמה, יצאו ממנה כוחות למבצע <strong>11 הנקודות בנגב</strong> — הקמה בו-זמנית של אחת-עשרה נקודות התיישבות ברחבי הנגב בלילה אחד. רוחמה, שזה עתה נהרסה, שימשה נקודת זינוק.</p>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_field_hospital.jpg" alt="בית חולים שדה" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>בית חולים שדה רישום, לא תצלום.</figcaption>
+</figure>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_airstrip.jpg" alt="מנחת בשדה פתוח" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span>מנחת בשדה פתוח רישום, לא תצלום.</figcaption>
+</figure>
 
 <p>המבצע הזה הוא שקבע בפועל שהנגב ייכלל בשטח המדינה היהודית בתוכנית החלוקה של האו"ם שנה לאחר מכן. במובן הזה, החיפוש הבריטי ברוחמה נכשל פעמיים: הוא לא מצא את הנשק, והוא לא עצר את ההתיישבות.</p>
 
@@ -592,14 +743,18 @@ footer p{font-size:15px}
   <figcaption><span class="tag">רישום</span><b>אוקטובר 1946 — אחת עשרה נקודות בלילה אחד.</b> שישה שבועות אחרי החיפוש, רוחמה היא נקודת זינוק להקמת אחת עשרה נקודות בנגב בלילה אחד. רישום, לא תצלום.</figcaption>
 </figure>
 
-<div class="hr"></div>
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_negev_map.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>רישום, לא תצלום.</figcaption>
+</figure>
+</div>
 
 <div class="part">
 <h2><span class="num">חלק ו · איך לקרוא</span>מה התצלומים אומרים ומה לא</h2>
 <button class="listen" data-src="audio/he_part6.mp3" data-lang="he" data-part="6" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">האזינו לחלק הזה</span><span class="bar"><i></i></span><span class="dur"></span></button>
 <p class="audionote">מוקרא בקול מסונתז, שנוצר מתיאור כתוב בלבד. אינו קולו של אדם ממשי.</p>
 
-<p>כל התמונות שראיתם כאן עברו מסלול ארוך: מישהו צילם אותן ב-1946; מישהו הדפיס אותן; מישהו הדביק אותן על לוח תערוכה בארכיון הקיבוץ וכתב לידן כיתובים בכתב יד; ובאוגוסט 2026 מישהו צילם את הלוח בטלפון. מה שאתם רואים הוא <strong>תצלום של תצלום</strong>, ששוחזר דיגיטלית.</p>
+<p class="lead">כל התמונות שראיתם כאן עברו מסלול ארוך: מישהו צילם אותן ב-1946; מישהו הדפיס אותן; מישהו הדביק אותן על לוח תערוכה בארכיון הקיבוץ וכתב לידן כיתובים בכתב יד; ובאוגוסט 2026 מישהו צילם את הלוח בטלפון. מה שאתם רואים הוא <strong>תצלום של תצלום</strong>, ששוחזר דיגיטלית.</p>
 
 <p>לכן כדאי לדעת:</p>
 <ul>
@@ -626,6 +781,10 @@ footer p{font-size:15px}
 <p>התצלומים: ארכיון קיבוץ רוחמה, לוח התערוכה "רוחמה במצור — חיפוש נשק תש"ו-1946". שוחזרו דיגיטלית ב-2026.</p>
 <p>רקע היסטורי: <a href="https://www.kibbutz-story.com/post/ruhama">מיזם הנגב המערבי והגליל (יד יערי / יד טבנקין)</a> · <a href="https://www.sng.org.il/רוחמה/">מועצה אזורית שער הנגב</a> · <a href="http://www.hahagana.org.il/sites/sitepage/?itemId=48424">מוזיאון ההגנה</a> · <a href="https://en.wikipedia.org/wiki/6th_Airborne_Division_in_Palestine">6th Airborne Division in Palestine</a></p>
 <p>עדיין לבדוק: ארכיון יד יערי בגבעת חביבה (תיקי רוחמה, "חבר קיבוץ כותב על ימי המצור"), עיתונות תקופתית ב-JPRESS לתאריכים 26.8–6.9.1946, וארכיון המדינה הבריטי ב-Kew.</p>
+<figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_first_building.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>רישום, לא תצלום.</figcaption>
+</figure>
 </div></footer>
 </article>
 
@@ -650,7 +809,12 @@ footer p{font-size:15px}
 <button class="listen" data-src="audio/en_part1.mp3" data-lang="en" data-part="1" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
 <p class="audionote">Read by a synthesised voice, generated from a written description. It is no living person's voice.</p>
 
-<p>From 1920 to 1948 Palestine was governed under the <strong>British Mandate</strong> — an authority granted to Britain by the League of Nations, whose text incorporated the Balfour Declaration's undertaking to facilitate a "national home for the Jewish people." In practice, as the 1930s wore on and Arab opposition hardened, Britain retreated from that undertaking again and again.</p>
+<p class="lead">From 1920 to 1948 Palestine was governed under the <strong>British Mandate</strong> — an authority granted to Britain by the League of Nations, whose text incorporated the Balfour Declaration's undertaking to facilitate a "national home for the Jewish people." In practice, as the 1930s wore on and Arab opposition hardened, Britain retreated from that undertaking again and again.</p>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_mandate_office.jpg" alt="The British Mandate administration" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The British Mandate administration A drawing, not a photograph.</figcaption>
+</figure>
 
 <p>The turning point is the <strong>1939 White Paper</strong>. It imposed two restrictions that dictate everything that follows:</p>
 <ul>
@@ -658,10 +822,25 @@ footer p{font-size:15px}
 <li><strong>Land purchase was restricted</strong> — the 1940 Land Transfer Regulations divided the country into zones. Across most of it, including <strong>the entire Negev</strong>, transferring land to Jews was prohibited or severely limited.</li>
 </ul>
 
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_checkpoint.jpg" alt="A checkpoint on the road" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>A checkpoint on the road A drawing, not a photograph.</figcaption>
+</figure>
+
 <p>What that meant on the ground: the Negev, close to a third of the country, was supposed to stay empty of Jewish settlement. Every settlement founded there was founded <em>against the law</em>, at night, in secret. That is the backdrop to Ruhama's founding — and to British anger at it.</p>
 
 <h3>The underground army and the <em>slik</em></h3>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_immigrant_ship.jpg" alt="An immigrant ship off the coast" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>An immigrant ship off the coast A drawing, not a photograph.</figcaption>
+</figure>
+
 <p>The Jewish community had an underground defence organisation, the <strong>Haganah</strong>, and inside it, from 1941, a standing mobilised force: the <strong>Palmach</strong>. Weapons were illegal, so weapons were hidden. The hiding place was called a <strong>slik</strong> — a pit, a false wall, a double floor, a grain store, sometimes a whole system outside the settlement fence.</p>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_negev_map.jpg" alt="The Negev on the map" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The Negev on the map A drawing, not a photograph.</figcaption>
+</figure>
 
 <p>And here is the logic of the entire story: <strong>a kibbutz was simultaneously a farm, an arms depot, and a training base.</strong> To the British authorities a kibbutz was not a village; it was a military installation in disguise. To the members, a search was not a police operation; it was an invasion of the home.</p>
 
@@ -673,6 +852,29 @@ footer p{font-size:15px}
 <h3>Summer 1946: the British lose patience</h3>
 <p>After the war, with hundreds of thousands of survivors stranded in displaced-persons camps in Europe and Britain refusing to open the gates, the Jewish underground organisations united into the <strong>Jewish Resistance Movement</strong> and carried out a campaign against British infrastructure. The British response was fast and heavy:</p>
 
+<div class="tl">
+<div><b>29 June 1946 — "Black Saturday"</b>Operation Agatha: some 17,000 troops and police, mass arrest of the Jewish leadership, searches across settlements. At Kibbutz Yagur a large arms cache was found. Yagur became shorthand — the precedent every kibbutz would now invoke.</div>
+
+<div><b>22 July 1946</b>The southern wing of the King David Hotel in Jerusalem, headquarters of the British administration, is bombed. 91 people are killed.</div>
+<div><b>30 July – 2 August 1946</b>Operation Shark: cordon and search of Tel Aviv.</div>
+<div><b>Late August 1946</b>The Negev's turn.</div>
+</div>
+</div>
+
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_1912_founding.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>A drawing, not a photograph.</figcaption>
+</figure>
+</div>
+
+<div class="part">
+<h2><span class="num">Part 2 · The place</span>The farm that was abandoned four times</h2>
+<button class="listen" data-src="audio/en_part2.mp3" data-lang="en" data-part="2" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
+<p class="audionote">Read by a synthesised voice, generated from a written description. It is no living person's voice.</p>
+
+<p class="lead">Ruhama is not the story of one kibbutz. It is the story of a place people tried to settle, over and over.</p>
+
+
 <div class="sketchpair">
   <figure class="sketch">
     <img src="images/sketches/sketch_1912_founding.jpg" alt="The founding of the Ruhama farm, 1912" loading="lazy" decoding="async">
@@ -683,9 +885,6 @@ footer p{font-size:15px}
     <figcaption><span class="tag">Drawing</span><b>1913 — the well.</b> Dug by hand to thirty-eight metres. It is the reason anyone could stay at all. A drawing, not a photograph.</figcaption>
   </figure>
 </div>
-
-<div class="tl">
-<div><b>29 June 1946 — "Black Saturday"</b>Operation Agatha: some 17,000 troops and police, mass arrest of the Jewish leadership, searches across settlements. At Kibbutz Yagur a large arms cache was found. Yagur became shorthand — the precedent every kibbutz would now invoke.</div>
 
 <div class="sketchpair">
   <figure class="sketch">
@@ -710,21 +909,6 @@ footer p{font-size:15px}
 </div>
 
 
-<div><b>22 July 1946</b>The southern wing of the King David Hotel in Jerusalem, headquarters of the British administration, is bombed. 91 people are killed.</div>
-<div><b>30 July – 2 August 1946</b>Operation Shark: cordon and search of Tel Aviv.</div>
-<div><b>Late August 1946</b>The Negev's turn.</div>
-</div>
-</div>
-
-<div class="hr"></div>
-
-<div class="part">
-<h2><span class="num">Part 2 · The place</span>The farm that was abandoned four times</h2>
-<button class="listen" data-src="audio/en_part2.mp3" data-lang="en" data-part="2" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
-<p class="audionote">Read by a synthesised voice, generated from a written description. It is no living person's voice.</p>
-
-<p>Ruhama is not the story of one kibbutz. It is the story of a place people tried to settle, over and over.</p>
-
 <div class="tl">
 <div><b>1911–1913</b>The <em>She'erit Yisrael</em> society of Moscow Jews buys about 5,000 dunam beside the Arab village of Jammama and founds the Ruhama farm — the first modern Jewish settlement on Negev land. The name comes from the prophet Hosea: "I will have mercy upon her that had not obtained mercy." The well is dug in 1913.</div>
 <div><b>1917</b>First World War fighting destroys the farm. The settlers are expelled by the Ottoman authorities.</div>
@@ -735,6 +919,31 @@ footer p{font-size:15px}
 <div><b>29 March 1944</b>The formal settlement day. Because British law barred Jewish settlement in the Negev, the whole operation was clandestine: trucks on hidden dirt tracks in the dead of night, and a ceremony that evening.</div>
 </div>
 
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_moscow_society.jpg" alt="The She'erit Yisrael society, Moscow" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The She'erit Yisrael society, Moscow A drawing, not a photograph.</figcaption>
+</figure>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_neighbouring_village.jpg" alt="Jamama, the neighbouring village" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>Jamama, the neighbouring village A drawing, not a photograph.</figcaption>
+</figure>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_first_building.jpg" alt="The first building" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The first building A drawing, not a photograph.</figcaption>
+</figure>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_water_cart.jpg" alt="The water cart" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The water cart A drawing, not a photograph.</figcaption>
+</figure>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_raising_a_hut.jpg" alt="Raising a hut" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>Raising a hut A drawing, not a photograph.</figcaption>
+</figure>
 
 <p>When the British Army arrives in August 1946, this kibbutz is <strong>two years and five months old</strong>. There is no access road. There is no water pipeline — the well is not enough, so showers are rationed and water is recycled for irrigation. There is a carpentry shop, a metal shop, a garage, and a workshop repairing horse carts on the main road. That is the entire estate.</p>
 
@@ -749,7 +958,11 @@ footer p{font-size:15px}
 </figure>
 </div>
 
-<div class="hr"></div>
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_checkpoint.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>A drawing, not a photograph.</figcaption>
+</figure>
+</div>
 
 <div class="part">
 <h2><span class="num">Part 3 · Six days</span>What happened, day by day</h2>
@@ -759,7 +972,12 @@ footer p{font-size:15px}
 <h3>Before that — 29 June 1946</h3>
 <p>August was not the first time. Two months earlier, on <strong>29 June 1946</strong>, the British mounted Operation Agatha — <strong>Black Sabbath</strong>: a simultaneous raid on dozens of settlements across the country, searching for arms and arresting thousands. <strong>Ruhama was raided that day too.</strong></p>
 
-<p>The evidence is a single photograph in the kibbutz archive, captioned: the children of Ruhama, after the search conducted <em>in their children's house</em>. The date is written on it — 29 June 1946.</p>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_loudspeaker.jpg" alt="The announcement over the loudspeaker" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The announcement over the loudspeaker A drawing, not a photograph.</figcaption>
+</figure>
+
+<p class="lead">The evidence is a single photograph in the kibbutz archive, captioned: the children of Ruhama, after the search conducted <em>in their children's house</em>. The date is written on it — 29 June 1946.</p>
 
 <figure class="wide">
   <img src="images/childrens_house_june_1946.jpg" alt="The children's house at Ruhama after the search, June 1946 — the roof broken open, children standing on the veranda" loading="lazy" decoding="async">
@@ -780,6 +998,11 @@ footer p{font-size:15px}
 </div>
 
 <h3>Day one — the cordon closes</h3>
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_the_radio.jpg" alt="Radio Jerusalem announces the operation" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>Radio Jerusalem announces the operation A drawing, not a photograph.</figcaption>
+</figure>
+
 <p>On <strong>28 August 1946</strong> the British Army throws a cordon around two kibbutzim in the western Negev: <strong>Ruhama and Dorot</strong>. No one in, no one out. The force is put at some <strong>two thousand troops</strong>, from the <strong>6th Airborne Division</strong> — known locally as <em>ha-Kalaniot</em>, "the Anemones," for their red berets. The board in the kibbutz archive names three participating units by their formation numbers: 68, 941, 67. Radio Jerusalem announces the operation the same day.</p>
 
 <p>The newspaper headline put it flatly: <em>"Heavy force lays siege to the farms Ruhama and Dorot. Officially: the operations are aimed at searching for arms."</em></p>
@@ -803,6 +1026,11 @@ footer p{font-size:15px}
 
 
 <h3>Days two to four — the method</h3>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_assembled_in_the_yard.jpg" alt="Assembled in the yard, under guard" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>Assembled in the yard, under guard A drawing, not a photograph.</figcaption>
+</figure>
+
 <p>A British arms search was not rummaging. It had a method, and the photographs document it precisely:</p>
 <ul>
 <li><strong>The floors.</strong> Smash the paving in every building, because there could be a pit beneath it.</li>
@@ -835,6 +1063,11 @@ footer p{font-size:15px}
 
 <h3>30 August — Alterman answers</h3>
 <p>On the third day of the siege, while the soldiers were still inside the kibbutz, <strong>Nathan Alterman</strong> published his column <strong>"From the Notes of a Dog"</strong> in <em>Davar</em> — one of his <em>Seventh Column</em> pieces. Days earlier the press had run photographs of tracker dogs the British had brought into the country to find the Haganah's arms caches. Alterman answered them in the voice of one of the dogs.</p>
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_trenches_along_the_walls.jpg" alt="Trenches along the walls" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>Trenches along the walls A drawing, not a photograph.</figcaption>
+</figure>
+
 <p>It became one of the most famous columns he ever wrote. The poet <strong>Haim Gouri</strong>, then 23, quoted it at almost every opportunity for the rest of his life.</p>
 
 <div class="box">
@@ -852,6 +1085,11 @@ footer p{font-size:15px}
   title="The event behind &quot;From the Notes of a Dog&quot;" loading="lazy"
   allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture; web-share"
   referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_dogs_in_the_room.jpg" alt="The dogs in the rooms" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The dogs in the rooms A drawing, not a photograph.</figcaption>
+</figure>
+
 <p class="vidcap">"The event behind <em>From the Notes of a Dog</em>" — from <a href="https://www.youtube.com/@NathanAlterman" target="_blank" rel="noopener">the Nathan Alterman site</a>, the poet's official heritage channel.</p>
 </div>
 
@@ -861,6 +1099,11 @@ footer p{font-size:15px}
 </div>
 
 <h3>The damage that does not photograph</h3>
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_the_food_stores.jpg" alt="The food stores" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The food stores A drawing, not a photograph.</figcaption>
+</figure>
+
 <p>Broken furniture photographs well. What happened to the farm does not. The members' caption cards spell it out:</p>
 
 <blockquote>
@@ -876,6 +1119,11 @@ footer p{font-size:15px}
 </figure>
 
 <h3>Day five — it reaches the front page</h3>
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_the_hay_burning.jpg" alt="The hay burning" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The hay burning A drawing, not a photograph.</figcaption>
+</figure>
+
 <p>On the fifth day of the siege the newspaper <strong>Mishmar</strong> — the Hashomer Hatzair daily, later <em>Al HaMishmar</em> — leads its front page: <em>"Destruction and abuse in the besieged settlements — fifth day of the siege and searches at Ruhama and Dorot."</em> On the same page a British officer named <strong>Wilson</strong> is quoted declaring Ruhama <em>"the largest arms centre after Yagur."</em></p>
 
 <p>The comparison to Yagur was not casual. At Yagur, two months earlier, the British search had succeeded. That quotation is a justification issued in advance for what was done at Ruhama — and, in hindsight, it is also the best documentation that the search failed.</p>
@@ -884,6 +1132,11 @@ footer p{font-size:15px}
 <figure><img src="images/ai/ruhama_1946_41_ai.jpg" alt="Front page of the newspaper Mishmar" loading="lazy" decoding="async"><figcaption><b>Mishmar, day five of the siege.</b> The Hebrew press covered the siege daily.</figcaption></figure>
 <figure><img src="images/ai/ruhama_1946_44_ai.jpg" alt="Office files on the floor" loading="lazy" decoding="async"><figcaption><b>The office files.</b> The kibbutz archive documenting the moment it was itself tipped onto the floor.</figcaption></figure>
 </div>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_the_dining_hall.jpg" alt="The dining hall" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>The dining hall A drawing, not a photograph.</figcaption>
+</figure>
 
 <p>At the same time <strong>Golda Meyerson</strong> — later Golda Meir, then acting head of the Jewish Agency's political department after the leadership's arrest on Black Saturday — tells foreign journalists at a press conference that the searches are <em>"an invitation to destroy Ruhama for the third time"</em>: a direct reference to the site's two earlier abandonments.</p>
 
@@ -906,14 +1159,18 @@ footer p{font-size:15px}
 </figure>
 </div>
 
-<div class="hr"></div>
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_1913_the_well.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>A drawing, not a photograph.</figcaption>
+</figure>
+</div>
 
 <div class="part">
 <h2><span class="num">Part 4 · The people</span>The four people in these photographs</h2>
 <button class="listen" data-src="audio/en_part4.mp3" data-lang="en" data-part="4" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
 <p class="audionote">Read by a synthesised voice, generated from a written description. It is no living person's voice.</p>
 
-<p>Notice something odd about this collection: <strong>there are almost no human beings in it.</strong> Of the 27 historical photographs we could extract from the exhibition board, only four contain a person.</p>
+<p class="lead">Notice something odd about this collection: <strong>there are almost no human beings in it.</strong> Of the 27 historical photographs we could extract from the exhibition board, only four contain a person.</p>
 
 <p>That is not an accident. These pictures were taken as <strong>damage documentation</strong> — like a legal case file. Whoever held the camera wanted to show what was broken, not who was crying. Which is exactly what makes these four people so valuable.</p>
 
@@ -942,16 +1199,35 @@ footer p{font-size:15px}
 </div>
 </div>
 
-<div class="hr"></div>
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_raising_a_hut.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>A drawing, not a photograph.</figcaption>
+</figure>
+</div>
 
 <div class="part">
 <h2><span class="num">Part 5 · Afterwards</span>What happened next</h2>
 <button class="listen" data-src="audio/en_part5.mp3" data-lang="en" data-part="5" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
 <p class="audionote">Read by a synthesised voice, generated from a written description. It is no living person's voice.</p>
 
-<p><strong>The rebuilding took months.</strong> Many buildings were destroyed, property was looted, infrastructure had to be rebuilt. But the members decided to hold on to the place.</p>
+<p class="lead"><strong>The rebuilding took months.</strong> Many buildings were destroyed, property was looted, infrastructure had to be rebuilt. But the members decided to hold on to the place.</p>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_rebuilding.jpg" alt="Rebuilding" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>Rebuilding A drawing, not a photograph.</figcaption>
+</figure>
 
 <p>And then comes the part that reframes the whole story. <strong>On the night of 5–6 October 1946</strong>, just six weeks after the British Army finished dismantling Ruhama, forces set out from it for the <strong>11 Points in the Negev</strong> operation — eleven settlements established simultaneously across the Negev in a single night. Ruhama, freshly wrecked, served as a launch point.</p>
+
+<figure class="sketch vignette vend">
+  <img src="images/sketches/sketch_field_hospital.jpg" alt="A field hospital" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>A field hospital A drawing, not a photograph.</figcaption>
+</figure>
+
+<figure class="sketch vignette vstart">
+  <img src="images/sketches/sketch_airstrip.jpg" alt="A landing strip in open country" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span>A landing strip in open country A drawing, not a photograph.</figcaption>
+</figure>
 
 <p>That operation is what effectively established that the Negev would be included in the Jewish state under the UN partition plan a year later. In that sense the British search at Ruhama failed twice over: it did not find the weapons, and it did not stop the settlement.</p>
 
@@ -972,14 +1248,18 @@ footer p{font-size:15px}
   <figcaption><span class="tag">Drawing</span><b>October 1946 — eleven points in one night.</b> Six weeks after the search, Ruhama is a launch point for eleven new settlements founded across the Negev in a single night. A drawing, not a photograph.</figcaption>
 </figure>
 
-<div class="hr"></div>
+<div class="hr"><figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_negev_map.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>A drawing, not a photograph.</figcaption>
+</figure>
+</div>
 
 <div class="part">
 <h2><span class="num">Part 6 · How to read them</span>What the photographs say, and what they don't</h2>
 <button class="listen" data-src="audio/en_part6.mp3" data-lang="en" data-part="6" aria-pressed="false"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">Listen to this part</span><span class="bar"><i></i></span><span class="dur"></span></button>
 <p class="audionote">Read by a synthesised voice, generated from a written description. It is no living person's voice.</p>
 
-<p>Every image here has travelled a long way: somebody photographed it in 1946; somebody printed it; somebody pasted it onto an exhibition board in the kibbutz archive and hand-lettered captions beside it; and in August 2026 somebody photographed that board on a phone. What you are looking at is a <strong>photograph of a photograph</strong>, digitally restored.</p>
+<p class="lead">Every image here has travelled a long way: somebody photographed it in 1946; somebody printed it; somebody pasted it onto an exhibition board in the kibbutz archive and hand-lettered captions beside it; and in August 2026 somebody photographed that board on a phone. What you are looking at is a <strong>photograph of a photograph</strong>, digitally restored.</p>
 
 <p>So it is worth knowing:</p>
 <ul>
@@ -1006,6 +1286,10 @@ footer p{font-size:15px}
 <p>Photographs: Kibbutz Ruhama Archive, exhibition board <em>"Ruhama Under Siege — Weapons Search 5706-1946."</em> Digitally restored in 2026.</p>
 <p>Historical background: <a href="https://www.kibbutz-story.com/post/ruhama">Western Negev &amp; Galilee project (Yad Ya'ari / Yad Tabenkin)</a> · <a href="https://www.sng.org.il/רוחמה/">Sha'ar HaNegev Regional Council</a> · <a href="http://www.hahagana.org.il/sites/sitepage/?itemId=48424">Haganah Museum</a> · <a href="https://en.wikipedia.org/wiki/6th_Airborne_Division_in_Palestine">6th Airborne Division in Palestine</a></p>
 <p>Still to consult: the Yad Ya'ari archive at Givat Haviva (Ruhama files, "a member writes about the days of the siege"), the historical Hebrew press on JPRESS for 26 Aug – 6 Sep 1946, and the National Archives at Kew.</p>
+<figure class="sketch tailpiece" aria-hidden="true">
+  <img src="images/sketches/sketch_first_building.jpg" alt="" loading="lazy" decoding="async">
+  <figcaption>A drawing, not a photograph.</figcaption>
+</figure>
 </div></footer>
 </article>
 
