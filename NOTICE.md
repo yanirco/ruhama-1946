@@ -78,6 +78,11 @@ invented, and where a machine touched an image we say so.
 exists**: the 1912 founding, the well dug in 1913, the 1917 departure, the 1936
 uprooting, the 1943 return, the night landing of 29 March 1944, the tracker dogs
 of August 1946, and the eleven Negev points that October.
+A second batch covers the people and the object of the search itself: a
+**slik** (an arms cache beneath a floor), the weapons being carried out
+beyond the perimeter before the troops arrived, Palmach training in the
+wadis, the cordon closing on 28 August, and soldiers breaking up a floor.
+Thirteen drawings in total.
 
 They are **not** historical sources, and the site never presents them as such:
 

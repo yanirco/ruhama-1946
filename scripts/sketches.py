@@ -130,6 +130,62 @@ SKETCHES = {
             'Emphasis on the dogs and the empty yard around them.'
         ),
     },
+    # --- second batch: the people, and the thing the whole siege was about ---
+    'slik': {
+        'file': 'sketch_slik.jpg',
+        'he': 'סליק — מחבוא נשק',
+        'en': 'A slik — a hidden arms cache',
+        'prompt': (
+            'Cutaway view of a concealed cavity beneath a stone floor, a lifted '
+            'flagstone leaning aside, rifles and ammunition boxes wrapped in '
+            'cloth packed into the void below. A single figure kneeling at the '
+            'edge, seen from behind, lamplight from one side.'
+        ),
+    },
+    'moving': {
+        'file': 'sketch_moving_the_weapons.jpg',
+        'he': 'מוציאים את הנשק אל מחוץ לגדר',
+        'en': 'Moving the weapons outside the perimeter',
+        'prompt': (
+            'Night. A line of figures carrying long wrapped bundles and wooden '
+            'crates away from a small settlement, out through a wire fence into '
+            'open fields, bent low. Seen from behind and at a distance. Urgency '
+            'and silence. Moonlight only.'
+        ),
+    },
+    'palmach': {
+        'file': 'sketch_palmach_training.jpg',
+        'he': 'אימון פלמ"ח בוואדיות',
+        'en': 'Palmach training in the wadis',
+        'prompt': (
+            'A dozen young people in work clothes training in a dry riverbed '
+            'between eroded banks, some lying prone, some crouching, an '
+            'instructor gesturing. Seen from above and behind, faces not '
+            'visible. Harsh midday light, deep shadow in the gully.'
+        ),
+    },
+    'cordon': {
+        'file': 'sketch_the_cordon.jpg',
+        'he': 'טבעת הסגר נסגרת, 28 באוגוסט 1946',
+        'en': 'The cordon closes, 28 August 1946',
+        'prompt': (
+            'A ring of soldiers and military vehicles surrounding a small '
+            'settlement of low buildings, seen from a distance and slightly '
+            'above, dust rising from the track. The settlement small at the '
+            'centre, the ring complete around it.'
+        ),
+    },
+    'search': {
+        'file': 'sketch_the_search.jpg',
+        'he': 'שוברים את הרצפה',
+        'en': 'Breaking the floor',
+        'prompt': (
+            'Inside a bare room, two soldiers levering up floor tiles with '
+            'crowbars, rubble and broken paving heaped to one side, a slit '
+            'mattress against the wall, an overturned cupboard. Figures seen '
+            'from behind. Hard light from a single window.'
+        ),
+    },
     '1946eleven': {
         'file': 'sketch_1946_eleven_points.jpg',
         'he': 'אחת עשרה נקודות, אוקטובר 1946',

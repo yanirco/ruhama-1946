@@ -46,6 +46,14 @@ body.idle .chrome{opacity:0;pointer-events:none}
 #chapline{margin:0 0 1.1vh;font-size:clamp(11px,1.05vw,16px);letter-spacing:.18em;
   text-transform:uppercase;color:var(--accent2);opacity:.9}
 
+/* A drawing must announce itself on a wall, where nobody reads credits. */
+#sketchmark{position:fixed;z-index:7;top:3.4vh;inset-inline-start:2.4vw;
+  padding:5px 14px;border:1px solid var(--accent);border-radius:999px;
+  color:var(--accent);font-size:clamp(10px,.95vw,14px);letter-spacing:.16em;
+  text-transform:uppercase;opacity:0;transition:opacity .6s ease;
+  background:rgba(10,11,13,.55);backdrop-filter:blur(4px);pointer-events:none}
+#sketchmark.on{opacity:1}
+
 /* ---------- title / text cards ---------- */
 .card{position:fixed;inset:0;z-index:6;display:none;place-content:center;
   text-align:center;padding:0 10vw;background:var(--bg)}
@@ -91,6 +99,7 @@ body.idle .chrome{opacity:0;pointer-events:none}
 
 <div id="stage" aria-hidden="true"></div>
 
+<div id="sketchmark" aria-hidden="true"></div>
 <div id="cap"><p id="chapline"></p><p id="capline"></p></div>
 
 <!-- chapter title cards and the Alterman card are injected here -->
@@ -127,11 +136,11 @@ var RTL  = lang === 'he';
 var T = {
   he:{title:'שישה ימים ברוחמה', sub:'אוגוסט 1946 · מצגת רצופה עם הקראה',
       go:'התחלה', other:'English', otherHref:'?lang=en',
-      hint:'רווח — השהיה · ← → מעבר פרק · F מסך מלא',
+      hint:'רווח — השהיה · ← → מעבר פרק · F מסך מלא', drawing:'רישום, לא תצלום',
       end:'סוף', endSub:'ruhama1946.site', of:'מתוך'},
   en:{title:'Six Days at Ruhama', sub:'August 1946 · a continuous presentation, narrated',
       go:'Begin', other:'עברית', otherHref:'?',
-      hint:'Space — pause · ← → chapter · F fullscreen',
+      hint:'Space — pause · ← → chapter · F fullscreen', drawing:'A drawing, not a photograph',
       end:'End', endSub:'ruhama1946.site', of:'of'}
 }[lang];
 
@@ -144,15 +153,27 @@ var T = {
 var CH = [
   {audio:'part1', kicker:{he:'פרק א',he_:'',en:'Part One'},
    title:{he:'ארץ תחת מנדט',en:'A country under mandate'},
-   ids:['43','23','12','42']},
+   ids:[{sk:'sketch_1912_founding.jpg',he:'1912 — חוות רוחמה נוסדת',en:'1912 — the Ruhama farm is founded'},
+        {sk:'sketch_1913_the_well.jpg',he:'1913 — חופרים את הבאר, 38 מטרים',en:'1913 — the well, dug by hand to 38 metres'},
+        '43','23','12','42']},
 
   {audio:'part2', kicker:{he:'פרק ב',en:'Part Two'},
    title:{he:'המשק שננטש ארבע פעמים',en:'The farm abandoned four times'},
-   ids:['43','42','23']},
+   ids:[{sk:'sketch_1917_expulsion.jpg',he:'1917 — נטישה ראשונה',en:'1917 — the first abandonment'},
+        {sk:'sketch_1936_orchards.jpg',he:'1936 — הפרדסים נעקרים',en:'1936 — the orchards uprooted'},
+        {sk:'sketch_1943_return.jpg',he:'דצמבר 1943 — חוזרים לבאר',en:'December 1943 — back to the well'},
+        {sk:'sketch_1944_night_landing.jpg',he:'29 במרץ 1944 — עלייה לקרקע, בלילה',en:'29 March 1944 — going up to the land, at night'},
+        {sk:'sketch_palmach_training.jpg',he:'אימוני פלמ"ח בוואדיות',en:'Palmach training in the wadis'},
+        '43','42','23']},
 
   {audio:'part3', kicker:{he:'פרק ג',en:'Part Three'},
    title:{he:'שישה ימים',en:'Six days'},
-   ids:['08','11','13','14','16','18','19','21','26','31','33','35','36','37','39','44']},
+   ids:[{sk:'sketch_slik.jpg',he:'סליק — מחבוא נשק מתחת לרצפה',en:'A slik — an arms cache beneath a floor'},
+        {sk:'sketch_moving_the_weapons.jpg',he:'הנשק הוצא אל מחוץ לגדר לפני בוא החיילים',en:'The weapons went outside the perimeter before the troops came'},
+        {sk:'sketch_the_cordon.jpg',he:'28 באוגוסט — הטבעת נסגרת',en:'28 August — the ring closes'},
+        '08','11','13',
+        {sk:'sketch_the_search.jpg',he:'שוברים את הרצפה',en:'Breaking the floor'},
+        '14','16','18','19','21','26','31','33','35','36','37','39','44']},
 
   {card:'alterman'},
 
@@ -162,7 +183,7 @@ var CH = [
 
   {audio:'part5', kicker:{he:'פרק ה',en:'Part Five'},
    title:{he:'מה שלא נמצא',en:'What was not found'},
-   ids:['29','47','45','35']},
+   ids:['29',{sk:'sketch_1946_tracker_dogs.jpg',he:'כלבי הגישוש שהביאו הבריטים',en:'The tracker dogs the British brought in'},'47','45','35']},
 
   {audio:'part6', kicker:{he:'פרק ו',en:'Part Six'},
    title:{he:'אחת עשרה נקודות',en:'Eleven points'},
@@ -194,6 +215,7 @@ var stage = document.getElementById('stage'),
     cards = document.getElementById('cards'),
     capline = document.getElementById('capline'),
     chapline = document.getElementById('chapline'),
+    sketchmark = document.getElementById('sketchmark'),
     barfill = document.getElementById('barfill'),
     count = document.getElementById('count'),
     au = document.getElementById('au');
@@ -218,7 +240,17 @@ fetch('gallery-data.json').then(function(r){ return r.json(); }).then(function(d
 }).catch(function(){ /* captions are a nicety; the show runs without them */ });
 
 /* ---------- helpers ---------- */
-function src(id){ return 'images/ai/ruhama_1946_' + id + '_ai.jpg'; }
+/* A slide is either an archive board number ('27') or a drawing:
+   {sk:'file.jpg', he:'caption', en:'caption'}. The two are never allowed to
+   look alike - a drawing carries a standing label on screen, exactly as it
+   does in the article. On a wall in a public hall nobody reads a credit line,
+   so the distinction has to be visible in the frame itself. */
+function isSketch(id){ return id && typeof id === 'object'; }
+
+function src(id){
+  return isSketch(id) ? 'images/sketches/' + id.sk
+                      : 'images/ai/ruhama_1946_' + id + '_ai.jpg';
+}
 
 function preload(id){ if(id){ var i = new Image(); i.src = src(id); } }
 
@@ -238,10 +270,12 @@ function show(id){
     old.classList.remove('on');
     setTimeout(function(){ if(old.parentNode) old.parentNode.removeChild(old); }, 1800);
   }
-  var c = caps[id] || {};
+  var text = isSketch(id) ? (id[lang] || '') : ((caps[id] || {})[lang] || '');
   capline.classList.remove('on');
+  sketchmark.textContent = T.drawing;
+  sketchmark.classList.toggle('on', !!isSketch(id));
   setTimeout(function(){
-    capline.textContent = c[lang] || '';
+    capline.textContent = text;
     capline.classList.add('on');
   }, 400);
 }

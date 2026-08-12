@@ -34,6 +34,31 @@
   "he": "כלבי הגישוש, אוגוסט 1946",
   "en": "The tracker dogs, August 1946"
  },
+ "slik": {
+  "file": "sketch_slik.jpg",
+  "he": "סליק — מחבוא נשק",
+  "en": "A slik — a hidden arms cache"
+ },
+ "moving": {
+  "file": "sketch_moving_the_weapons.jpg",
+  "he": "מוציאים את הנשק אל מחוץ לגדר",
+  "en": "Moving the weapons outside the perimeter"
+ },
+ "palmach": {
+  "file": "sketch_palmach_training.jpg",
+  "he": "אימון פלמ\"ח בוואדיות",
+  "en": "Palmach training in the wadis"
+ },
+ "cordon": {
+  "file": "sketch_the_cordon.jpg",
+  "he": "טבעת הסגר נסגרת, 28 באוגוסט 1946",
+  "en": "The cordon closes, 28 August 1946"
+ },
+ "search": {
+  "file": "sketch_the_search.jpg",
+  "he": "שוברים את הרצפה",
+  "en": "Breaking the floor"
+ },
  "1946eleven": {
   "file": "sketch_1946_eleven_points.jpg",
   "he": "אחת עשרה נקודות, אוקטובר 1946",
