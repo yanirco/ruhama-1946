@@ -217,7 +217,7 @@ footer p{font-size:15px}
 
 <div class="topbar">
   <span class="brand" id="brand">רוחמה במצור · 1946</span>
-  <nav class="navlinks"><a href="gallery.html" data-he>גלריה</a><a href="gallery.html" data-en>Gallery</a><a href="slides.html" data-he>סדרת הסיפור</a><a href="slides.html" data-en>Story slides</a><a href="timeline.html" data-he>ציר זמן</a><a href="timeline.html" data-en>Timeline</a><a href="presentation.html" data-he>מצגת למסך גדול</a><a href="presentation.html?lang=en" data-en>Big-screen presentation</a></nav>
+  <!-- page links now come from nav.js, which puts the same bar on every page -->
   <div class="seg" id="lang">
     <button data-l="he" aria-pressed="true">עברית</button>
     <button data-l="en" aria-pressed="false">English</button>
@@ -953,5 +953,6 @@ document.getElementById('lang').onclick=e=>{
   });
 })();
 </script>
+<script src="nav.js" defer></script>
 </body>
 </html>
