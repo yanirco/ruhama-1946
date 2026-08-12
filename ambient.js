@@ -2,12 +2,14 @@
  *
  * Design decisions, all deliberate:
  *
- * OFF BY DEFAULT, ALWAYS. This site is about a search of a children's house.
- * Music that starts on its own scores somebody's grief without being asked.
- * The reader turns it on or it never plays.
+ * ON BY DEFAULT, QUIETLY. The site owner wants the bed playing when someone
+ * lands. Browsers will not allow sound before a user gesture, so we try to
+ * play immediately and, if the browser refuses, start on the reader's very
+ * first click, key or scroll. Either way it comes in at low volume and fades
+ * up rather than starting hard.
  *
- * IT REMEMBERS. Once you choose, the choice persists across pages and visits,
- * so nobody has to keep switching it off.
+ * IT REMEMBERS. Once you pause it, it stays paused across pages and visits.
+ * There is no stop, only pause - the track loops and picks up where it was.
  *
  * IT GETS OUT OF THE WAY. When a narration segment plays, the music ducks to a
  * fifth of its volume and comes back afterwards. Two voices competing is worse
@@ -27,15 +29,15 @@
   /* The track is mastered to -20 LUFS on the way in (see scripts note in
      NOTICE.md), well under the -16 LUFS narration, so the browser gain can sit
      higher than it would for a commercial master without ever competing. */
-  var FULL = 0.38;
+  /* Lower than it would be if the reader had asked for it. Music that starts
+     by itself has to earn its place quietly. */
+  var FULL = 0.20;
   var DUCKED = FULL * 0.25;
   var lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'he';
 
   var L = {
-    he: { on: 'מוזיקה', off: 'מוזיקה', titleOn: 'כיבוי מוזיקת רקע',
-          titleOff: 'הפעלת מוזיקת רקע (כבויה כברירת מחדל)' },
-    en: { on: 'Music', off: 'Music', titleOn: 'Turn background music off',
-          titleOff: 'Turn background music on (off by default)' }
+    he: { label: 'מוזיקה', titleOn: 'השהיית המוזיקה', titleOff: 'המשך המוזיקה' },
+    en: { label: 'Music', titleOn: 'Pause the music', titleOff: 'Resume the music' }
   }[lang];
 
   var audio = null, playing = false, fadeTimer = null;
@@ -78,7 +80,8 @@
   function paint(btn) {
     btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
     btn.title = playing ? L.titleOn : L.titleOff;
-    btn.querySelector('.dot').style.opacity = playing ? '1' : '.28';
+    // a pause bar while it plays, a play triangle while it is paused
+    btn.querySelector('.ico').textContent = playing ? '❚❚' : '▶';
   }
 
   function build() {
@@ -93,14 +96,13 @@
       '  white-space:nowrap;margin-inline-start:4px;transition:color .15s,border-color .15s}' +
       '#ambientbtn:hover{color:#d9b64a;border-color:#c9a227}' +
       '#ambientbtn[aria-pressed="true"]{color:#c9a227;border-color:#c9a227}' +
-      '#ambientbtn .dot{width:7px;height:7px;border-radius:50%;background:currentColor;' +
-      '  transition:opacity .3s}';
+      '#ambientbtn .ico{font-size:10px;line-height:1;letter-spacing:1px}';
     document.head.appendChild(css);
 
     var btn = document.createElement('button');
     btn.id = 'ambientbtn';
     btn.type = 'button';
-    btn.innerHTML = '<span class="dot"></span><span>' + L.on + '</span>';
+    btn.innerHTML = '<span class="ico"></span><span>' + L.label + '</span>';
     btn.onclick = function () {
       if (playing) { stop(); store('off'); } else { start(); store('on'); }
       paint(btn);
@@ -108,10 +110,32 @@
     nav.appendChild(btn);
     paint(btn);
 
-    /* Restore a previous choice. Browsers block sound before a gesture, so if
-       the first play() is refused the button simply stays off - no error, and
-       the next click works. */
-    if (read() === 'on') { start(); setTimeout(function () { paint(btn); }, 300); }
+    /* Default is ON: play unless the reader has previously paused it.
+       Browsers refuse sound before a gesture, so if the immediate attempt is
+       blocked we arm a one-shot listener and begin on the first click, key or
+       scroll. Nothing is ever loud, and pausing is always one click away. */
+    if (read() !== 'off') {
+      start();
+      setTimeout(function () {
+        paint(btn);
+        if (!playing) {
+          var kick = function () {
+            if (read() === 'off') return unarm();
+            start();
+            setTimeout(function () { paint(btn); }, 200);
+            unarm();
+          };
+          var unarm = function () {
+            ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (ev) {
+              document.removeEventListener(ev, kick);
+            });
+          };
+          ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (ev) {
+            document.addEventListener(ev, kick, { once: false, passive: true });
+          });
+        }
+      }, 400);
+    }
 
     /* Duck under any narration on the page. */
     document.addEventListener('play', function (e) {

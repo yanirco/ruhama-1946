@@ -302,16 +302,40 @@ function preload(slide){ if(slide){ var i = new Image(); i.src = src(slide.id); 
    the chapter reads as overview-then-detail rather than as a loop. Sketches
    are shown once per pass but never cropped. */
 var TARGET = 6;                      // seconds per frame, roughly
+
+/* Spread the unique images across the WHOLE chapter.
+ *
+ * The first version filled pass by pass: every picture once, then the same
+ * photographs cropped again and again. So a chapter showed everything it had
+ * in its opening minute and then repeated itself for the rest - which is
+ * exactly what it looked like on screen.
+ *
+ * This version reserves an evenly spaced slot for each unique image first, so
+ * something genuinely new keeps arriving right to the end of the chapter, and
+ * only fills the gaps between them with cropped details of the photographs.
+ */
 function buildFrames(ch, seconds){
-  var want = Math.max(ch.ids.length, Math.round((seconds || 90) / TARGET));
-  var out = [], v = 0;
-  while (out.length < want && v < 6) {
-    for (var i = 0; i < ch.ids.length && out.length < want; i++) {
-      var id = ch.ids[i];
-      if (v > 0 && isSketch(id)) continue;   // never crop a drawing
-      out.push({ id: id, v: v });
+  var n = ch.ids.length;
+  var want = Math.max(n, Math.round((seconds || 90) / TARGET));
+  var out = new Array(want);
+
+  // one evenly spaced slot per unique image, first showing, uncropped
+  for (var k = 0; k < n; k++) out[Math.floor(k * want / n)] = { id: ch.ids[k], v: 0 };
+
+  // gaps get detail crops of the photographs - drawings are never cropped
+  var photos = [];
+  for (var j = 0; j < n; j++) if (!isSketch(ch.ids[j])) photos.push(ch.ids[j]);
+
+  var p = 0;
+  for (var i = 0; i < want; i++) {
+    if (out[i]) continue;
+    if (photos.length) {
+      out[i] = { id: photos[p % photos.length],
+                 v: 1 + (Math.floor(p / photos.length) % 3) };
+      p++;
+    } else {
+      out[i] = { id: ch.ids[i % n], v: 0 };   // all-drawing chapter: show again
     }
-    v++;
   }
   return out;
 }

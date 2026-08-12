@@ -109,7 +109,14 @@ loop has no audible seam, and the whole thing is normalised to **-20 LUFS** —
 four decibels under the narration's -16 LUFS, so it can never compete with a
 voice.
 
-In the player it is **off by default and never autoplays**. This site is about
-a search of a children's house; music that starts on its own scores somebody
-else's grief without being asked. The reader turns it on, the choice is
-remembered, and it ducks to a quarter of its volume whenever narration plays.
+In the player it **starts quietly on landing and can be paused at any time**.
+The volume is deliberately low (20% browser gain on a track already four
+decibels under the narration), it fades in rather than starting hard, it ducks
+to a quarter of that whenever a narration segment plays, and a pause stays
+remembered across pages and visits. Browsers block sound before a user gesture,
+so if autoplay is refused it begins on the reader's first click or scroll.
+
+An earlier version was off by default, on the reasoning that a site about a
+search of a children's house should not score anyone's grief uninvited. The
+owner chose otherwise; the compromise is that it plays quietly, never
+interrupts a voice, and is one click from silence.
