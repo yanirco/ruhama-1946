@@ -70,3 +70,26 @@ invention, not photographic detail — and these are real children, photographed
 after soldiers went through their nursery. The site uses the original black and
 white scan (image 20721) instead. Same rule as everywhere else here: nothing is
 invented, and where a machine touched an image we say so.
+
+## Drawn illustrations (AI-generated)
+
+`images/sketches/` holds eight ink drawings generated in 2026 with FLUX
+(flux-1.1-pro, via Replicate). They illustrate events for which **no photograph
+exists**: the 1912 founding, the well dug in 1913, the 1917 departure, the 1936
+uprooting, the 1943 return, the night landing of 29 March 1944, the tracker dogs
+of August 1946, and the eleven Negev points that October.
+
+They are **not** historical sources, and the site never presents them as such:
+
+- every prompt is locked to pen-and-ink with visible hatching, so they can never
+  be mistaken for a photograph at a glance
+- no faces. Figures are small, distant, backs turned. We do not invent portraits
+  of real settlers, and we do not invent faces for the four unidentified people
+  in the archive photographs
+- they live in their own folder, are excluded from the gallery of archive
+  material, and carry a "Drawing / רישום" label plus a full disclaimer in every
+  caption
+- where a photograph exists, the photograph is used instead
+
+`scripts/sketches.py` holds the prompts, so anyone can see exactly what was
+asked for and regenerate or replace them.

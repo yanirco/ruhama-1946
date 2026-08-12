@@ -124,6 +124,25 @@ figcaption{font-size:14.5px;color:var(--soft);line-height:1.6;margin-top:10px;
 figcaption b{color:var(--ink)}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .pair figure{margin:0}
+
+/* ---------- drawn illustrations, NOT archive photographs ----------
+   These must never be mistaken for evidence. They get paper stock, a visible
+   frame and a standing label, so the distinction survives someone screenshotting
+   one and posting it without the caption. */
+figure.sketch img{background:#f6f2ea;border:1px solid rgba(201,162,39,.35);
+  border-radius:2px;padding:10px}
+figure.sketch{position:relative}
+figure.sketch figcaption{color:var(--soft)}
+/* two drawings side by side - a steady grid reads as one illustrator's
+   sketchbook rather than as assorted pictures dropped into the text */
+.sketchpair{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:38px 0;
+  max-width:1180px;margin-inline:auto}
+.sketchpair figure{margin:0}
+@media(max-width:760px){.sketchpair{grid-template-columns:1fr;gap:30px}}
+figure.sketch figcaption .tag{display:inline-block;margin-inline-end:8px;
+  padding:2px 9px;border:1px solid var(--accent);border-radius:999px;
+  color:var(--accent);font-size:11.5px;letter-spacing:.09em;
+  text-transform:uppercase;vertical-align:2px;white-space:nowrap}
 @media(max-width:720px){.pair{grid-template-columns:1fr}}
 
 .video{position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;background:#000;margin-top:12px}
@@ -268,8 +287,43 @@ footer p{font-size:15px}
 <h3>קיץ 1946: הבריטים מאבדים סבלנות</h3>
 <p>אחרי המלחמה, כשמאות אלפי ניצולים תקועים במחנות עקורים באירופה ובריטניה מסרבת לפתוח את השערים, הארגונים היהודיים המחתרתיים מתאחדים ל<strong>"תנועת המרי העברי"</strong> ומבצעים סדרת פעולות נגד תשתיות בריטיות. התגובה הבריטית מהירה וכבדה:</p>
 
+<div class="sketchpair">
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1912_founding.jpg" alt="חוות רוחמה נוסדת, 1912" loading="lazy" decoding="async">
+    <figcaption><span class="tag">רישום</span><b>1912 — החווה נוסדת.</b> אגודת "שארית ישראל" של יהודי מוסקבה מגיעה לאדמות ריקות בצפון הנגב. רישום, לא תצלום.</figcaption>
+  </figure>
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1913_the_well.jpg" alt="חופרים את הבאר, 1913" loading="lazy" decoding="async">
+    <figcaption><span class="tag">רישום</span><b>1913 — הבאר.</b> נחפרת ביד עד עומק 38 מטרים. היא הסיבה שאפשר בכלל להישאר כאן. רישום, לא תצלום.</figcaption>
+  </figure>
+</div>
+
 <div class="tl">
 <div><b>29 ביוני 1946 — "השבת השחורה"</b>מבצע אגתה: כ-17,000 חיילים ושוטרים, מעצר המנהיגות היהודית, חיפושים ביישובים. בקיבוץ יגור נמצא סליק גדול. יגור הופך לשם קוד — התקדים שכל קיבוץ יזכיר מעכשיו.</div>
+
+<div class="sketchpair">
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1917_expulsion.jpg" alt="נטישת החווה, 1917" loading="lazy" decoding="async">
+    <figcaption><span class="tag">רישום</span><b>1917 — נטישה ראשונה.</b> קרבות מלחמת העולם הראשונה מחריבים את החווה, והמתיישבים מגורשים. רישום, לא תצלום.</figcaption>
+  </figure>
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1936_orchards.jpg" alt="הפרדסים נעקרים, 1936" loading="lazy" decoding="async">
+    <figcaption><span class="tag">רישום</span><b>1936 — הפרדסים נעקרים.</b> במרד הערבי הגדול נהרסים הבתים והעצים נעקרים. נטישה שלישית. רישום, לא תצלום.</figcaption>
+  </figure>
+</div>
+
+<div class="sketchpair">
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1943_return.jpg" alt="חוזרים לבאר, דצמבר 1943" loading="lazy" decoding="async">
+    <figcaption><span class="tag">רישום</span><b>דצמבר 1943 — חוזרים.</b> קבוצה ראשונה מ"העמל" יורדת לאדמות, פותחת מחדש את הבאר ומקימה צריפים. רישום, לא תצלום.</figcaption>
+  </figure>
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1944_night_landing.jpg" alt="עלייה לקרקע בלילה, מרץ 1944" loading="lazy" decoding="async">
+    <figcaption><span class="tag">רישום</span><b>29 במרץ 1944 — בלילה.</b> החוק הבריטי אסר התיישבות יהודית בנגב, ולכן הכול נעשה בחשכה. רישום, לא תצלום.</figcaption>
+  </figure>
+</div>
+
+
 <div><b>22 ביולי 1946</b>פיצוץ האגף הדרומי של מלון המלך דוד בירושלים, מפקדת השלטון הבריטי. 91 הרוגים.</div>
 <div><b>30 ביולי – 2 באוגוסט 1946</b>מבצע כריש: כיתור וחיפוש בתל אביב.</div>
 <div><b>סוף אוגוסט 1946</b>תורו של הנגב.</div>
@@ -294,6 +348,7 @@ footer p{font-size:15px}
 <div><b>2 בדצמבר 1943</b>קבוצה ראשונה מ"העמל" יורדת לאדמות רוחמה. פותחים מחדש את הבאר, מקימים צריפים.</div>
 <div><b>29 במרץ 1944</b>יום העלייה לקרקע. מכיוון שהחוק הבריטי אסר התיישבות יהודית בנגב, כל המבצע נעשה בסתר: משאיות בדרכי עפר סמויות, באישון לילה, וטקס בערב.</div>
 </div>
+
 
 <p>כשהצבא הבריטי מגיע באוגוסט 1946, הקיבוץ הזה קיים <strong>שנתיים וחמישה חודשים</strong>. אין כביש גישה. אין קו מים — הבאר לא מספיקה, ומקציבים מקלחות וממחזרים מים להשקיה. יש נגרייה, מסגרייה, מוסך, ובית מלאכה לתיקון עגלות סוסים על הכביש הראשי. זה כל הרכוש שקיים.</p>
 
@@ -357,6 +412,11 @@ footer p{font-size:15px}
 <cite>מתוך כרטיסי הכיתוב הכחולים שכתבו חברי הקיבוץ, על לוח התערוכה בארכיון</cite>
 </blockquote>
 
+
+<figure class="wide sketch">
+  <img src="images/sketches/sketch_1946_tracker_dogs.jpg" alt="כלבי גישוש בחצר משק, 1946" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span><b>כלבי הגישוש.</b> ימים ספורים לפני המצור פרסמה העיתונות תצלומים של כלבי גישוש שהביאו הבריטים לאיתור הסליקים. אלה הכלבים שאלתרמן ענה להם. רישום, לא תצלום.</figcaption>
+</figure>
 
 <h3>30 באוגוסט — אלתרמן עונה</h3>
 <p>ביום השלישי למצור, בעוד החיילים עדיין בתוך הקיבוץ, פרסם <strong>נתן אלתרמן</strong> ב"דבר" את טורו <strong>"מרשימותיו של כלב"</strong> — אחד מטורי <em>הטור השביעי</em> שלו. ימים ספורים קודם לכן פרסמה העיתונות תצלומים של כלבי גישוש שהביאו הבריטים לארץ כדי לאתר את סליקי ההגנה. אלתרמן השיב להם מפיו של אחד הכלבים.</p>
@@ -492,6 +552,11 @@ footer p{font-size:15px}
 </figure>
 </div>
 
+<figure class="wide sketch">
+  <img src="images/sketches/sketch_1946_eleven_points.jpg" alt="שיירה במדבר בלילה, אוקטובר 1946" loading="lazy" decoding="async">
+  <figcaption><span class="tag">רישום</span><b>אוקטובר 1946 — אחת עשרה נקודות בלילה אחד.</b> שישה שבועות אחרי החיפוש, רוחמה היא נקודת זינוק להקמת אחת עשרה נקודות בנגב בלילה אחד. רישום, לא תצלום.</figcaption>
+</figure>
+
 <div class="hr"></div>
 
 <div class="part">
@@ -573,8 +638,43 @@ footer p{font-size:15px}
 <h3>Summer 1946: the British lose patience</h3>
 <p>After the war, with hundreds of thousands of survivors stranded in displaced-persons camps in Europe and Britain refusing to open the gates, the Jewish underground organisations united into the <strong>Jewish Resistance Movement</strong> and carried out a campaign against British infrastructure. The British response was fast and heavy:</p>
 
+<div class="sketchpair">
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1912_founding.jpg" alt="The founding of the Ruhama farm, 1912" loading="lazy" decoding="async">
+    <figcaption><span class="tag">Drawing</span><b>1912 — the farm is founded.</b> The She'erit Yisrael society of Moscow Jews arrives on empty land in the northern Negev. A drawing, not a photograph.</figcaption>
+  </figure>
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1913_the_well.jpg" alt="Digging the well, 1913" loading="lazy" decoding="async">
+    <figcaption><span class="tag">Drawing</span><b>1913 — the well.</b> Dug by hand to thirty-eight metres. It is the reason anyone could stay at all. A drawing, not a photograph.</figcaption>
+  </figure>
+</div>
+
 <div class="tl">
 <div><b>29 June 1946 — "Black Saturday"</b>Operation Agatha: some 17,000 troops and police, mass arrest of the Jewish leadership, searches across settlements. At Kibbutz Yagur a large arms cache was found. Yagur became shorthand — the precedent every kibbutz would now invoke.</div>
+
+<div class="sketchpair">
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1917_expulsion.jpg" alt="The farm abandoned, 1917" loading="lazy" decoding="async">
+    <figcaption><span class="tag">Drawing</span><b>1917 — the first abandonment.</b> The fighting of the First World War destroys the farm and the settlers are expelled. A drawing, not a photograph.</figcaption>
+  </figure>
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1936_orchards.jpg" alt="The orchards uprooted, 1936" loading="lazy" decoding="async">
+    <figcaption><span class="tag">Drawing</span><b>1936 — the orchards uprooted.</b> In the Arab Revolt the houses are destroyed and the trees torn out. The third abandonment. A drawing, not a photograph.</figcaption>
+  </figure>
+</div>
+
+<div class="sketchpair">
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1943_return.jpg" alt="Back to the well, December 1943" loading="lazy" decoding="async">
+    <figcaption><span class="tag">Drawing</span><b>December 1943 — coming back.</b> The first group from HaAmal goes down to the land, reopens the well and puts up huts. A drawing, not a photograph.</figcaption>
+  </figure>
+  <figure class="sketch">
+    <img src="images/sketches/sketch_1944_night_landing.jpg" alt="Going up to the land at night, March 1944" loading="lazy" decoding="async">
+    <figcaption><span class="tag">Drawing</span><b>29 March 1944 — at night.</b> British law forbade Jewish settlement in the Negev, so all of it happened in the dark. A drawing, not a photograph.</figcaption>
+  </figure>
+</div>
+
+
 <div><b>22 July 1946</b>The southern wing of the King David Hotel in Jerusalem, headquarters of the British administration, is bombed. 91 people are killed.</div>
 <div><b>30 July – 2 August 1946</b>Operation Shark: cordon and search of Tel Aviv.</div>
 <div><b>Late August 1946</b>The Negev's turn.</div>
@@ -599,6 +699,7 @@ footer p{font-size:15px}
 <div><b>2 December 1943</b>A first group from HaAmal goes down to the Ruhama land. They reopen the well and put up huts.</div>
 <div><b>29 March 1944</b>The formal settlement day. Because British law barred Jewish settlement in the Negev, the whole operation was clandestine: trucks on hidden dirt tracks in the dead of night, and a ceremony that evening.</div>
 </div>
+
 
 <p>When the British Army arrives in August 1946, this kibbutz is <strong>two years and five months old</strong>. There is no access road. There is no water pipeline — the well is not enough, so showers are rationed and water is recycled for irrigation. There is a carpentry shop, a metal shop, a garage, and a workshop repairing horse carts on the main road. That is the entire estate.</p>
 
@@ -662,6 +763,11 @@ footer p{font-size:15px}
 <cite>From the blue caption cards written by the kibbutz members, on the exhibition board in the archive</cite>
 </blockquote>
 
+
+<figure class="wide sketch">
+  <img src="images/sketches/sketch_1946_tracker_dogs.jpg" alt="Tracker dogs in a farmyard, 1946" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span><b>The tracker dogs.</b> Days before the siege the press ran photographs of tracker dogs the British had brought in to find the caches. These are the dogs Alterman answered. A drawing, not a photograph.</figcaption>
+</figure>
 
 <h3>30 August — Alterman answers</h3>
 <p>On the third day of the siege, while the soldiers were still inside the kibbutz, <strong>Nathan Alterman</strong> published his column <strong>"From the Notes of a Dog"</strong> in <em>Davar</em> — one of his <em>Seventh Column</em> pieces. Days earlier the press had run photographs of tracker dogs the British had brought into the country to find the Haganah's arms caches. Alterman answered them in the voice of one of the dogs.</p>
@@ -796,6 +902,11 @@ footer p{font-size:15px}
   <figcaption><b>Starting to clear up.</b> Enlarged detail: a pair of hands, a woven basket, a wrecked room. The rebuilding took months and it started like this.</figcaption>
 </figure>
 </div>
+
+<figure class="wide sketch">
+  <img src="images/sketches/sketch_1946_eleven_points.jpg" alt="A convoy in the desert at night, October 1946" loading="lazy" decoding="async">
+  <figcaption><span class="tag">Drawing</span><b>October 1946 — eleven points in one night.</b> Six weeks after the search, Ruhama is a launch point for eleven new settlements founded across the Negev in a single night. A drawing, not a photograph.</figcaption>
+</figure>
 
 <div class="hr"></div>
 
