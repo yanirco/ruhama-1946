@@ -103,4 +103,10 @@
   amb.src = 'ambient.js';
   amb.defer = true;
   document.body.appendChild(amb);
+
+  /* Click-to-enlarge for every picture. Skips gallery.html, which has its own. */
+  var lbx = document.createElement('script');
+  lbx.src = 'lightbox.js';
+  lbx.defer = true;
+  document.body.appendChild(lbx);
 })();
