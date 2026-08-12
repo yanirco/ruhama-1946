@@ -14,6 +14,7 @@ Voice sample must be the speaker's own recording. Cloning anyone else's voice
 without their consent is not something this script is for.
 """
 import os, sys, json, re, time, urllib.request, urllib.error
+from html.parser import HTMLParser
 
 API = 'https://api.elevenlabs.io/v1'
 KEY = os.environ.get('ELEVENLABS_API_KEY', '')
@@ -133,44 +134,101 @@ def tts(text, vid, out_path, lang):
     return len(audio)
 
 
-def segments():
-    """Pull the narratable text out of index.html, in document order.
+class _Narratable(HTMLParser):
+    """Walk a section and collect the text a listener should actually hear.
 
-    The first version only took <p> tags, so bulleted lists vanished - the
-    narration jumped from "two restrictions" straight past the restrictions
-    themselves, which is why it sounded like nonsense. This walks paragraphs,
-    list items and pull-quotes in the order they appear, and always puts a
-    space where a tag was so words never fuse together.
+    Two bugs lived in the regex version this replaces, and both were silent -
+    the audio simply came out short and nobody could tell what was missing
+    without comparing against the page.
+
+    1. It cut the section at the copyright box. That box sits in the *middle*
+       of Part 3, so more than half of "Six days" was never narrated at all.
+       The box is skipped now; the text after it is not.
+    2. It only matched <p>, <li> and <h3>. Part 2's substance is a <div
+       class="tl"> timeline - 1911 to 1944, the four abandonments - and none
+       of it was in the audio. Hence a 39-second Part 2 that reads as
+       truncated, because it was.
+
+    Block elements are whitelisted; housekeeping (the play button, the voice
+    credit, video captions, the licence box) is skipped subtree and all.
     """
+    BLOCK = {'p', 'li', 'h3', 'h4', 'blockquote', 'figcaption', 'div'}
+    SKIP_CLASS = {'audionote', 'vidcap', 'listen', 'box warn', 'dur', 'bar'}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.out, self.buf, self.depth, self.skip = [], [], 0, 0
+
+    def _classes(self, attrs):
+        return dict(attrs).get('class', '')
+
+    def handle_starttag(self, tag, attrs):
+        cls = self._classes(attrs)
+        if self.skip:
+            self.skip += 1
+            return
+        if tag in ('button', 'script', 'style', 'svg', 'cite'):
+            self.skip = 1
+            return
+        if any(c and c in cls for c in self.SKIP_CLASS):
+            self.skip = 1
+            return
+        if tag in self.BLOCK:
+            self._flush()
+            self.depth += 1
+
+    def handle_endtag(self, tag):
+        if self.skip:
+            self.skip -= 1
+            return
+        if tag in self.BLOCK:
+            self._flush()
+            self.depth = max(0, self.depth - 1)
+
+    def handle_data(self, data):
+        if not self.skip and data.strip():
+            self.buf.append(data)
+
+    def _flush(self):
+        t = re.sub(r'\s+', ' ', ' '.join(self.buf)).strip()
+        self.buf = []
+        # 25 chars filters out stray labels; a real sentence always clears it
+        if len(t) > 25:
+            # the middle dot and the en-dash are both read aloud otherwise
+            t = t.replace('·', '.').replace('–', ' – ')
+            self.out.append(t if t.endswith(('.', '?', '!', ':', '"')) else t + '.')
+
+    def close(self):
+        super().close()
+        self._flush()
+        return self.out
+
+
+def segments():
+    """Pull the narratable text out of index.html, in document order."""
     html = open(os.path.join(SITE, 'index.html'), encoding='utf-8').read()
 
     def plain(fragment):
-        t = re.sub(r'<[^>]+>', ' ', fragment)      # space, not empty
+        t = re.sub(r'<[^>]+>', ' ', fragment)
         t = (t.replace('&nbsp;', ' ').replace('&amp;', 'and')
-               .replace('&quot;', '"').replace('&#39;', "'")
-               .replace('·', '.'))                  # the middle dot is read aloud otherwise
+               .replace('&quot;', '"').replace('&#39;', "'").replace('·', '.'))
         return re.sub(r'\s+', ' ', t).strip()
 
     out = []
     for lang in ('he', 'en'):
-        m = re.search(r'<article id="%s".*?</article>' % lang, html, re.S)
-        body = m.group(0)
+        body = re.search(r'<article id="%s".*?</article>' % lang, html, re.S).group(0)
         for i, part in enumerate(re.split(r'<h2>', body)[1:], 1):
             head = plain(part.split('</h2>')[0])
             rest = part.split('</h2>', 1)[1] if '</h2>' in part else ''
-            # stop before the licence box: it is site housekeeping, not narration
-            rest = re.split(r'<div class="box warn"', rest)[0]
-            chunks = []
-            for m2 in re.finditer(r'<(p|li|h3)(?: class="[^"]*")?>(.*?)</\1>', rest, re.S):
-                if 'class="audionote"' in m2.group(0):
-                    continue
-                t = plain(m2.group(2))
-                if len(t) > 25:
-                    chunks.append(t if t.endswith(('.', '?', '!', ':')) else t + '.')
-            text = (head + '. ' + ' '.join(chunks)).strip()
-            text = re.sub(r'\s+', ' ', text)
+            # drop the licence box itself, but keep everything around it
+            rest = re.sub(r'<div class="box warn".*?</div>\s*</div>', '', rest, flags=re.S)
+            rest = re.sub(r'<div class="box warn".*?</div>', '', rest, flags=re.S)
+            p = _Narratable()
+            p.feed(rest)
+            chunks = p.close()
+            text = re.sub(r'\s+', ' ', (head + '. ' + ' '.join(chunks)).strip())
             if len(text) > 120:
-                out.append({'lang': lang, 'n': i, 'title': head, 'text': text[:2600]})
+                out.append({'lang': lang, 'n': i, 'title': head, 'text': text})
     return out
 
 
