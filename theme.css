@@ -88,6 +88,24 @@
 [data-theme="dark"] #lbimg,
 [data-theme="dark"] #lb img{filter:none;background:#f6f2ea}
 
+
+/* ---------- text colours hardcoded for a light page ----------
+   These four were set as near-black hex values rather than variables, so the
+   dark theme swapped everything around them and left them unreadable. p.lead
+   is the opening paragraph of every part - the most prominent text on the
+   page - which is why the site looked broken rather than merely imperfect.
+   Anything that sets a colour literally has to be listed here; that is the
+   cost of not using a variable, and scripts/check_contrast.py now finds them. */
+[data-theme="dark"] p.lead,
+[data-theme="dark"] .lede{color:#ddd6c9}
+[data-theme="dark"] blockquote{color:#eae4d8}
+[data-theme="dark"] .tag.q{color:var(--accent2)}
+
+/* and the quieter greys, which are legible but flat on a dark ground */
+[data-theme="dark"] .hint,
+[data-theme="dark"] .meta{color:#a49c8e}
+[data-theme="dark"] .meta b{color:var(--ink)}
+
 /* ---------- the toggle itself ---------- */
 #themebtn{display:inline-flex;align-items:center;gap:7px;background:none;
   border:1px solid rgba(255,255,255,.2);color:#a8a49c;border-radius:8px;
