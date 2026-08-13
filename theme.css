@@ -106,6 +106,25 @@
 [data-theme="dark"] .meta{color:#a49c8e}
 [data-theme="dark"] .meta b{color:var(--ink)}
 
+
+/* ---------- surfaces that use the palette INVERTED ----------
+   The hero and the footer are dark plates in the LIGHT theme: dark background,
+   --paper as the text colour. Swapping --paper to near-black for dark mode
+   therefore turned the site's main title into near-black on near-black, and
+   did the same to the footer heading. These surfaces are dark in both themes,
+   so their text must not follow the palette at all.
+
+   This is the failure mode a variable swap cannot see: the variable was doing
+   the opposite job here from everywhere else. scripts/check_contrast.py now
+   looks for it. */
+/* The hero no longer needs a dark-mode colour rule at all: it now uses a fixed
+   light ink and its own scrim, because it sits on a photograph and had to stop
+   depending on the palette entirely. Only the image is dimmed here. */
+[data-theme="dark"] .hero img{opacity:.72}
+[data-theme="dark"] footer{background:#0b0908;color:#b6ada0}
+[data-theme="dark"] footer h3{color:#f2efe9}
+[data-theme="dark"] footer a{color:#e0a292}
+
 /* ---------- the toggle itself ---------- */
 #themebtn{display:inline-flex;align-items:center;gap:7px;background:none;
   border:1px solid rgba(255,255,255,.2);color:#a8a49c;border-radius:8px;

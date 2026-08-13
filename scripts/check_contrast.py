@@ -26,6 +26,44 @@ def luminance(hexs):
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
 
 
+def inverted_surfaces():
+    """Find rules that use the palette the OTHER way round.
+
+    The hero and the footer are dark plates even in the light theme: a dark
+    background with --paper as the *text* colour. A dark theme that swaps
+    --paper to near-black turns their text invisible. A colour audit that only
+    looks at literal hex values cannot see this, because the values are
+    variables and look perfectly correct.
+    """
+    theme = io.open(os.path.join(SITE, 'theme.css'), encoding='utf-8').read()
+    out = []
+    for f in PAGES:
+        path = os.path.join(SITE, f)
+        if not os.path.exists(path):
+            continue
+        s = io.open(path, encoding='utf-8').read()
+        if 'theme.css' not in s:
+            continue                      # page opts out of theming entirely
+        for css in re.findall(r'<style>(.*?)</style>', s, re.S):
+            for m in re.finditer(r'([^{}]+)\{([^{}]*)\}', css):
+                sel, decls = m.group(1).strip().replace('\n', ' '), m.group(2)
+                d = decls.replace(' ', '')
+                if 'color:var(--paper)' not in d:
+                    continue
+                # A MATCHED PAIR IS SAFE. background:var(--ink) with
+                # color:var(--paper) flips as a unit: in dark mode --ink becomes
+                # light and --paper becomes dark, so the contrast survives. The
+                # dangerous case is --paper text over a background that does NOT
+                # flip with it - var(--dark), or a literal colour.
+                if 'background:var(--ink)' in d:
+                    continue
+                key = sel.split(',')[0].strip()
+                if key and key in theme:
+                    continue
+                out.append((f, sel[:56]))
+    return out
+
+
 def main():
     theme = io.open(os.path.join(SITE, 'theme.css'), encoding='utf-8').read()
     problems = []
@@ -49,9 +87,14 @@ def main():
 
     for f, sel, c, L in problems:
         print('  DARK-ON-DARK  %-14s %-56s %s (lum %d)' % (f, sel, c, L))
-    if not problems:
-        print('  no unhandled dark text colours')
-    return 1 if problems else 0
+
+    inv = inverted_surfaces()
+    for f, sel in inv:
+        print('  INVERTED      %-14s %-56s uses --paper as TEXT' % (f, sel))
+
+    if not problems and not inv:
+        print('  no unhandled dark text colours, no unhandled inverted surfaces')
+    return 1 if (problems or inv) else 0
 
 
 if __name__ == '__main__':

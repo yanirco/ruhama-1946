@@ -62,11 +62,23 @@ html[lang=he] .navlinks a[data-en],html[lang=en] .navlinks a[data-he]{display:no
 /* ---------- article ---------- */
 article{display:none}
 article.on{display:block}
-.hero{position:relative;background:var(--dark);color:var(--paper);
+/* ---------- text over a photograph ----------
+   The hero title sits on an image, so no palette colour is ever safe: the
+   picture behind it can be any brightness, and it was borrowing --paper, which
+   the dark theme turns near-black. Three independent defences, so no single one
+   has to be perfect:
+     1. a FIXED light ink that no theme can swap
+     2. a scrim gradient under the text, strengthened where the words actually are
+     3. a shadow halo, so the glyph edges survive even a pale patch of sky
+   Photographs are unpredictable; belt and braces is the right call here. */
+.hero{position:relative;background:#0b0908;color:#f6f2ea;
   min-height:min(78vh,720px);display:grid;align-items:end;overflow:hidden}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to top,rgba(12,9,8,.94) 8%,rgba(12,9,8,.62) 45%,rgba(12,9,8,.25) 100%)}
+  background:linear-gradient(to top,rgba(10,8,7,.96) 4%,rgba(10,8,7,.86) 26%,
+             rgba(10,8,7,.55) 55%,rgba(10,8,7,.22) 100%)}
+.hero h1,.hero p,.hero .kicker{
+  text-shadow:0 2px 20px rgba(0,0,0,.9), 0 1px 3px rgba(0,0,0,.75)}
 .hero .inner{position:relative;z-index:2;padding:clamp(28px,5vw,80px);max-width:1000px}
 .hero h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;line-height:1.08;
   font-size:clamp(32px,5.4vw,68px);margin-bottom:14px}
